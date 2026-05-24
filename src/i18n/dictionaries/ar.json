@@ -1,0 +1,524 @@
+{
+  "common": {
+    "home": "الرئيسية",
+    "shop": "المتجر",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "faq": "الأسئلة الشائعة",
+    "cart": "السلة",
+    "checkout": "الدفع",
+    "search": "بحث",
+    "searchPlaceholder": "ابحث عن المنتجات...",
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ",
+    "retry": "حاول مرة أخرى",
+    "viewAll": "عرض جميع المنتجات",
+    "readMore": "اقرأ المزيد",
+    "learnMore": "اعرف المزيد",
+    "more": "المزيد",
+    "remove": "إزالة",
+    "categories": "الفئات",
+    "noResults": "لم يتم العثور على منتجات",
+    "viewAllResults": "عرض جميع النتائج"
+  },
+  "navigation": {
+    "menu": "القائمة",
+    "close": "إغلاق",
+    "back": "رجوع",
+    "language": "اللغة",
+    "currency": "العملة"
+  },
+  "product": {
+    "addToCart": "أضف إلى السلة",
+    "buyNow": "اشتر الآن",
+    "outOfStock": "غير متوفر",
+    "inStock": "متوفر",
+    "quantity": "الكمية",
+    "price": "السعر",
+    "regularPrice": "السعر العادي",
+    "salePrice": "سعر التخفيض",
+    "description": "الوصف",
+    "specifications": "المواصفات",
+    "reviews": "التقييمات",
+    "relatedProducts": "منتجات ذات صلة",
+    "recentlyViewed": "شوهدت مؤخراً",
+    "recentlyViewedSubtitle": "شوهدت مؤخراً",
+    "selectOptions": "اختر الخيارات",
+    "sku": "رمز المنتج",
+    "category": "الفئة",
+    "categories": "الفئات",
+    "tags": "الوسوم",
+    "share": "مشاركة"
+  },
+  "cart": {
+    "yourCart": "سلة التسوق",
+    "emptyCart": "سلة التسوق فارغة",
+    "continueShopping": "متابعة التسوق",
+    "subtotal": "المجموع الفرعي",
+    "shipping": "الشحن",
+    "tax": "الضريبة",
+    "total": "الإجمالي",
+    "discount": "الخصم",
+    "proceedToCheckout": "المتابعة للدفع",
+    "updateCart": "تحديث السلة",
+    "removeItem": "إزالة",
+    "itemAdded": "تمت إضافة المنتج إلى السلة",
+    "itemRemoved": "تمت إزالة المنتج من السلة"
+  },
+  "checkout": {
+    "checkout": "الدفع",
+    "billingDetails": "تفاصيل الفاتورة",
+    "shippingDetails": "تفاصيل الشحن",
+    "paymentMethod": "طريقة الدفع",
+    "orderSummary": "ملخص الطلب",
+    "placeOrder": "تأكيد الطلب",
+    "orderComplete": "تم الطلب",
+    "thankYou": "شكراً لطلبك!",
+    "orderNumber": "رقم الطلب",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "address": "العنوان",
+    "city": "المدينة",
+    "state": "المنطقة",
+    "postcode": "الرمز البريدي",
+    "country": "الدولة",
+    "orderNotes": "ملاحظات الطلب"
+  },
+  "footer": {
+    "aboutUs": "من نحن",
+    "customerService": "خدمة العملاء",
+    "quickLinks": "روابط سريعة",
+    "newsletter": "النشرة الإخبارية",
+    "subscribeText": "اشترك في نشرتنا الإخبارية للحصول على التحديثات والعروض الحصرية.",
+    "subscribe": "اشترك",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "followUs": "تابعنا",
+    "copyright": "جميع الحقوق محفوظة.",
+    "privacyPolicy": "سياسة الخصوصية",
+    "termsConditions": "الشروط والأحكام",
+    "returnPolicy": "سياسة الإرجاع",
+    "shippingInfo": "معلومات الشحن",
+    "storeLocator": "مواقع المتاجر",
+    "buildYourOwnSet": "أنشئ مجموعتك"
+  },
+  "filters": {
+    "filters": "التصفية",
+    "sortBy": "ترتيب حسب",
+    "priceRange": "نطاق السعر",
+    "categories": "الفئات",
+    "clearAll": "مسح الكل",
+    "apply": "تطبيق",
+    "newest": "الأحدث",
+    "priceLowHigh": "السعر: من الأقل للأعلى",
+    "priceHighLow": "السعر: من الأعلى للأقل",
+    "bestSelling": "الأكثر مبيعاً",
+    "featured": "مميز"
+  },
+  "account": {
+    "myAccount": "حسابي",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "register": "إنشاء حساب",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "orders": "الطلبات",
+    "ordersDesc": "عرض وتتبع طلباتك",
+    "addresses": "العناوين",
+    "addressesDesc": "إدارة عناوين التوصيل",
+    "accountDetails": "تفاصيل الحساب",
+    "wishlist": "قائمة الأمنيات",
+    "wishlistDesc": "عرض المنتجات المحفوظة",
+    "settings": "إعدادات الحساب",
+    "settingsDesc": "تحديث ملفك الشخصي والتفضيلات",
+    "logoutDesc": "الخروج من حسابك",
+    "welcome": "مرحباً بعودتك",
+    "notLoggedIn": "يرجى تسجيل الدخول للوصول إلى حسابك",
+    "memberSince": "عضو منذ",
+    "profile": "الملف الشخصي"
+  },
+  "miniCart": {
+    "cart": "سلة التسوق",
+    "emptyCart": "سلة التسوق فارغة",
+    "continueShopping": "متابعة التسوق",
+    "subtotal": "المجموع الفرعي",
+    "viewCart": "عرض السلة",
+    "checkout": "إتمام الشراء",
+    "remove": "إزالة"
+  },
+  "wishlist": {
+    "title": "قائمة الرغبات",
+    "emptyWishlist": "قائمة الرغبات فارغة",
+    "emptyWishlistDesc": "لم تقم بإضافة أي منتجات إلى قائمة الرغبات بعد.",
+    "continueShopping": "متابعة التسوق",
+    "product": "المنتج",
+    "price": "السعر",
+    "status": "الحالة",
+    "actions": "الإجراءات",
+    "remove": "إزالة",
+    "addToCart": "أضف للسلة",
+    "addedToCart": "تمت الإضافة!",
+    "inStock": "متوفر",
+    "outOfStock": "غير متوفر",
+    "backToShop": "متابعة التسوق",
+    "items": "منتجات",
+    "addToWishlist": "أضف للمفضلة",
+    "removeFromWishlist": "إزالة من المفضلة",
+    "added": "أضيف في"
+  },
+  "sections": {
+    "newProducts": {
+      "title": "منتجات جديدة",
+      "subtitle": "اكتشف أحدث منتجاتنا"
+    },
+    "bestsellers": {
+      "title": "الأكثر مبيعاً",
+      "subtitle": "منتجاتنا الأكثر شعبية"
+    },
+    "shopByCategory": {
+      "title": "تسوق حسب الفئة",
+      "subtitle": "استكشف مجموعاتنا المتنوعة"
+    },
+    "featuredProducts": {
+      "title": "منتجات مميزة",
+      "subtitle": "اكتشف أفضل منتجاتنا"
+    },
+    "collections": {
+      "title": "مجموعاتنا",
+      "subtitle": "استكشف مجموعاتنا المنسقة"
+    },
+    "ourStory": {
+      "title": "قصتنا",
+      "description1": "في Sasan Perfumes، نؤمن بأن العطر هو فن. تأسسنا في الإمارات العربية المتحدة، ونصنع يدوياً أجود العطور الفاخرة وزيوت العود ومنتجات العناية بالجسم ومعطرات المنزل باستخدام أفخم المكونات الطبيعية من جميع أنحاء العالم — بما في ذلك العود العربي الأصيل والورد الفرنسي وخشب الصندل الهندي والمسك والعنبر.",
+      "description2": "مهمتنا هي تقديم تجربة عطرية فريدة تدوم طويلاً وتترك انطباعاً لا يُنسى. من مجموعات هدايا العطور الفاخرة إلى ناشرات العطر والشموع ورذاذ الشعر، كل إبداع من Sasan Perfumes مصمم ليأسر حواسك ويرتقي بلحظاتك اليومية."
+    },
+    "whyChooseUs": {
+      "title": "لماذا تختار Sasan Perfumes",
+      "subtitle": "اكتشف ما يميز عطورنا",
+      "items": [
+        {
+          "title": "صناعة يدوية في الإمارات",
+          "description": "يتم مزج كل عطر وتعبئته بعناية من قبل خبراء العطور في مشغلنا بدبي، مما يضمن أعلى جودة في كل قطرة."
+        },
+        {
+          "title": "مكونات طبيعية فاخرة",
+          "description": "نستورد أجود أنواع العود والمسك والعنبر والورد وخشب الصندل من موردين موثوقين حول العالم لابتكار عطور أصيلة تدوم طويلاً."
+        },
+        {
+          "title": "توصيل مجاني في الإمارات",
+          "description": "استمتع بالشحن المجاني على جميع الطلبات التي تزيد عن 500 درهم في جميع أنحاء الإمارات العربية المتحدة، مع خيارات التوصيل السريع."
+        },
+        {
+          "title": "مجموعات هدايا منسقة",
+          "description": "من مجموعات هدايا العطور المخصصة إلى حزم اصنعها بنفسك، اعثر على الهدية العطرية المثالية لكل مناسبة واحتفال."
+        }
+      ]
+    },
+    "faq": {
+      "title": "الأسئلة الشائعة",
+      "subtitle": "كل ما تحتاج معرفته عن عطورنا",
+      "items": [
+        {
+          "question": "ما أنواع العطور التي يقدمها Sasan Perfumes؟",
+          "answer": "يقدم Sasan Perfumes مجموعة واسعة من العطور الفاخرة تشمل عطور العود العربي، أو دو بارفان، رذاذ الجسم، الزيوت العطرية، معطرات المنزل، البخور، ومجموعات الهدايا المنسقة. تلبي مجموعاتنا أذواق الرجال والنساء بعطور طويلة الأمد مصنوعة في الإمارات."
+        },
+        {
+          "question": "هل تقدمون شحناً مجانياً في الإمارات؟",
+          "answer": "نعم، نقدم شحناً مجانياً على جميع الطلبات التي تزيد عن 500 درهم داخل الإمارات العربية المتحدة. كما نشحن دولياً إلى المملكة العربية السعودية والكويت والبحرين وقطر وعمان ودول مجلس التعاون الخليجي الأخرى."
+        },
+        {
+          "question": "هل عطوركم مصنوعة من مكونات طبيعية؟",
+          "answer": "نستخدم مكونات طبيعية فاخرة 100% تشمل العود العربي الأصيل والورد الفرنسي وخشب الصندل الهندي والمسك الإثيوبي. يتم صناعة كل عطر يدوياً بواسطة خبراء العطور في مشغلنا بدبي."
+        },
+        {
+          "question": "هل يمكنني إنشاء مجموعة هدايا عطرية مخصصة؟",
+          "answer": "بالتأكيد! تتيح لك ميزة اصنع مجموعتك إنشاء حزم عطرية مخصصة. اختر من مجموعتنا الكاملة من العطور ومنتجات العناية بالجسم ومعطرات المنزل لإنشاء الهدية المثالية."
+        },
+        {
+          "question": "كم تدوم عطوركم؟",
+          "answer": "تم تصميم تركيبات أو دو بارفان لدينا لتدوم بشكل استثنائي، عادةً من 8 إلى 12 ساعة على البشرة. يمكن أن تدوم زيوت العطور المركزة والعطور القائمة على العود لفترة أطول، مما يوفر تجربة عطرية غنية ومتطورة طوال اليوم."
+        }
+      ]
+    },
+    "newsletter": {
+      "title": "اشترك في نشرتنا الإخبارية"
+    },
+    "products": "منتج"
+  },
+  "bundlesCreator": {
+    "title": "منشئ الحزم",
+    "description": "إنشاء وتكوين حزم المنتجات مع ميزات متقدمة مثل BOPO",
+    "bundleTitle": "عنوان الحزمة:",
+    "bundleType": "نوع الحزمة:",
+    "shippingFee": "رسوم الشحن:",
+    "enableBundle": "تفعيل الحزمة",
+    "enableBundleDesc": "تفعيل هذه الحزمة في صفحة المنتج",
+    "addBundleItem": "إضافة عنصر حزمة",
+    "save": "حفظ الحزمة",
+    "saving": "جاري الحفظ...",
+    "selectBundleType": "اختر نوع الحزمة",
+    "bundleConfiguration": "تكوين الحزمة",
+    "bundleItem": "عنصر الحزمة",
+    "duplicate": "تكرار",
+    "remove": "إزالة",
+    "rule": "القاعدة",
+    "categories": "الفئات",
+    "excludeCategories": "استبعاد الفئات",
+    "tags": "العلامات",
+    "excludeTags": "استبعاد العلامات",
+    "product": "المنتج",
+    "productVariation": "تنوع المنتج",
+    "excludeProduct": "استبعاد المنتج",
+    "excludeProductVariation": "استبعاد تنوع المنتج",
+    "display": "العرض",
+    "customItemTitle": "عنوان العنصر المخصص",
+    "sort": "الترتيب",
+    "default": "افتراضي",
+    "quantity": "الكمية",
+    "details": "التفاصيل",
+    "discount": "الخصم",
+    "optionalItem": "عنصر اختياري",
+    "showPrice": "إظهار السعر",
+    "pleaseSelectCategory": "يرجى ملء الفئة الخاصة بك",
+    "pleaseSelectTag": "يرجى ملء العلامة الخاصة بك",
+    "pleaseSelectProduct": "يرجى ملء عنوان المنتج الخاص بك",
+    "bundleTypes": {
+      "birthday": "عيد ميلاد",
+      "special_events": "مناسبات خاصة",
+      "gift_sets": "مجموعات هدايا",
+      "seasonal": "موسمي",
+      "corporate": "شركات",
+      "wedding": "زفاف",
+      "custom": "مخصص"
+    },
+    "shippingOptions": {
+      "apply_to_each_bundled_product": "تطبيق على كل منتج مجمع",
+      "apply_once_per_bundle": "تطبيق مرة واحدة لكل حزمة",
+      "free_shipping": "شحن مجاني",
+      "calculated_at_checkout": "يحسب عند الدفع"
+    },
+    "savedSuccess": "تم حفظ تكوين الحزمة بنجاح",
+    "savedError": "فشل في حفظ تكوين الحزمة"
+  },
+  "auth": {
+    "loginTitle": "مرحباً بعودتك",
+    "loginSubtitle": "سجل دخولك للمتابعة",
+    "registerTitle": "إنشاء حساب",
+    "registerSubtitle": "انضم إلينا وابدأ التسوق",
+    "username": "اسم المستخدم",
+    "usernamePlaceholder": "أدخل اسم المستخدم",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "confirmPasswordPlaceholder": "أعد إدخال كلمة المرور",
+    "loginButton": "تسجيل الدخول",
+    "registerButton": "إنشاء حساب",
+    "loggingIn": "جاري تسجيل الدخول...",
+    "registering": "جاري إنشاء الحساب...",
+    "noAccount": "ليس لديك حساب؟",
+    "hasAccount": "لديك حساب بالفعل؟",
+    "signUpLink": "سجل الآن",
+    "signInLink": "تسجيل الدخول",
+    "orContinueWith": "أو تابع باستخدام",
+    "rememberMe": "تذكرني",
+    "loginSuccess": "تم تسجيل الدخول بنجاح!",
+    "registerSuccess": "تم إنشاء الحساب بنجاح! يرجى تسجيل الدخول.",
+    "loginError": "اسم المستخدم أو كلمة المرور غير صحيحة",
+    "registerError": "فشل إنشاء الحساب. يرجى المحاولة مرة أخرى.",
+    "usernameRequired": "اسم المستخدم مطلوب",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "emailInvalid": "يرجى إدخال بريد إلكتروني صحيح",
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "passwordMinLength": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+    "passwordsNotMatch": "كلمات المرور غير متطابقة",
+    "welcomeBack": "مرحباً بعودتك",
+    "logoutSuccess": "تم تسجيل الخروج بنجاح"
+  },
+  "pages": {
+    "terms": {
+      "title": "الشروط والأحكام",
+      "subtitle": "يرجى قراءة هذه الشروط والأحكام بعناية قبل استخدام موقعنا",
+      "lastUpdated": "آخر تحديث: ديسمبر 2024",
+      "agreement": "باستخدامك لموقعنا، فإنك توافق على هذه الشروط والأحكام",
+      "seo": {
+        "title": "الشروط والأحكام",
+        "description": "اقرأ الشروط والأحكام الخاصة باستخدام موقع Sasan Perfumes"
+      },
+      "sections": []
+    },
+    "privacy": {
+      "title": "سياسة الخصوصية",
+      "subtitle": "نحن ملتزمون بحماية خصوصيتك وبياناتك الشخصية",
+      "lastUpdated": "آخر تحديث: ديسمبر 2024",
+      "contactCta": "إذا كانت لديك أي أسئلة أو استفسارات، لا تتردد في التواصل معنا",
+      "seo": {
+        "title": "سياسة الخصوصية",
+        "description": "تعرف على كيفية حماية Sasan Perfumes لخصوصيتك وبياناتك الشخصية"
+      },
+      "sections": []
+    },
+    "returns": {
+      "title": "سياسة الإرجاع والاستبدال",
+      "subtitle": "رضاك هو أولويتنا. إذا لم تكن راضياً عن مشترياتك، نحن هنا للمساعدة",
+      "needHelp": "هل تحتاج إلى مساعدة؟",
+      "needHelpText": "فريق خدمة العملاء لدينا جاهز لمساعدتك في أي استفسارات حول الإرجاع",
+      "seo": {
+        "title": "سياسة الإرجاع",
+        "description": "تعرف على سياسة الإرجاع والاستبدال لدى Sasan Perfumes"
+      },
+      "features": [],
+      "processTitle": "خطوات الإرجاع",
+      "steps": [],
+      "eligibleTitle": "المنتجات المؤهلة للإرجاع",
+      "eligibleItems": [],
+      "notEligibleTitle": "المنتجات غير المؤهلة للإرجاع",
+      "notEligibleItems": []
+    },
+    "faq": {
+      "title": "الأسئلة الشائعة",
+      "subtitle": "إجابات على الأسئلة الأكثر شيوعاً حول منتجاتنا وخدماتنا",
+      "notFound": "لم تجد إجابة لسؤالك؟",
+      "notFoundText": "تواصل معنا وسنكون سعداء بمساعدتك",
+      "seo": {
+        "title": "الأسئلة الشائعة",
+        "description": "إجابات على الأسئلة الأكثر شيوعاً حول منتجاتنا وخدماتنا"
+      },
+      "items": []
+    },
+    "contact": {
+      "title": "اتصل بنا",
+      "subtitle": "نحن هنا لمساعدتك. تواصل معنا لأي استفسارات أو ملاحظات.",
+      "sendMessage": "أرسل لنا رسالة",
+      "contactInfo": "معلومات الاتصال",
+      "mapPlaceholder": "خريطة الموقع",
+      "seo": {
+        "title": "اتصل بنا",
+        "description": "نحن هنا لمساعدتك. تواصل معنا لأي استفسارات أو ملاحظات."
+      },
+      "info": {
+        "address": {
+          "title": "العنوان",
+          "content": ""
+        },
+        "phone": {
+          "title": "الهاتف",
+          "content": ""
+        },
+        "callPhone": {
+          "title": "اتصال",
+          "content": ""
+        },
+        "email": {
+          "title": "البريد الإلكتروني",
+          "content": ""
+        },
+        "hours": {
+          "title": "ساعات العمل",
+          "content": ""
+        }
+      }
+    },
+    "shipping": {
+      "title": "معلومات الشحن",
+      "haveQuestions": "هل لديك أسئلة؟",
+      "haveQuestionsText": "فريق خدمة العملاء لدينا جاهز لمساعدتك في أي استفسارات حول الشحن والتوصيل",
+      "contentUnavailable": "المحتوى غير متوفر حالياً",
+      "seo": {
+        "title": "معلومات الشحن",
+        "description": "تعرف على سياسة الشحن والتوصيل لدى Sasan Perfumes. نوصل العطور إلى الإمارات والسعودية والبحرين والكويت وعمان ودولياً."
+      },
+      "shippingRates": {
+        "title": "أسعار الشحن حسب الوجهة",
+        "destination": "الوجهة",
+        "shippingCost": "تكلفة الشحن",
+        "estimatedDelivery": "مدة التوصيل المتوقعة",
+        "currency": "د.إ",
+        "rates": [],
+        "note": "جميع الأسعار بالدرهم الإماراتي. الشحن المجاني غير متاح حالياً."
+      },
+      "sections": []
+    },
+    "guides": {
+      "breadcrumb": "الأدلة",
+      "relatedGuides": "أدلة ذات صلة",
+      "readGuide": "اقرأ دليل {title}",
+      "ourPicks": "اختياراتنا",
+      "topPicks": "المنتجات المختارة",
+      "buyingGuide": "دليل الشراء",
+      "faqTitle": "الأسئلة الشائعة",
+      "faqSubtitle": "إجابات على أسئلتك الأكثر شيوعاً",
+      "updated": "آخر تحديث: ",
+      "location": "الإمارات العربية المتحدة",
+      "expertPicks": "منتجات مختارة",
+      "ctaTitle": "مستعد لاكتشاف عطرك المثالي؟",
+      "ctaDescription": "تصفح مجموعتنا الكاملة من العطور الفاخرة المصنوعة يدوياً في الإمارات. توصيل مجاني للطلبات فوق 500 درهم.",
+      "ctaShopButton": "تسوق عطور Sasan Perfumes",
+      "ctaBrowseButton": "تصفح العطور",
+      "contactUs": "اتصل بنا"
+    },
+    "storeLocator": {
+      "heroTitle": "",
+      "heroSubtitle": "",
+      "heroDescription": "",
+      "stores": "متاجر",
+      "countries": "دول",
+      "getDirections": "احصل على الاتجاهات",
+      "openingHours": "ساعات العمل",
+      "openingHoursValue": "",
+      "ctaTitle": "",
+      "ctaSubtitle": "",
+      "ctaButton": "",
+      "contactUs": "اتصل بنا",
+      "storesIn": "متاجر في",
+      "region": "منطقة",
+      "regions": "مناطق",
+      "waitingTitle": "",
+      "waitingSubtitle": ""
+    },
+    "about": {
+      "title": "Sasan Perfumes",
+      "heroSubtitle": "",
+      "heroDescription": "",
+      "contentUnavailable": "المحتوى غير متوفر حالياً",
+      "seo": {
+        "title": "من نحن - Sasan Perfumes",
+        "description": ""
+      },
+      "cta": {
+        "title": "",
+        "subtitle": "",
+        "button": "تسوق الآن"
+      },
+      "stats": {
+        "since": "",
+        "location": "",
+        "handcrafted": "",
+        "sustainable": ""
+      },
+      "mainContent": {
+        "title": "",
+        "paragraph1": "",
+        "paragraph2": "",
+        "paragraph3": ""
+      },
+      "uniqueness": {
+        "title": "",
+        "subtitle": "",
+        "content": ""
+      },
+      "journey": {
+        "title": "",
+        "content": ""
+      },
+      "ingredients": {
+        "title": "",
+        "subtitle": "",
+        "description": "",
+        "items": []
+      },
+      "sections": []
+    }
+  }
+}

@@ -1,0 +1,524 @@
+{
+  "common": {
+    "home": "Home",
+    "shop": "Shop",
+    "about": "About Us",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "cart": "Cart",
+    "checkout": "Checkout",
+    "search": "Search",
+    "searchPlaceholder": "Search products...",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Try again",
+    "viewAll": "View All Products",
+    "readMore": "Read More",
+    "learnMore": "Learn More",
+    "more": "More",
+    "remove": "Remove",
+    "categories": "Categories",
+    "noResults": "No products found",
+    "viewAllResults": "View all results"
+  },
+  "navigation": {
+    "menu": "Menu",
+    "close": "Close",
+    "back": "Back",
+    "language": "Language",
+    "currency": "Currency"
+  },
+  "product": {
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy Now",
+    "outOfStock": "Out of Stock",
+    "inStock": "In Stock",
+    "quantity": "Quantity",
+    "price": "Price",
+    "regularPrice": "Regular Price",
+    "salePrice": "Sale Price",
+    "description": "Description",
+    "specifications": "Specifications",
+    "reviews": "Reviews",
+    "relatedProducts": "Related Products",
+    "recentlyViewed": "Recently Viewed",
+    "recentlyViewedSubtitle": "Products you recently viewed",
+    "selectOptions": "Select Options",
+    "sku": "SKU",
+    "category": "Category",
+    "categories": "Categories",
+    "tags": "Tags",
+    "share": "Share"
+  },
+  "cart": {
+    "yourCart": "Your Cart",
+    "emptyCart": "Your cart is empty",
+    "continueShopping": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "tax": "Tax",
+    "total": "Total",
+    "discount": "Discount",
+    "proceedToCheckout": "Proceed to Checkout",
+    "updateCart": "Update Cart",
+    "removeItem": "Remove",
+    "itemAdded": "Item added to cart",
+    "itemRemoved": "Item removed from cart"
+  },
+  "checkout": {
+    "checkout": "Checkout",
+    "billingDetails": "Billing Details",
+    "shippingDetails": "Shipping Details",
+    "paymentMethod": "Payment Method",
+    "orderSummary": "Order Summary",
+    "placeOrder": "Place Order",
+    "orderComplete": "Order Complete",
+    "thankYou": "Thank you for your order!",
+    "orderNumber": "Order Number",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "state": "State/Province",
+    "postcode": "Postal Code",
+    "country": "Country",
+    "orderNotes": "Order Notes"
+  },
+  "footer": {
+    "aboutUs": "About Us",
+    "customerService": "Customer Service",
+    "quickLinks": "Quick Links",
+    "newsletter": "Newsletter",
+    "subscribeText": "Subscribe to our newsletter for updates and exclusive offers.",
+    "subscribe": "Subscribe",
+    "emailPlaceholder": "Enter your email",
+    "followUs": "Follow Us",
+    "copyright": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsConditions": "Terms & Conditions",
+    "returnPolicy": "Return Policy",
+    "shippingInfo": "Shipping Information",
+    "storeLocator": "Store Locator",
+    "buildYourOwnSet": "Build Your Own Set"
+  },
+  "filters": {
+    "filters": "Filters",
+    "sortBy": "Sort By",
+    "priceRange": "Price Range",
+    "categories": "Categories",
+    "clearAll": "Clear All",
+    "apply": "Apply",
+    "newest": "Newest",
+    "priceLowHigh": "Price: Low to High",
+    "priceHighLow": "Price: High to Low",
+    "bestSelling": "Best Selling",
+    "featured": "Featured"
+  },
+  "account": {
+    "myAccount": "My Account",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "forgotPassword": "Forgot Password?",
+    "orders": "Orders",
+    "ordersDesc": "View and track your orders",
+    "addresses": "Addresses",
+    "addressesDesc": "Manage your delivery addresses",
+    "accountDetails": "Account Details",
+    "wishlist": "Wishlist",
+    "wishlistDesc": "View your saved items",
+    "settings": "Account Settings",
+    "settingsDesc": "Update your profile and preferences",
+    "logoutDesc": "Sign out of your account",
+    "welcome": "Welcome back",
+    "notLoggedIn": "Please login to access your account",
+    "memberSince": "Member since",
+    "profile": "Profile"
+  },
+  "miniCart": {
+    "cart": "Shopping Cart",
+    "emptyCart": "Your cart is empty",
+    "continueShopping": "Continue Shopping",
+    "subtotal": "Subtotal",
+    "viewCart": "View Cart",
+    "checkout": "Checkout",
+    "remove": "Remove"
+  },
+  "wishlist": {
+    "title": "My Wishlist",
+    "emptyWishlist": "Your wishlist is empty",
+    "emptyWishlistDesc": "You haven't added any products to your wishlist yet.",
+    "continueShopping": "Continue Shopping",
+    "product": "Product",
+    "price": "Price",
+    "status": "Status",
+    "actions": "Actions",
+    "remove": "Remove",
+    "addToCart": "Add to Cart",
+    "addedToCart": "Added!",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "backToShop": "Continue Shopping",
+    "items": "items",
+    "addToWishlist": "Add to Wishlist",
+    "removeFromWishlist": "Remove from Wishlist",
+    "added": "Added"
+  },
+  "sections": {
+    "newProducts": {
+      "title": "New Products",
+      "subtitle": "Discover our latest arrivals"
+    },
+    "bestsellers": {
+      "title": "Bestsellers",
+      "subtitle": "Our most popular products"
+    },
+    "shopByCategory": {
+      "title": "Shop by Category",
+      "subtitle": "Explore our diverse collections"
+    },
+    "featuredProducts": {
+      "title": "Featured Products",
+      "subtitle": "Discover our best sellers"
+    },
+    "collections": {
+      "title": "Our Collections",
+      "subtitle": "Explore our curated collections"
+    },
+    "ourStory": {
+      "title": "Our Story",
+      "description1": "At Sasan Perfumes, we believe that fragrance is an art. Founded in the UAE, we handcraft premium perfumes, oud oils, body care products, and home fragrances using the finest natural ingredients sourced from around the world — including authentic Arabian oud, French rose, Indian sandalwood, musk, and amber.",
+      "description2": "Our mission is to deliver a unique aromatic experience that lasts long and leaves an unforgettable impression. From luxury perfume gift sets to reed diffusers, candles, and hair mists, every Sasan Perfumes creation is designed to captivate your senses and elevate your everyday moments."
+    },
+    "whyChooseUs": {
+      "title": "Why Choose Sasan Perfumes",
+      "subtitle": "Discover what makes our fragrances stand out",
+      "items": [
+        {
+          "title": "Handcrafted in the UAE",
+          "description": "Every fragrance is carefully blended and bottled by expert perfumers in our Dubai-based atelier, ensuring the highest quality in every drop."
+        },
+        {
+          "title": "Premium Natural Ingredients",
+          "description": "We source the finest oud, musk, amber, rose, and sandalwood from trusted suppliers worldwide to create long-lasting, authentic scents."
+        },
+        {
+          "title": "Free UAE Delivery",
+          "description": "Enjoy complimentary shipping on all orders over 500 AED across the United Arab Emirates, with express delivery options available."
+        },
+        {
+          "title": "Curated Gift Collections",
+          "description": "From bespoke perfume gift sets to build-your-own bundles, find the perfect aromatic gift for every occasion and celebration."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Everything you need to know about our fragrances",
+      "items": [
+        {
+          "question": "What types of perfumes does Sasan Perfumes offer?",
+          "answer": "Sasan Perfumes offers a wide range of premium fragrances including Arabian oud perfumes, eau de parfum, body mists, aromatic oils, home fragrances, bakhoor incense, and curated gift sets. Our collections cater to both men and women with long-lasting scents crafted in the UAE."
+        },
+        {
+          "question": "Do you offer free shipping in the UAE?",
+          "answer": "Yes, we offer free shipping on all orders over 500 AED within the United Arab Emirates. We also ship internationally to Saudi Arabia, Kuwait, Bahrain, Qatar, Oman, and other GCC countries."
+        },
+        {
+          "question": "Are your fragrances made with natural ingredients?",
+          "answer": "We use 100% premium natural ingredients including authentic Arabian oud, French rose, Indian sandalwood, and Ethiopian musk. Each fragrance is handcrafted by expert perfumers in our Dubai atelier."
+        },
+        {
+          "question": "Can I build a custom perfume gift set?",
+          "answer": "Absolutely! Our Build Your Own Set feature allows you to create personalized fragrance bundles. Choose from our entire collection of perfumes, body care products, and home fragrances to create the perfect gift."
+        },
+        {
+          "question": "How long do your perfumes last?",
+          "answer": "Our eau de parfum formulations are designed for exceptional longevity, typically lasting 8-12 hours on skin. Our concentrated perfume oils and oud-based fragrances can last even longer, providing a rich and evolving scent experience throughout the day."
+        }
+      ]
+    },
+    "newsletter": {
+      "title": "Subscribe to Our Newsletter"
+    },
+    "products": "products"
+  },
+  "bundlesCreator": {
+    "title": "Bundles Creator",
+    "description": "Create and configure product bundles with advanced BOPO-style features",
+    "bundleTitle": "Bundle title:",
+    "bundleType": "Bundle type:",
+    "shippingFee": "Shipping fee:",
+    "enableBundle": "Enable Bundle",
+    "enableBundleDesc": "Enable this bundle on the product page",
+    "addBundleItem": "Add Bundle Item",
+    "save": "Save Bundle",
+    "saving": "Saving...",
+    "selectBundleType": "Select bundle type",
+    "bundleConfiguration": "Bundle Configuration",
+    "bundleItem": "Bundle item",
+    "duplicate": "Duplicate",
+    "remove": "Remove",
+    "rule": "Rule",
+    "categories": "Categories",
+    "excludeCategories": "Exclude categories",
+    "tags": "Tags",
+    "excludeTags": "Exclude tags",
+    "product": "Product",
+    "productVariation": "Product variation",
+    "excludeProduct": "Exclude product",
+    "excludeProductVariation": "Exclude product variation",
+    "display": "Display",
+    "customItemTitle": "Custom item title",
+    "sort": "Sort",
+    "default": "Default",
+    "quantity": "Quantity",
+    "details": "Details",
+    "discount": "Discount",
+    "optionalItem": "Optional item",
+    "showPrice": "Show price",
+    "pleaseSelectCategory": "Please Fill In Your Category",
+    "pleaseSelectTag": "Please Fill In Your Tag",
+    "pleaseSelectProduct": "Please Fill In Your Product Title",
+    "bundleTypes": {
+      "birthday": "Birthday",
+      "special_events": "Special Events",
+      "gift_sets": "Gift Sets",
+      "seasonal": "Seasonal",
+      "corporate": "Corporate",
+      "wedding": "Wedding",
+      "custom": "Custom"
+    },
+    "shippingOptions": {
+      "apply_to_each_bundled_product": "Apply to each bundled product",
+      "apply_once_per_bundle": "Apply once per bundle",
+      "free_shipping": "Free shipping",
+      "calculated_at_checkout": "Calculated at checkout"
+    },
+    "savedSuccess": "Bundle configuration saved successfully",
+    "savedError": "Failed to save bundle configuration"
+  },
+  "auth": {
+    "loginTitle": "Welcome Back",
+    "loginSubtitle": "Sign in to your account to continue",
+    "registerTitle": "Create Account",
+    "registerSubtitle": "Join us and start shopping",
+    "username": "Username",
+    "usernamePlaceholder": "Enter your username",
+    "email": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "loginButton": "Sign In",
+    "registerButton": "Create Account",
+    "loggingIn": "Signing in...",
+    "registering": "Creating account...",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signUpLink": "Sign up",
+    "signInLink": "Sign in",
+    "orContinueWith": "Or continue with",
+    "rememberMe": "Remember me",
+    "loginSuccess": "Login successful!",
+    "registerSuccess": "Registration successful! Please login.",
+    "loginError": "Invalid username or password",
+    "registerError": "Registration failed. Please try again.",
+    "usernameRequired": "Username is required",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "passwordsNotMatch": "Passwords do not match",
+    "welcomeBack": "Welcome back",
+    "logoutSuccess": "You have been logged out"
+  },
+  "pages": {
+    "terms": {
+      "title": "Terms & Conditions",
+      "subtitle": "Please read these terms and conditions carefully before using our website",
+      "lastUpdated": "Last Updated: December 2024",
+      "agreement": "By using our website, you agree to these terms and conditions",
+      "seo": {
+        "title": "Terms & Conditions",
+        "description": "Read the terms and conditions for using Sasan Perfumes website"
+      },
+      "sections": []
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "subtitle": "We are committed to protecting your privacy and personal data",
+      "lastUpdated": "Last Updated: December 2024",
+      "contactCta": "If you have any questions or concerns, don't hesitate to contact us",
+      "seo": {
+        "title": "Privacy Policy",
+        "description": "Learn how Sasan Perfumes protects your privacy and personal data"
+      },
+      "sections": []
+    },
+    "returns": {
+      "title": "Return & Exchange Policy",
+      "subtitle": "Your satisfaction is our priority. If you're not happy with your purchase, we're here to help",
+      "needHelp": "Need Help?",
+      "needHelpText": "Our customer service team is ready to help you with any return inquiries",
+      "seo": {
+        "title": "Return Policy",
+        "description": "Learn about Sasan Perfumes's return and exchange policy"
+      },
+      "features": [],
+      "processTitle": "Return Process",
+      "steps": [],
+      "eligibleTitle": "Eligible for Return",
+      "eligibleItems": [],
+      "notEligibleTitle": "Not Eligible for Return",
+      "notEligibleItems": []
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Answers to the most common questions about our products and services",
+      "notFound": "Didn't find your answer?",
+      "notFoundText": "Contact us and we'll be happy to help",
+      "seo": {
+        "title": "Frequently Asked Questions",
+        "description": "Answers to the most common questions about our products and services"
+      },
+      "items": []
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "We're here to help. Reach out to us for any inquiries or feedback.",
+      "sendMessage": "Send us a Message",
+      "contactInfo": "Contact Information",
+      "mapPlaceholder": "Map Location",
+      "seo": {
+        "title": "Contact Us",
+        "description": "We're here to help. Reach out to us for any inquiries or feedback."
+      },
+      "info": {
+        "address": {
+          "title": "Address",
+          "content": ""
+        },
+        "phone": {
+          "title": "Phone",
+          "content": ""
+        },
+        "callPhone": {
+          "title": "Calls",
+          "content": ""
+        },
+        "email": {
+          "title": "Email",
+          "content": ""
+        },
+        "hours": {
+          "title": "Working Hours",
+          "content": ""
+        }
+      }
+    },
+    "shipping": {
+      "title": "Shipping Information",
+      "haveQuestions": "Have Questions?",
+      "haveQuestionsText": "Our customer service team is ready to help you with any shipping and delivery inquiries",
+      "contentUnavailable": "Content is not available at the moment",
+      "seo": {
+        "title": "Shipping Information",
+        "description": "Learn about Sasan Perfumes's shipping and delivery policy. We deliver perfumes and fragrances across UAE, Saudi Arabia, Bahrain, Kuwait, Oman and internationally."
+      },
+      "shippingRates": {
+        "title": "Shipping Rates by Destination",
+        "destination": "Destination",
+        "shippingCost": "Shipping Cost",
+        "estimatedDelivery": "Estimated Delivery",
+        "currency": "AED",
+        "rates": [],
+        "note": "All prices are in AED. Free shipping is not currently available."
+      },
+      "sections": []
+    },
+    "guides": {
+      "breadcrumb": "Guides",
+      "relatedGuides": "Related Guides",
+      "readGuide": "Read {title} guide",
+      "ourPicks": "Our Picks",
+      "topPicks": "Top Picks",
+      "buyingGuide": "Buying Guide",
+      "faqTitle": "Frequently Asked Questions",
+      "faqSubtitle": "Answers to your most common questions",
+      "updated": "Updated: ",
+      "location": "UAE",
+      "expertPicks": "Expert Picks",
+      "ctaTitle": "Ready to Find Your Perfect Scent?",
+      "ctaDescription": "Browse our full collection of premium, handcrafted fragrances made in the UAE. Free delivery on orders over 500 AED.",
+      "ctaShopButton": "Shop Sasan Perfumes Fragrances",
+      "ctaBrowseButton": "Browse Perfumes",
+      "contactUs": "Contact Us"
+    },
+    "storeLocator": {
+      "heroTitle": "",
+      "heroSubtitle": "",
+      "heroDescription": "",
+      "stores": "Stores",
+      "countries": "Countries",
+      "getDirections": "Get Directions",
+      "openingHours": "Opening Hours",
+      "openingHoursValue": "",
+      "ctaTitle": "",
+      "ctaSubtitle": "",
+      "ctaButton": "",
+      "contactUs": "Contact Us",
+      "storesIn": "Stores in",
+      "region": "Region",
+      "regions": "Regions",
+      "waitingTitle": "",
+      "waitingSubtitle": ""
+    },
+    "about": {
+      "title": "Sasan Perfumes",
+      "heroSubtitle": "",
+      "heroDescription": "",
+      "contentUnavailable": "Content is not available at the moment",
+      "seo": {
+        "title": "About Us - Sasan Perfumes",
+        "description": ""
+      },
+      "cta": {
+        "title": "",
+        "subtitle": "",
+        "button": "Shop Now"
+      },
+      "stats": {
+        "since": "",
+        "location": "",
+        "handcrafted": "",
+        "sustainable": ""
+      },
+      "mainContent": {
+        "title": "",
+        "paragraph1": "",
+        "paragraph2": "",
+        "paragraph3": ""
+      },
+      "uniqueness": {
+        "title": "",
+        "subtitle": "",
+        "content": ""
+      },
+      "journey": {
+        "title": "",
+        "content": ""
+      },
+      "ingredients": {
+        "title": "",
+        "subtitle": "",
+        "description": "",
+        "items": []
+      },
+      "sections": []
+    }
+  }
+}

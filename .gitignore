@@ -1,0 +1,62 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/.next-static-backup/
+/out/
+
+# production
+/build
+out.html
+
+# misc
+.DS_Store
+*.pem
+.htaccess
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.log
+
+# env files (can opt-in for committing if needed)
+.env*
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+.env
+
+# claude code & testing
+.claude/
+.playwright-mcp/
+*.png
+*.jpg
+*.jpeg
+
+# wordpress plugin (development only)
+wordpress/cadvil-settings/
+wordpress/asl-frontend-settings/
+wordpress/*.zip
+
+# local WordPress wp-content mirror (reference only)
+fnf_wp_contents/

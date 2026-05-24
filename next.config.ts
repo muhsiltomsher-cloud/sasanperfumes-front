@@ -1,0 +1,232 @@
+import type { NextConfig } from "next";
+
+const disableRuntimeCache =
+  process.env.NODE_ENV === "development" ||
+  process.env.DISABLE_RUNTIME_CACHE === "true" ||
+  process.env.NEXT_PUBLIC_DISABLE_RUNTIME_CACHE === "true";
+
+const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  images: {
+    unoptimized: process.env.NODE_ENV === "development",
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 768, 1024, 1280, 1536, 1920, 2560],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    qualities: [75, 85, 100],
+    minimumCacheTTL: disableRuntimeCache ? 0 : 31536000,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cms.sasanperfumes.ae",
+        pathname: "/wp-content/uploads/**",
+      },
+      {
+        protocol: "http",
+        hostname: "cms.sasanperfumes.ae",
+        pathname: "/wp-content/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "flagcdn.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "secure.gravatar.com",
+        pathname: "/avatar/**",
+      },
+    ],
+  },
+  // Increase static page generation timeout to handle slow API responses during build
+  staticPageGenerationTimeout: 120,
+  // Enable experimental features for better caching
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
+  },
+  experimental: {
+    ...(disableRuntimeCache ? {} : {
+      staleTimes: {
+        dynamic: 300,
+        static: 600,
+      },
+    }),
+    optimizePackageImports: ["lucide-react", "swiper", "@mui/material", "@apollo/client", "@emotion/react", "@emotion/styled", "class-variance-authority", "clsx", "swr", "cookies-next"],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/:slug([\\w-]+)-perfume',
+        destination: '/en/product/:slug-perfume',
+        permanent: true,
+      },
+      {
+        source: '/product/:slug',
+        destination: '/en/product/:slug',
+        permanent: true,
+      },
+      {
+        source: '/product-category/:slug',
+        destination: '/en/category/:slug',
+        permanent: true,
+      },
+      {
+        source: '/shop',
+        destination: '/en/shop',
+        permanent: true,
+      },
+    ];
+  },
+  async rewrites() {
+    const apiUrl = process.env.NEXT_PUBLIC_WC_API_URL || "https://cms.sasanperfumes.ae";
+    return [
+      {
+        source: '/cms-media/:path*',
+        destination: `${apiUrl}/wp-content/uploads/:path*`,
+      },
+    ];
+  },
+  async headers() {
+    const securityHeaders = [
+      {
+        key: "X-Robots-Tag",
+        value: "noindex, nofollow",
+      },
+      {
+        key: "X-Frame-Options",
+        value: "DENY",
+      },
+      {
+        key: "X-Content-Type-Options",
+        value: "nosniff",
+      },
+      {
+        key: "X-XSS-Protection",
+        value: "1; mode=block",
+      },
+      {
+        key: "Referrer-Policy",
+        value: "strict-origin-when-cross-origin",
+      },
+      {
+        key: "Cross-Origin-Opener-Policy",
+        value: "same-origin-allow-popups",
+      },
+      {
+        key: "Permissions-Policy",
+        value: "camera=(), microphone=(), geolocation=(self), interest-cohort=()",
+      },
+      {
+        key: "Strict-Transport-Security",
+        value: "max-age=63072000; includeSubDomains; preload",
+      },
+      {
+        key: "X-DNS-Prefetch-Control",
+        value: "on",
+      },
+    ];
+
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          ...securityHeaders,
+          ...(disableRuntimeCache
+            ? [
+                {
+                  key: "Cache-Control",
+                  value: "no-store, max-age=0",
+                },
+              ]
+            : []),
+        ],
+      },
+      // Prevent Cloudflare/CDN from caching HTML pages so users always get fresh
+      // HTML with correct chunk references after a new deployment
+      {
+        source: "/:locale(en|ar)/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: disableRuntimeCache ? "no-store, max-age=0" : "public, max-age=0, s-maxage=0, must-revalidate",
+          },
+        ],
+      },
+      {
+        source: "/:locale(en|ar)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: disableRuntimeCache ? "no-store, max-age=0" : "public, max-age=0, s-maxage=0, must-revalidate",
+          },
+        ],
+      },
+      {
+        source: "/wp-content/uploads/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/api/products",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: disableRuntimeCache ? "no-store, max-age=0" : "public, s-maxage=300, stale-while-revalidate=600",
+          },
+        ],
+      },
+      {
+        source: "/api/categories",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: disableRuntimeCache ? "no-store, max-age=0" : "public, s-maxage=600, stale-while-revalidate=1200",
+          },
+        ],
+      },
+      {
+        source: "/_next/static/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/_next/image/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/fonts/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/cms-media/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
+  },
+};
+
+
+export default nextConfig;
+

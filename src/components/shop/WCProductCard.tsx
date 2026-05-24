@@ -1,0 +1,373 @@
+"use client";
+
+import { useState, useCallback } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+import { Plus, Heart, Search, Check, Star } from "lucide-react";
+import { FormattedPrice } from "@/components/common/FormattedPrice";
+import { ProductBadges } from "@/components/shop/ProductBadges";
+import { cn, decodeHtmlEntities, getProductSlugFromPermalink, BLUR_DATA_URL } from "@/lib/utils";
+import { useCart } from "@/contexts/CartContext";
+import { useWishlist } from "@/contexts/WishlistContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { triggerHaptic } from "@/lib/utils/haptics";
+import { BESTSELLER_PRODUCT_SLUGS } from "@/lib/api/woocommerce";
+import type { WCProduct } from "@/types/woocommerce";
+import type { Locale } from "@/config/site";
+
+const RATING_STARS = [1, 2, 3, 4, 5];
+const QuickViewModal = dynamic(() => import("./QuickViewModal").then((mod) => mod.QuickViewModal), {
+  ssr: false,
+});
+
+interface WCProductCardProps {
+  product: WCProduct;
+  locale: Locale;
+  className?: string;
+  bundleProductSlugs?: string[];
+  englishSlug?: string;
+  productNameLines?: 1 | 2;
+}
+
+export function WCProductCard({
+  product,
+  locale,
+  className,
+  bundleProductSlugs = [],
+  englishSlug,
+  productNameLines = 2,
+}: WCProductCardProps) {
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [isAddingToWishlist, setIsAddingToWishlist] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
+  const { addToCart } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist, getWishlistItemId } = useWishlist();
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
+  const isRTL = locale === "ar";
+
+  const labels = {
+    outOfStock: isRTL ? "غير متوفر" : "Out of Stock",
+    removeWishlist: isRTL ? "إزالة من المفضلة" : "Remove from wishlist",
+    addWishlist: isRTL ? "أضف إلى المفضلة" : "Add to wishlist",
+    customize: isRTL ? "تخصيص" : "Customize",
+    chooseOptions: isRTL ? "اختر الخيارات" : "Choose options",
+    addToCart: isRTL ? "أضف للسلة" : "Add to cart",
+    added: isRTL ? "تم!" : "Added!",
+    adding: isRTL ? "..." : "...",
+    quickView: isRTL ? "نظرة سريعة" : "Quick view",
+    from: isRTL ? "من " : "From ",
+  };
+
+  const handleAddToCart = useCallback(async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    triggerHaptic();
+    setIsAddingToCart(true);
+    try {
+      await addToCart(product.id, 1);
+      setIsAddedToCart(true);
+      setTimeout(() => setIsAddedToCart(false), 1800);
+    } catch (error) {
+      console.error("Failed to add to cart:", error);
+    } finally {
+      setIsAddingToCart(false);
+    }
+  }, [addToCart, product.id]);
+
+  const isWishlisted = isInWishlist(product.id);
+
+  const handleWishlistToggle = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    triggerHaptic();
+    if (!isAuthenticated) {
+      router.push(`/${locale}/login`);
+      return;
+    }
+    setIsAddingToWishlist(true);
+    try {
+      if (isWishlisted) {
+        const itemId = getWishlistItemId(product.id);
+        await removeFromWishlist(product.id, itemId);
+      } else {
+        await addToWishlist(product.id);
+      }
+    } catch (error) {
+      console.error("Failed to update wishlist:", error);
+    } finally {
+      setIsAddingToWishlist(false);
+    }
+  };
+
+  const isOutOfStock = !product.is_in_stock;
+  const mainImage = product.images[0];
+  const secondaryImage = product.images[1] || null;
+  const rating = Number(product.average_rating || 0);
+  const reviewCount = Number(product.review_count || 0);
+
+  const productSlug = englishSlug || getProductSlugFromPermalink(product.permalink, product.slug);
+  const isBundleProduct = bundleProductSlugs.includes(productSlug) || bundleProductSlugs.includes(product.slug);
+  const productHref = `/${locale}/product/${productSlug}`;
+  const productName = decodeHtmlEntities(product.name);
+  const extraBadgeSlugs = BESTSELLER_PRODUCT_SLUGS.includes(productSlug) || BESTSELLER_PRODUCT_SLUGS.includes(product.slug)
+    ? ["bestseller"]
+    : [];
+
+  const priceDivider = Math.pow(10, product.prices.currency_minor_unit);
+  const price = parseInt(product.prices.price || "0") / priceDivider;
+  const regularPrice = parseInt(product.prices.regular_price || product.prices.price || "0") / priceDivider;
+  const hasPrice = Number.isFinite(price) && price > 0;
+  const canPurchase = !isOutOfStock && product.is_purchasable && hasPrice;
+
+  const hasPriceRange = product.prices.price_range != null;
+  const minPrice = hasPriceRange ? parseInt(product.prices.price_range!.min_amount) / priceDivider : price;
+  const maxPrice = hasPriceRange ? parseInt(product.prices.price_range!.max_amount) / priceDivider : price;
+
+  const variationAttributes = (product.attributes || []).filter((attribute) => attribute.has_variations && attribute.terms.length > 0);
+  const variationTerms = variationAttributes.flatMap((attribute) =>
+    attribute.terms.map((term) => decodeHtmlEntities(term.name))
+  );
+  const visibleVariationTerms = variationTerms.slice(0, 3);
+  const extraVariationCount = Math.max(variationTerms.length - visibleVariationTerms.length, 0);
+  const hasVariations = product.type === "variable" || product.has_options || (product.variations || []).length > 0 || variationAttributes.length > 0;
+
+  const showAsVariable = hasVariations || isBundleProduct;
+  const actionControlClassName =
+    "flex h-11 w-full items-center justify-center gap-2 rounded-full bg-black px-4 text-center !text-[11px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_12px_24px_rgba(0,0,0,0.18)] transition-all duration-300 hover:bg-brand-primary disabled:opacity-50";
+
+  const renderActionControl = (className?: string) => {
+    if (showAsVariable) {
+      return (
+        <Link
+          href={productHref}
+          className={cn(actionControlClassName, className)}
+        >
+          {isBundleProduct ? labels.customize : labels.chooseOptions}
+        </Link>
+      );
+    }
+
+    return (
+      <button
+        type="button"
+        onClick={handleAddToCart}
+        disabled={!canPurchase || isAddingToCart}
+        className={cn(actionControlClassName, className)}
+      >
+        {isAddedToCart ? (
+          <>
+            <Check className="h-3.5 w-3.5" />
+            <span className="!text-[11px]">{labels.added}</span>
+          </>
+        ) : isOutOfStock ? (
+          <span className="!text-[11px]">{labels.outOfStock}</span>
+        ) : !canPurchase ? (
+          <span className="!text-[11px]">{isRTL ? "غير متاح" : "Unavailable"}</span>
+        ) : (
+          <>
+            <Plus className={cn("h-3.5 w-3.5", isAddingToCart && "animate-pulse")} />
+            <span className="!text-[11px]">{labels.addToCart}</span>
+          </>
+        )}
+      </button>
+    );
+  };
+  void renderActionControl;
+
+  return (
+    <>
+      <article className={cn("group flex h-full flex-col", className)}>
+        <div className="flex h-full flex-col overflow-hidden border-r border-b border-[#e7ded7] bg-transparent shadow-[0_4px_20px_rgba(74,22,51,0.06)]">
+          {/* Image */}
+          <div className="relative">
+            <Link href={productHref} className="block" aria-label={productName}>
+              <div className="relative aspect-[4/5] overflow-hidden bg-[#F8F5F0]">
+                {mainImage && !imageError ? (
+                  <>
+                    <Image
+                      src={mainImage.src}
+                      alt={mainImage.alt || product.name}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL={BLUR_DATA_URL}
+                      onError={() => setImageError(true)}
+                    />
+                    {secondaryImage && (
+                      <Image
+                        src={secondaryImage.src}
+                        alt={secondaryImage.alt || product.name}
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        className="object-cover opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+                        loading="lazy"
+                        placeholder="blur"
+                        blurDataURL={BLUR_DATA_URL}
+                      />
+                    )}
+
+                  </>
+                ) : (
+                  <div className="flex h-full items-center justify-center bg-brand-beige">
+                    <Image
+                      src="/images/sasanperfumes-placeholder.svg"
+                      alt="Sasan Perfumes"
+                      width={120}
+                      height={120}
+                      className="object-contain opacity-30"
+                    />
+                  </div>
+                )}
+              </div>
+            </Link>
+
+            {/* Badges */}
+            <div className={cn("absolute top-3 flex max-w-[60%] flex-col gap-1", isRTL ? "right-3 items-end" : "left-3 items-start")}>
+              <ProductBadges
+                tags={product.tags}
+                locale={locale}
+                onSale={product.on_sale}
+                outOfStock={isOutOfStock}
+                extraTagSlugs={extraBadgeSlugs}
+                className={cn("flex-col flex-nowrap", isRTL ? "items-end" : "items-start")}
+              />
+            </div>
+
+            {/* Hover icons — top right */}
+            <div className={cn("absolute top-3 flex flex-col gap-2 opacity-0 transition-all duration-300 group-hover:opacity-100", isRTL ? "left-3" : "right-3")}>
+              <button
+                type="button"
+                onClick={() => setQuickViewOpen(true)}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-brand-primary shadow-md backdrop-blur-sm transition-all hover:bg-brand-primary hover:text-white hover:scale-110"
+                aria-label={labels.quickView}
+              >
+                <Search className="h-3.5 w-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={handleWishlistToggle}
+                disabled={isAddingToWishlist}
+                className={cn(
+                  "flex h-8 w-8 items-center justify-center rounded-full border border-brand-primary/10 bg-white/95 text-brand-primary shadow-md backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:bg-brand-primary hover:text-white",
+                  isWishlisted && "border-brand-primary bg-brand-primary text-white",
+                  isAddingToWishlist && "opacity-50"
+                )}
+                aria-label={isWishlisted ? labels.removeWishlist : labels.addWishlist}
+              >
+                <Heart className={cn("h-3.5 w-3.5", isWishlisted && "fill-current")} />
+              </button>
+            </div>
+
+            {/* Add button — bottom corner */}
+            {showAsVariable ? (
+              <Link
+                href={productHref}
+                className={cn(
+                  "absolute bottom-3 flex h-9 w-9 items-center justify-center rounded-full bg-white text-brand-primary shadow-lg opacity-0 transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:bg-brand-primary hover:text-white",
+                  isRTL ? "left-3" : "right-3"
+                )}
+                aria-label={isBundleProduct ? labels.customize : labels.chooseOptions}
+              >
+                <Plus className="h-4 w-4" />
+              </Link>
+            ) : (
+              <button
+                type="button"
+                onClick={handleAddToCart}
+                disabled={!canPurchase || isAddingToCart}
+                className={cn(
+                  "absolute bottom-3 flex h-9 w-9 items-center justify-center rounded-full bg-white text-brand-primary shadow-lg opacity-0 transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:bg-brand-primary hover:text-white disabled:opacity-50",
+                  isRTL ? "left-3" : "right-3"
+                )}
+                aria-label={labels.addToCart}
+              >
+                {isAddedToCart ? <Check className="h-4 w-4" /> : <Plus className={cn("h-4 w-4", isAddingToCart && "animate-pulse")} />}
+              </button>
+            )}
+
+          </div>
+
+          {/* Info */}
+          <div className="relative flex min-h-20 flex-1 items-center justify-center overflow-hidden p-2 text-center">
+            <div className="flex w-full flex-col items-center">
+            {/* Variation terms */}
+            {hasVariations && visibleVariationTerms.length > 0 && (
+              <div className="flex flex-wrap justify-center gap-1">
+                {visibleVariationTerms.map((term) => (
+                  <span key={term} className="max-w-20 truncate rounded-sm bg-brand-beige px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-brand-primary/60">
+                    {term}
+                  </span>
+                ))}
+                {extraVariationCount > 0 && (
+                  <span className="rounded-sm bg-brand-primary px-1.5 py-0.5 text-[9px] font-semibold text-white">
+                    +{extraVariationCount}
+                  </span>
+                )}
+              </div>
+            )}
+
+            <Link href={productHref} className="block w-full">
+              <h3 className={cn(
+                "text-[12px] font-bold leading-tight text-brand-primary-dark",
+                productNameLines === 1 ? "line-clamp-1" : "line-clamp-2"
+              )}>
+                {productName}
+              </h3>
+            </Link>
+
+            {reviewCount > 0 && (
+              <div className={cn("mt-1 flex items-center gap-1.5", isRTL && "flex-row-reverse")}>
+                <div className="flex items-center gap-0.5">
+                  {RATING_STARS.map((star) => (
+                    <Star key={star} className={cn("h-3 w-3", rating >= star ? "fill-brand-gold text-brand-gold" : "text-brand-primary/15")} />
+                  ))}
+                </div>
+                <span className="text-[10px] text-brand-primary/40">({reviewCount})</span>
+              </div>
+            )}
+
+            {/* Price */}
+            <div className={cn(reviewCount > 0 ? "mt-1" : "mt-0.5")}>
+              {!hasPrice && !hasPriceRange ? (
+                <span className="text-xs font-bold text-brand-primary/45">{isRTL ? "غير متاح" : "Unavailable"}</span>
+              ) : showAsVariable && hasPriceRange && minPrice !== maxPrice ? (
+                <div className="flex items-center justify-center gap-1">
+                  <FormattedPrice price={minPrice} className="text-xs font-bold text-brand-primary" iconSize="xs" />
+                  <span className="text-xs text-brand-primary/40">–</span>
+                  <FormattedPrice price={maxPrice} className="text-xs font-bold text-brand-primary" iconSize="xs" />
+                </div>
+              ) : product.on_sale ? (
+                <div className="flex items-center justify-center gap-1">
+                  <FormattedPrice price={price} className="text-xs font-bold text-brand-primary" iconSize="xs" />
+                  <FormattedPrice price={regularPrice} className="text-[11px] font-medium text-brand-primary/35" iconSize="xs" strikethrough />
+                </div>
+              ) : (
+                <FormattedPrice price={price} className="text-xs font-bold text-brand-primary" iconSize="xs" />
+              )}
+              </div>
+            </div>
+
+            {/* Add to Cart button hidden on hover */}
+          </div>
+        </div>
+      </article>
+
+      {quickViewOpen && (
+        <QuickViewModal
+          product={product}
+          locale={locale}
+          isOpen={quickViewOpen}
+          onClose={() => setQuickViewOpen(false)}
+          englishSlug={englishSlug}
+        />
+      )}
+    </>
+  );
+}

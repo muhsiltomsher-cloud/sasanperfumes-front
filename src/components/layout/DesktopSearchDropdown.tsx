@@ -1,0 +1,439 @@
+"use client";
+
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { Search, Loader2, X, ArrowRight, ArrowLeft } from "lucide-react";
+import { createPortal } from "react-dom";
+import type { Dictionary } from "@/i18n";
+import type { Locale } from "@/config/site";
+import type { WCProduct } from "@/types/woocommerce";
+import { getProducts } from "@/lib/api/woocommerce";
+import { FormattedPrice } from "@/components/common/FormattedPrice";
+import { cn, getProductSlugFromPermalink, decodeHtmlEntities } from "@/lib/utils";
+import { useFreeGift } from "@/contexts/FreeGiftContext";
+
+interface DesktopSearchDropdownProps {
+  locale: Locale;
+  dictionary: Dictionary;
+}
+
+export function DesktopSearchDropdown({
+  locale,
+  dictionary,
+}: DesktopSearchDropdownProps) {
+  const router = useRouter();
+  const { getFreeGiftProductIds } = useFreeGift();
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<WCProduct[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isRTL = locale === "ar";
+
+  const resetSearchState = useCallback(() => {
+    setQuery("");
+    setResults([]);
+    setHasSearched(false);
+    setHighlightedIndex(-1);
+    setLoading(false);
+  }, []);
+
+  // Lock body scroll when open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      // Small delay to allow portal to mount before animating in
+      requestAnimationFrame(() => setIsVisible(true));
+    } else {
+      document.body.style.overflow = "";
+      setIsVisible(false);
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+      }
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Auto-focus input when opened
+  useEffect(() => {
+    if (isOpen && isVisible) {
+      const timer = setTimeout(() => inputRef.current?.focus(), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, isVisible]);
+
+  // Handle Escape key
+  const handleClose = useCallback((event?: React.MouseEvent) => {
+    event?.stopPropagation();
+
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+
+    setIsVisible(false);
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+      resetSearchState();
+      closeTimeoutRef.current = null;
+    }, 300);
+  }, [resetSearchState]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        handleClose();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [handleClose, isOpen]);
+
+  const handleSearch = useCallback(async (searchQuery: string) => {
+    if (!searchQuery.trim()) {
+      setResults([]);
+      setHasSearched(false);
+      return;
+    }
+
+    setLoading(true);
+    setHasSearched(true);
+    try {
+      const response = await getProducts({
+        search: searchQuery,
+        per_page: 6,
+        locale,
+      });
+      const freeGiftIds = getFreeGiftProductIds();
+      const filteredProducts = response.products.filter(
+        (product) => !freeGiftIds.includes(product.id)
+      );
+      setResults(filteredProducts);
+    } catch (error) {
+      console.error("Search error:", error);
+      setResults([]);
+    } finally {
+      setLoading(false);
+    }
+  }, [locale, getFreeGiftProductIds]);
+
+  useEffect(() => {
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+    }
+
+    if (query.trim()) {
+      debounceRef.current = setTimeout(() => {
+        handleSearch(query);
+      }, 300);
+    } else {
+      setResults([]);
+      setHasSearched(false);
+    }
+
+    return () => {
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+      }
+    };
+  }, [query, handleSearch]);
+
+  const handleOpen = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+
+    setIsOpen(true);
+    resetSearchState();
+  };
+
+  const handleSubmit = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    if (query.trim()) {
+      router.push(`/${locale}/search?q=${encodeURIComponent(query.trim())}`);
+      handleClose();
+    }
+  };
+
+  const handleInputKeyDown = (e: React.KeyboardEvent) => {
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setHighlightedIndex((prev) =>
+          prev < results.length - 1 ? prev + 1 : prev
+        );
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : -1));
+        break;
+      case "Enter":
+        if (highlightedIndex >= 0 && results[highlightedIndex]) {
+          e.preventDefault();
+          const selectedProduct = results[highlightedIndex];
+          const productSlug = getProductSlugFromPermalink(selectedProduct.permalink, selectedProduct.slug);
+          router.push(`/${locale}/product/${productSlug}`);
+          handleClose();
+        } else {
+          handleSubmit();
+        }
+        break;
+    }
+  };
+
+  const handleClear = () => {
+    setQuery("");
+    setResults([]);
+    setHasSearched(false);
+    inputRef.current?.focus();
+  };
+
+  const handleProductClick = () => {
+    handleClose();
+  };
+
+  const handleViewAllResults = () => {
+    handleSubmit();
+  };
+
+  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+
+  if (!isOpen) {
+    return (
+      <button
+        type="button"
+        onClick={handleOpen}
+        className="relative p-2 text-brand-primary transition-colors hover:text-brand-primary-dark"
+        aria-label={dictionary.common.searchPlaceholder || "Search"}
+      >
+        <Search className="h-5 w-5" />
+      </button>
+    );
+  }
+
+  const modalContent = (
+    <div
+      className={cn(
+        "fixed inset-0 z-[9999] flex flex-col items-center overflow-y-auto bg-white/95 backdrop-blur-md transition-opacity duration-300",
+        isVisible ? "opacity-100" : "opacity-0"
+      )}
+      onClick={handleClose}
+      dir={isRTL ? "rtl" : "ltr"}
+    >
+      {/* Close button */}
+      <button
+        type="button"
+        onClick={handleClose}
+        className={cn(
+          "absolute top-4 p-2 text-gray-400 transition-colors hover:text-gray-800 md:top-6",
+          isRTL ? "left-4 md:left-8" : "right-4 md:right-8"
+        )}
+        aria-label="Close"
+      >
+        <X className="h-6 w-6" />
+      </button>
+
+      {/* Search input container */}
+      <div
+        className={cn(
+          "w-full max-w-2xl px-6 pt-20 pb-10 transition-all duration-300 md:pt-28",
+          isVisible ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
+        )}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <form onSubmit={handleSubmit}>
+          <div className="relative">
+            <Search
+              className={cn(
+                "absolute top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400",
+                isRTL ? "right-5" : "left-5"
+              )}
+            />
+            <input
+              ref={inputRef}
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={handleInputKeyDown}
+              placeholder={dictionary.common.searchPlaceholder || "Search products..."}
+              className={cn(
+                "w-full rounded-full border border-gray-200 bg-gray-50 py-4 text-base text-gray-900 placeholder-gray-400 shadow-sm transition-all focus:border-brand-primary focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-primary/20 md:py-5 md:text-lg",
+                isRTL ? "pr-14 pl-14" : "pl-14 pr-14"
+              )}
+              dir={isRTL ? "rtl" : "ltr"}
+            />
+            {query && (
+              <button
+                type="button"
+                onClick={handleClear}
+                className={cn(
+                  "absolute top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600",
+                  isRTL ? "left-4" : "right-4"
+                )}
+              >
+                <X className="h-5 w-5" />
+              </button>
+            )}
+            {loading && (
+              <Loader2
+                className={cn(
+                  "absolute top-1/2 h-5 w-5 -translate-y-1/2 animate-spin text-gray-400",
+                  isRTL ? "left-12" : "right-12"
+                )}
+              />
+            )}
+          </div>
+        </form>
+
+        {/* Search Results */}
+        {query.trim().length > 0 && (
+          <div className="mt-6 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-2xl">
+            {loading ? (
+              <div className="flex items-center justify-center py-12">
+                <div className="flex flex-col items-center gap-3">
+                  <div className="h-8 w-8 animate-spin rounded-full border-3 border-gray-200 border-t-brand-primary" />
+                  <p className="text-sm text-gray-500">
+                    {isRTL ? "جاري البحث..." : "Searching..."}
+                  </p>
+                </div>
+              </div>
+            ) : hasSearched && results.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <div className="mb-4 rounded-full bg-gray-100 p-4">
+                  <Search className="h-8 w-8 text-gray-400" />
+                </div>
+                <p className="text-base font-medium text-gray-900">
+                  {dictionary.common.noResults || "No products found"}
+                </p>
+                <p className="mt-1 text-sm text-gray-500">
+                  {isRTL
+                    ? `لا توجد نتائج لـ "${query}"`
+                    : `No results for "${query}"`
+                  }
+                </p>
+                <p className="mt-3 text-xs text-gray-400">
+                  {isRTL
+                    ? "جرب كلمات بحث مختلفة"
+                    : "Try different search terms"
+                  }
+                </p>
+              </div>
+            ) : results.length > 0 ? (
+              <div>
+                <div className="border-b border-gray-100 bg-gray-50 px-6 py-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-400">
+                    {isRTL ? "المنتجات" : "Products"}
+                  </p>
+                </div>
+                <div className="max-h-[50vh] overflow-y-auto">
+                  {results.map((product, index) => {
+                    const productSlug = getProductSlugFromPermalink(product.permalink, product.slug);
+                    return (
+                      <Link
+                        key={product.id}
+                        href={`/${locale}/product/${productSlug}`}
+                        onClick={handleProductClick}
+                        className={cn(
+                          "group flex items-center gap-5 px-6 py-5 transition-all hover:bg-gray-50",
+                          index !== results.length - 1 && "border-b border-gray-50",
+                          highlightedIndex === index && "bg-brand-beige"
+                        )}
+                      >
+                        {product.images[0]?.src ? (
+                          <div className="relative h-[72px] w-[72px] flex-shrink-0 overflow-hidden rounded-xl bg-gray-100">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={product.images[0].src}
+                              alt={product.name}
+                              className="h-full w-full object-cover"
+                              loading="lazy"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).style.display = 'none';
+                              }}
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex h-[72px] w-[72px] flex-shrink-0 items-center justify-center rounded-xl bg-gray-100">
+                            <Search className="h-5 w-5 text-gray-400" />
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0 py-0.5">
+                          {product.categories?.[0] && (
+                            <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-brand-gold/80 truncate">
+                              {decodeHtmlEntities(product.categories[0].name)}
+                            </p>
+                          )}
+                          <h3 className="text-sm font-semibold text-gray-900 truncate uppercase tracking-wide">
+                            {decodeHtmlEntities(product.name)}
+                          </h3>
+                          <div className="mt-1.5">
+                            <FormattedPrice
+                              price={parseInt(product.prices.price) / Math.pow(10, product.prices.currency_minor_unit)}
+                              className="text-sm font-bold text-brand-primary"
+                              iconSize="xs"
+                            />
+                          </div>
+                          {product.attributes && product.attributes.length > 0 && (
+                            <p className="mt-1.5 text-[10px] text-gray-400 truncate leading-relaxed">
+                              {product.attributes.slice(0, 2).map((attr) =>
+                                `${attr.name}: ${attr.terms?.map(t => t.name).join(", ")}`
+                              ).join(" | ")}
+                            </p>
+                          )}
+                        </div>
+                        <ArrowIcon className="h-4 w-4 flex-shrink-0 text-gray-300 transition-colors group-hover:text-brand-primary" />
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                {/* View All Results */}
+                <div className="border-t border-gray-100 bg-gray-50 p-5">
+                  <button
+                    type="button"
+                    onClick={handleViewAllResults}
+                    className="group flex w-full items-center justify-center gap-2.5 rounded-xl bg-brand-primary px-5 py-3.5 text-sm font-semibold text-white transition-all hover:bg-brand-primary-dark hover:shadow-lg"
+                  >
+                    <span>{dictionary.common.viewAllResults || "View all results"}</span>
+                    <ArrowIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </button>
+                </div>
+              </div>
+            ) : null}
+          </div>
+        )}
+
+        {/* Quick suggestions / empty state hint */}
+        {!query.trim() && (
+          <div className={cn(
+            "mt-8 text-center transition-all duration-500",
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          )}>
+            <Search className="mx-auto mb-3 h-10 w-10 text-gray-200" />
+            <p className="text-sm text-gray-400">
+              {isRTL ? "اكتب للبحث عن منتجاتك المفضلة" : "Type to search for your favorite products"}
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  return createPortal(modalContent, document.body);
+}

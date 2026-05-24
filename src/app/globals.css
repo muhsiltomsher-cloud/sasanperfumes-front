@@ -1,0 +1,254 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Jost:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@media (width >= 96rem) {
+  .container {
+    max-width: 80rem;
+  }
+}
+
+:root {
+  /*
+   * Theme color values are injected from src/config/theme.ts in layout.tsx.
+   * Tailwind tokens below reference those runtime variables so local theme
+   * changes apply to utilities like text-brand-primary and bg-brand-primary.
+   */
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  /* Brand primary palette */
+  --color-brand-primary: var(--color-primary);
+  --color-brand-primary-dark: var(--color-primary-dark);
+  --color-brand-primary-light: var(--color-primary-light);
+  /* Brand neutrals */
+  --color-brand-beige: var(--color-beige);
+  --color-brand-beige-dark: var(--color-beige-dark);
+  --color-brand-brown: var(--color-brown);
+  --color-brand-brown-light: var(--color-brown-light);
+  --color-brand-ivory: var(--color-ivory);
+  --color-brand-grey-beige: var(--color-grey-beige);
+  --color-brand-dark-brown: var(--color-dark-brown);
+  /* Brand accent */
+  --color-brand-gold: var(--color-gold);
+}
+
+@theme inline {
+  --font-sans: var(--font-jost);
+  /* --font-sans: var(--font-questrial); */ /* Hidden - can switch to Questrial if needed */
+  --font-title: var(--font-jost);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-jost), Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  /* font-family: var(--font-questrial), Arial, Helvetica, sans-serif; */ /* Hidden - can switch to Questrial if needed */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-jost), Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+h1.font-normal,
+h2.font-normal,
+h3.font-normal,
+h4.font-normal,
+h5.font-normal,
+h6.font-normal {
+  font-weight: 700;
+}
+
+/* Target the [lang="ar"] attribute on the wrapper div and html element */
+[lang="ar"] {
+  font-family: var(--font-noto-sans-arabic), Arial, Helvetica, sans-serif;
+  --font-sans: var(--font-noto-sans-arabic);
+}
+
+[lang="ar"] * {
+  font-family: inherit;
+}
+
+[lang="ar"] h1,
+[lang="ar"] h2,
+[lang="ar"] h3,
+[lang="ar"] h4,
+[lang="ar"] h5,
+[lang="ar"] h6 {
+  font-family: var(--font-noto-sans-arabic), Arial, Helvetica, sans-serif;
+}
+
+/* Ensure bold text actually renders bold */
+b,
+strong {
+  font-weight: 700;
+}
+
+/* Global cursor pointer for interactive elements */
+a,
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Ensure disabled elements show not-allowed cursor */
+button:disabled,
+input:disabled,
+select:disabled,
+[disabled] {
+  cursor: not-allowed;
+}
+
+/* Tabby and Tamara widget styling - beige backgrounds, smaller font, website font */
+#tabby-promo-widget,
+#tabby-promo-widget * {
+  background: var(--color-beige) !important;
+  background-color: var(--color-beige) !important;
+  font-family: var(--font-jost), Arial, Helvetica, sans-serif !important;
+  font-size: 12px !important;
+}
+
+tamara-widget,
+tamara-widget * {
+  background: var(--color-beige) !important;
+  background-color: var(--color-beige) !important;
+  font-family: var(--font-jost), Arial, Helvetica, sans-serif !important;
+  font-size: 12px !important;
+}
+
+/* Arabic font for payment widgets */
+[lang="ar"] #tabby-promo-widget,
+[lang="ar"] #tabby-promo-widget * {
+  font-family: var(--font-noto-sans-arabic), Arial, Helvetica, sans-serif !important;
+}
+
+[lang="ar"] tamara-widget,
+[lang="ar"] tamara-widget * {
+  font-family: var(--font-noto-sans-arabic), Arial, Helvetica, sans-serif !important;
+}
+
+/* Fix Safari showing dropdown/autofill icons on text input fields */
+input::-webkit-contacts-auto-fill-button,
+input::-webkit-credentials-auto-fill-button {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  right: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+}
+
+/* Skeleton placeholder */
+.skeleton-shimmer {
+  background: #e5e1da;
+}
+
+/* Mobile font size reduction - smaller text on screens below 1024px */
+/* Note: h1, h2, h3 font sizes are controlled by Tailwind classes for flexibility */
+@media (max-width: 1023px) {
+  body {
+    font-size: 14px;
+  }
+  
+  p, span, a, li, label, input, button, select, textarea {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 639px) {
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.1); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s ease-out both;
+}
+
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+html.gallery-fullscreen-open .mobile-bottom-bar,
+body.gallery-fullscreen-open .mobile-bottom-bar {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(100% + 1rem));
+}
+
+html.gallery-fullscreen-open .whatsapp-floating-button,
+body.gallery-fullscreen-open .whatsapp-floating-button {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.92);
+}
+
+.img-lazy-load {
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
+}
+
+.img-lazy-loaded {
+  opacity: 1;
+}
+
+/* Swiper pagination bullet colors - using plain CSS classes instead of Tailwind arbitrary values
+   because Swiper uses bulletClass as CSS selectors and # in hex colors breaks querySelectorAll */
+.swiper-bullet-brown {
+  background-color: var(--color-brand-primary) !important;
+  opacity: 0.3 !important;
+}
+.swiper-bullet-brown-active {
+  background-color: var(--color-brand-primary) !important;
+}
+.swiper-bullet-beige {
+  background-color: var(--color-primary) !important;
+  opacity: 0.5 !important;
+}
+.swiper-bullet-orange-active {
+  background-color: var(--color-primary) !important;
+  opacity: 1 !important;
+}
+
+/* Hero slider - force Swiper to auto-size on mobile so banner images are not cropped */
+@media (max-width: 767px) {
+  .hero-slider.swiper {
+    overflow: visible !important;
+    height: auto !important;
+  }
+  .hero-slider .swiper-wrapper {
+    height: auto !important;
+  }
+  .hero-slider .swiper-slide {
+    height: auto !important;
+  }
+}

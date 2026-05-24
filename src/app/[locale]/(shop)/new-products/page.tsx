@@ -1,0 +1,99 @@
+import { Suspense } from "react";
+import { ProductGridSkeleton } from "@/components/common/Skeleton";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { getDictionary } from "@/i18n";
+import { generateMetadata as generateSeoMetadata } from "@/lib/utils/seo";
+import { getNewProducts, getFreeGiftProductIds, getBundleEnabledProductSlugs } from "@/lib/api/woocommerce";
+import { getPageSeo } from "@/lib/api/wordpress";
+import type { Locale } from "@/config/site";
+import type { Metadata } from "next";
+import { NewProductsClient } from "./NewProductsClient";
+
+export const revalidate = 300;
+
+interface NewProductsPageProps {
+  params: Promise<{ locale: string }>;
+}
+
+// Default SEO values (fallback when WordPress page doesn't exist)
+const defaultSeo = {
+  title: { en: "New Arrivals | Latest Luxury Perfumes & Oud Fragrances", ar: "منتجات جديدة | أحدث العطور والإصدارات الفاخرة" },
+  description: {
+    en: "Discover our newest luxury perfumes, Arabian oud & aromatic oils from Sasan Perfumes. Handcrafted in the UAE. Free delivery on orders over 500 AED.",
+    ar: "اكتشف أحدث إصداراتنا من العطور الفاخرة والعود العربي والزيوت العطرية من Sasan Perfumes. منتجات يدوية فاخرة من الإمارات. توصيل مجاني للطلبات فوق 500 درهم.",
+  },
+  keywords: {
+    en: ["new perfumes", "latest fragrances", "new arrivals perfume", "premium fragrance", "aromatic products", "UAE perfume", "new oud perfume", "latest Dubai perfume", "new women perfume", "new men cologne", "luxury perfume new arrival", "new musk perfume", "new amber fragrance", "latest Arabian perfume", "new vanilla perfume", "new perfume online", "new home fragrance", "new aromatic perfumes", "latest aromatic scents", "aromatic new arrivals", "new fragrance launch aromatic UAE"],
+    ar: ["عطور جديدة", "أحدث العطور", "عطور فاخرة", "منتجات عطرية جديدة", "إصدارات جديدة", "عطور الإمارات", "عود عربي جديد", "عطور دبي الجديدة", "شراء عطور جديدة", "عطور نسائية جديدة", "عطور رجالية جديدة", "عطور مسك جديدة", "عطور عنبر جديدة", "أحدث عطور عربية", "عطور فانيلا جديدة", "عطور جديدة اون لاين", "معطرات منزل جديدة", "عطور أروماتيك جديدة", "أحدث إصدارات أروماتيك", "وصل حديثاً أروماتيك", "إطلاق عطور أروماتيك الإمارات"],
+  },
+};
+
+export async function generateMetadata({
+  params,
+}: NewProductsPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const lang = locale as Locale;
+  const isAr = lang === "ar";
+
+  const wpSeo = await getPageSeo("new-products", lang);
+
+  return generateSeoMetadata({
+    title: wpSeo?.title || (isAr ? defaultSeo.title.ar : defaultSeo.title.en),
+    description: wpSeo?.description || (isAr ? defaultSeo.description.ar : defaultSeo.description.en),
+    image: wpSeo?.ogImage || undefined,
+    locale: lang,
+    pathname: "/new-products",
+    keywords: isAr ? defaultSeo.keywords.ar : defaultSeo.keywords.en,
+  });
+}
+
+export default async function NewProductsPage({ params }: NewProductsPageProps) {
+  const { locale } = await params;
+  const dictionary = await getDictionary(locale as Locale);
+  const isRTL = locale === "ar";
+
+  const breadcrumbItems = [
+    { name: dictionary.common.shop, href: `/${locale}/shop` },
+    { name: dictionary.sections.newProducts.title, href: `/${locale}/new-products` },
+  ];
+
+  const [productsResult, giftProductIds, bundleProductSlugs] = await Promise.all([
+    getNewProducts({ per_page: 24, locale: locale as Locale }),
+    getFreeGiftProductIds(),
+    getBundleEnabledProductSlugs(),
+  ]);
+
+  const filteredProducts = productsResult.products.filter(
+    (product) => !giftProductIds.includes(product.id)
+  );
+
+  const filteredTotal = productsResult.total - (productsResult.products.length - filteredProducts.length);
+
+  return (
+    <div className="container mx-auto px-5 md:px-7 lg:px-12 py-3">
+      <Breadcrumbs items={breadcrumbItems} locale={locale as Locale} contained={false} />
+
+      <div className="mb-3">
+        <h1 className="text-3xl font-bold text-gray-900">
+          {dictionary.sections.newProducts.title}
+        </h1>
+        <p className="mt-2 text-gray-600">
+          {isRTL
+            ? "اكتشف أحدث منتجاتنا"
+            : "Discover our latest arrivals"}
+        </p>
+      </div>
+
+      <Suspense fallback={<ProductGridSkeleton count={12} />}>
+        <NewProductsClient
+          products={filteredProducts}
+          locale={locale as Locale}
+          initialTotal={filteredTotal}
+          initialTotalPages={productsResult.totalPages}
+          giftProductIds={giftProductIds}
+          bundleProductSlugs={bundleProductSlugs}
+        />
+      </Suspense>
+    </div>
+  );
+}

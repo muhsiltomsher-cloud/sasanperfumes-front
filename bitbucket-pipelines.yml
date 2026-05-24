@@ -1,0 +1,9 @@
+pipelines:
+  branches:
+    main:
+      - step:
+          name: Mirror to GitHub
+          image: alpine/git:latest
+          script:
+            - git remote add github https://${GITHUB_PAT}@github.com/muhsiltomsher-cloud/sasanperfumes.git
+            - git push github HEAD:main --force
