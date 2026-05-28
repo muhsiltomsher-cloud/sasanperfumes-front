@@ -56,8 +56,8 @@ export default function NotFound() {
         <div className="container relative mx-auto max-w-4xl text-center">
           <div className="mb-6">
             <Image
-              src="/images/logo-shapehive.svg"
-              alt="ShapeHive"
+              src="/images/logo-sasanperfumes.svg"
+              alt="Sasan Perfumes"
               width={120}
               height={120}
               className="mx-auto rounded-full object-cover shadow-lg"

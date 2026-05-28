@@ -22,20 +22,19 @@ export async function GET() {
   } catch {
     categoriesSection = `## Product Categories
 - Perfumes: ${siteConfig.url}/en/category/perfumes
-- Oud: ${siteConfig.url}/en/category/oud
-- Personal Care: ${siteConfig.url}/en/category/personal-care
-- Gift Sets: ${siteConfig.url}/en/category/gift-sets
-- Build Your Own Set: ${siteConfig.url}/en/category/build-your-own-set`;
+- All Over Spray: ${siteConfig.url}/en/category/all-over-spray
+- Hair Mist: ${siteConfig.url}/en/category/sasan-hair-mist
+- Gift Sets: ${siteConfig.url}/en/category/gift-set`;
   }
 
   const content = `# ${siteConfig.name}
 
-> Premium handcrafted fragrances made in the UAE
+> UAE perfume store for everyday fragrances, hair mist, all over sprays, and gift sets
 
 ## About
-ShapeHive is a luxury fragrance house based in the United Arab Emirates. We specialize in creating handcrafted perfumes, ouds, and personal care products that blend traditional Arabian fragrance artistry with modern techniques.
+Sasan Perfumes is a UAE fragrance store offering perfumes, hair mist, all over sprays, and gift-ready scent collections online.
 
-Our products are made locally in the UAE using premium ingredients. We offer free delivery on orders over 500 AED within the UAE, and ship internationally to Oman and other GCC countries.
+Our focus is a simple, polished fragrance experience: discover a scent, choose a thoughtful gift, or request private-label perfume support.
 
 ## Website
 - Homepage: ${siteConfig.url}
@@ -44,50 +43,28 @@ Our products are made locally in the UAE using premium ingredients. We offer fre
 
 ## Shopping
 - All Products: ${siteConfig.url}/en/shop
-- Build Your Own Set: ${siteConfig.url}/en/category/build-your-own-set
+- Private Labeling: ${siteConfig.url}/en/private-labeling
 
 ${categoriesSection}
 
-## Store Locations
-We have physical retail stores in the UAE and Oman:
-
-### UAE - Abu Dhabi
-- Yas Mall (Ground Floor)
-- Bawabat Al Sharq Mall (First Floor)
-
-### UAE - Al Ain
-- Bawadi Mall (Ground Floor)
-- Makani Zakher Mall (Ground Floor)
-
-### UAE - Fujairah
-- Fujairah City Centre (Ground Floor)
-
-### Oman - Muscat
-- Oman Mall (Ground Floor)
-
-Opening Hours: 10:00 AM - 10:00 PM daily
-
 ## Customer Information
-- Store Locator: ${siteConfig.url}/en/store-locator
 - About Us: ${siteConfig.url}/en/about
 - Contact Us: ${siteConfig.url}/en/contact
 - Guides: ${siteConfig.url}/en/guides
-- Phone: +971 4 344 2448
+- WhatsApp: +971 50 607 1405
 
 ## Policies
-- Return Policy: ${siteConfig.url}/en/return-policy
-- Privacy Policy: ${siteConfig.url}/en/privacy-policy
-- Terms of Service: ${siteConfig.url}/en/terms-conditions
-- Shipping Policy: ${siteConfig.url}/en/shipping-policy
+- Return Policy: ${siteConfig.url}/en/returns
+- Privacy Policy: ${siteConfig.url}/en/privacy
+- Terms of Service: ${siteConfig.url}/en/terms-and-conditions
+- Shipping Policy: ${siteConfig.url}/en/shipping
 
 ## Key Features
-- Handcrafted in the UAE
-- Premium natural ingredients
 - Bilingual (English & Arabic)
 - Free delivery on orders over 500 AED (UAE)
 - International shipping available
 - Gift wrapping available
-- Build Your Own Set customization
+- Private-label perfume support
 `;
 
   return new NextResponse(content, {

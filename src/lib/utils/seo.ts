@@ -161,9 +161,7 @@ export function generateOrganizationJsonLd() {
     name: siteConfig.name,
     url: siteConfig.url,
     logo: `${siteConfig.url}/logo.png`,
-    description: "ShapeHive is a UAE-based luxury perfume house offering handcrafted premium fragrances, Arabian oud, body care products, home fragrances, and aromatic oils. Free delivery across the UAE.",
-    foundingDate: "2014",
-    foundingLocation: "Dubai, UAE",
+    description: "Sasan Perfumes is a UAE fragrance store offering perfumes, hair mist, all over sprays, gift sets, and private-label perfume support.",
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+971-50-607-1405",
@@ -200,73 +198,6 @@ export function generateWebSiteJsonLd() {
   };
 }
 
-/**
- * Store location data for LocalBusiness schema.
- * Each entry represents a physical retail location.
- */
-const STORE_LOCATIONS = [
-  {
-    name: "ShapeHive - Yas Mall",
-    streetAddress: "Yas Mall, Ground Floor",
-    city: "Abu Dhabi",
-    region: "Abu Dhabi",
-    country: "AE",
-    lat: 24.4886,
-    lng: 54.6073,
-    mapsUrl: "https://maps.google.com/?q=Yas+Mall+Abu+Dhabi",
-  },
-  {
-    name: "ShapeHive - Bawabat Al Sharq Mall",
-    streetAddress: "Bawabat Al Sharq Mall, First Floor",
-    city: "Abu Dhabi",
-    region: "Abu Dhabi",
-    country: "AE",
-    lat: 24.4284,
-    lng: 54.4700,
-    mapsUrl: "https://maps.google.com/?q=Bawabat+Al+Sharq+Mall+Abu+Dhabi",
-  },
-  {
-    name: "ShapeHive - Bawadi Mall",
-    streetAddress: "Bawadi Mall, Ground Floor",
-    city: "Al Ain",
-    region: "Abu Dhabi",
-    country: "AE",
-    lat: 24.2075,
-    lng: 55.7447,
-    mapsUrl: "https://maps.google.com/?q=Bawadi+Mall+Al+Ain",
-  },
-  {
-    name: "ShapeHive - Makani Zakher Mall",
-    streetAddress: "Makani Zakher Mall, Ground Floor",
-    city: "Al Ain",
-    region: "Abu Dhabi",
-    country: "AE",
-    lat: 24.1776,
-    lng: 55.6950,
-    mapsUrl: "https://maps.google.com/?q=Makani+Zakher+Mall+Al+Ain",
-  },
-  {
-    name: "ShapeHive - Fujairah City Centre",
-    streetAddress: "Fujairah City Centre, Ground Floor",
-    city: "Fujairah",
-    region: "Fujairah",
-    country: "AE",
-    lat: 25.1288,
-    lng: 56.3264,
-    mapsUrl: "https://maps.google.com/?q=Fujairah+City+Centre",
-  },
-  {
-    name: "ShapeHive - Oman Mall",
-    streetAddress: "Oman Mall, Ground Floor",
-    city: "Muscat",
-    region: "Muscat",
-    country: "OM",
-    lat: 23.5880,
-    lng: 58.1711,
-    mapsUrl: "https://maps.google.com/?q=Oman+Mall+Muscat",
-  },
-];
-
 export function generateLocalBusinessJsonLd() {
   const socialLinks = Object.values(siteConfig.links).filter(Boolean);
 
@@ -279,7 +210,7 @@ export function generateLocalBusinessJsonLd() {
       name: siteConfig.name,
       url: siteConfig.url,
       image: `${siteConfig.url}/logo.png`,
-      description: "Luxury perfume house in the UAE offering premium handcrafted fragrances, Arabian oud, body care, and home scents.",
+      description: "UAE fragrance store offering perfumes, hair mist, all over sprays, gift sets, and private-label perfume support.",
       priceRange: "$$",
       telephone: "+971-50-607-1405",
       areaServed: [
@@ -295,49 +226,14 @@ export function generateLocalBusinessJsonLd() {
         name: "Premium Fragrances",
         itemListElement: [
           { "@type": "OfferCatalog", name: "Perfumes" },
-          { "@type": "OfferCatalog", name: "Arabian Oud" },
-          { "@type": "OfferCatalog", name: "Body Care" },
-          { "@type": "OfferCatalog", name: "Home Fragrances" },
-          { "@type": "OfferCatalog", name: "Aromatic Oils" },
+          { "@type": "OfferCatalog", name: "All Over Spray" },
+          { "@type": "OfferCatalog", name: "Hair Mist" },
           { "@type": "OfferCatalog", name: "Gift Sets" },
+          { "@type": "OfferCatalog", name: "Private Labeling" },
         ],
       },
       sameAs: socialLinks,
     },
-    // Individual store locations
-    ...STORE_LOCATIONS.map((store) => ({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: store.name,
-      image: `${siteConfig.url}/logo.png`,
-      url: `${siteConfig.url}/en/store-locator`,
-      telephone: "+971-50-607-1405",
-      priceRange: "$$",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: store.streetAddress,
-        addressLocality: store.city,
-        addressRegion: store.region,
-        addressCountry: store.country,
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: store.lat,
-        longitude: store.lng,
-      },
-      hasMap: store.mapsUrl,
-      openingHoursSpecification: {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        opens: "10:00",
-        closes: "22:00",
-      },
-      parentOrganization: {
-        "@type": "Organization",
-        name: siteConfig.name,
-        "@id": `${siteConfig.url}/#organization`,
-      },
-    })),
   ];
 }
 
@@ -370,7 +266,7 @@ export function generateStoreJsonLd(stores: {
   return stores.map((store) => ({
     "@context": "https://schema.org",
     "@type": "Store",
-    name: `ShapeHive - ${store.name}`,
+    name: `Sasan Perfumes - ${store.name}`,
     address: {
       "@type": "PostalAddress",
       streetAddress: store.address,
@@ -408,7 +304,7 @@ export function generateContactPageJsonLd(params: {
   return {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    name: "Contact ShapeHive",
+    name: "Contact Sasan Perfumes",
     url: params.url,
     mainEntity: {
       "@type": "Organization",

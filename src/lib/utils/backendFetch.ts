@@ -6,8 +6,6 @@ const BACKEND_USER_AGENT =
 const LEGACY_MEDIA_HOSTS = [["cms", ["fragrance", "network"].join(""), "ae"].join(".")];
 const LEGACY_BRAND_NAMES = [
   ["Fragrance", "Network"].join(" "),
-  ["Sasan", "Perfumes"].join(" "),
-  "sasanperfumes",
 ];
 
 export function backendHeaders(extra?: HeadersInit): HeadersInit {

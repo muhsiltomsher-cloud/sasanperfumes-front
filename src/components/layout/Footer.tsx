@@ -84,7 +84,7 @@ export function Footer({ locale, dictionary, siteSettings, footerSettings, featu
   const description = footerSettings?.description
     ? t(footerSettings.description)
     : locale === "ar"
-      ? "اكتشف العطور الفاخرة ومنتجات العناية العطرية المصنوعة بعناية في ShapeHive."
+      ? "اكتشف العطور الفاخرة ومنتجات العناية العطرية المصنوعة بعناية في ساسان للعطور."
       : (siteSettings?.tagline || "Premium fragrances and aromatic products crafted with care.");
 
   const social = footerSettings?.social;

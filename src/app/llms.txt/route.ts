@@ -4,25 +4,23 @@ import { siteConfig } from "@/config/site";
 export async function GET() {
   const content = `# ${siteConfig.name}
 
-> Premium handcrafted fragrances made in the UAE
+> UAE perfume store for everyday fragrances, hair mist, all over sprays, and gift sets
 
 ## About
-ShapeHive is a luxury fragrance house based in the United Arab Emirates, specializing in handcrafted perfumes, ouds, and personal care products. We offer a curated collection of premium scents inspired by Arabian heritage.
+Sasan Perfumes is a UAE fragrance store offering perfumes, hair mist, all over sprays, and gift-ready scent collections online.
 
 ## Links
 - Website: ${siteConfig.url}
 - Shop: ${siteConfig.url}/en/shop
-- Store Locator: ${siteConfig.url}/en/store-locator
 - About Us: ${siteConfig.url}/en/about
 - Contact: ${siteConfig.url}/en/contact
 - Full LLM Context: ${siteConfig.url}/llms-full.txt
 
 ## Product Categories
 - Perfumes: ${siteConfig.url}/en/category/perfumes
-- Oud: ${siteConfig.url}/en/category/oud
-- Personal Care: ${siteConfig.url}/en/category/personal-care
-- Gift Sets: ${siteConfig.url}/en/category/gift-sets
-- Build Your Own Set: ${siteConfig.url}/en/category/build-your-own-set
+- All Over Spray: ${siteConfig.url}/en/category/all-over-spray
+- Hair Mist: ${siteConfig.url}/en/category/sasan-hair-mist
+- Gift Sets: ${siteConfig.url}/en/category/gift-set
 
 ## Languages
 - English: ${siteConfig.url}/en

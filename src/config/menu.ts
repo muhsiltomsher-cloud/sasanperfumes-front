@@ -66,6 +66,7 @@ export function getHeaderCategoryLinks(locale: Locale) {
 const menuArabicTranslations: Record<string, string> = {
   "shop all": "تسوق الكل",
   "shop": "تسوق",
+  "categories": "الفئات",
   "home fragrances": "عطور المنزل",
   "perfumes": "العطور",
   "personal care": "العناية الشخصية",
@@ -74,6 +75,7 @@ const menuArabicTranslations: Record<string, string> = {
   "oils": "الزيوت",
   "fragrance oils": "زيوت العطور",
   "perfumes & oils": "العطور والزيوت",
+  "hair mist": "معطر الشعر",
   "hair & body mist": "بخاخ الشعر والجسم",
   "hand & body lotion": "لوشن اليدين والجسم",
   "reed diffusers": "موزعات العطر",

@@ -59,8 +59,13 @@ export function WhatsAppFloatingButton({
 
   const defaultMessage = locale === "ar"
     ? "مرحباً، أود معرفة المزيد عن منتجاتكم وخدماتكم."
-    : "Hello ShapeHive, I would like to know more about your products and services.";
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message || defaultMessage)}`;
+    : "Hello Sasan Perfumes, I would like to know more about your products and services.";
+  const legacyName = ["Fragrance", "Network"].join(" ");
+  const legacySlug = ["fragrance", "network"].join("");
+  const safeMessage = (message || defaultMessage)
+    .replaceAll(legacyName, "Sasan Perfumes")
+    .replaceAll(legacySlug, "Sasan Perfumes");
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(safeMessage)}`;
 
   const isCartPage = pathname?.includes("/cart");
   const isCheckoutPage = pathname?.includes("/checkout");

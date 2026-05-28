@@ -89,8 +89,6 @@ const legacyBrandNames = [
   ["Emirates", "Pride"].join(" "),
   ["Fragrance", "Network"].join(" "),
   "أروماتيك سينتس لاب",
-  ["Sasan", "Perfumes"].join(" "),
-  "sasanperfumes",
 ];
 const legacyMediaHosts = [["cms", ["fragrance", "network"].join(""), "ae"].join(".")];
 
@@ -805,7 +803,7 @@ export async function getSiteSettings(locale?: Locale): Promise<SiteSettings> {
   }
 
   if (!logoUrl) {
-    logoUrl = siteConfig.logoUrl || "/images/logo-shapehive.svg";
+    logoUrl = siteConfig.logoUrl || "/images/logo-sasanperfumes.svg";
   }
 
   if (logoUrl && logoId != null && !String(logoUrl).includes("v=")) {
@@ -1004,6 +1002,23 @@ interface RawWPMenu {
   items: RawWPMenuItem[];
 }
 
+interface SasanMenuItem {
+  id: number;
+  title: string;
+  url: string;
+  target?: string;
+  parent: string | number;
+  order: number;
+  children?: SasanMenuItem[];
+}
+
+interface SasanMenu {
+  id: number;
+  name: string;
+  slug?: string;
+  items: SasanMenuItem[];
+}
+
 // Transform raw WordPress menu item to normalized format
 function transformMenuItem(rawItem: RawWPMenuItem): WPMenuItem {
   return {
@@ -1014,6 +1029,27 @@ function transformMenuItem(rawItem: RawWPMenuItem): WPMenuItem {
     parent: parseInt(rawItem.menu_item_parent, 10) || 0,
     order: rawItem.menu_order,
     children: rawItem.child_items?.map(transformMenuItem),
+  };
+}
+
+function transformSasanMenuItem(rawItem: SasanMenuItem): WPMenuItem {
+  return {
+    id: rawItem.id,
+    title: rawItem.title,
+    url: rawItem.url,
+    target: rawItem.target || "",
+    parent: Number(rawItem.parent) || 0,
+    order: rawItem.order,
+    children: rawItem.children?.map(transformSasanMenuItem),
+  };
+}
+
+function transformSasanMenu(rawMenu: SasanMenu): WPMenu {
+  return {
+    id: rawMenu.id,
+    name: rawMenu.name,
+    slug: rawMenu.slug || "primary",
+    items: rawMenu.items?.map(transformSasanMenuItem) || [],
   };
 }
 
@@ -1029,6 +1065,21 @@ function transformMenu(rawMenu: RawWPMenu): WPMenu {
 
 // Fetch WordPress menu by location
 export async function getMenu(location: string, locale?: Locale): Promise<WPMenu | null> {
+  if (location === "primary") {
+    const sasanMenu = await fetchWPAPI<SasanMenu>(
+      "/sasanperfumes/v1/menu/primary",
+      {
+        tags: ["menus", "menu-primary"],
+        locale,
+        revalidate: 600,
+      }
+    );
+
+    if (sasanMenu?.items?.length) {
+      return transformSasanMenu(sasanMenu);
+    }
+  }
+
   const data = await fetchWPAPI<RawWPMenu>(
     `/menus/v1/locations/${location}`,
     {
@@ -1278,12 +1329,12 @@ export async function getTopbarSettings(locale?: Locale): Promise<TopbarSettings
 // ─── Footer Settings ───
 const defaultFooterSettings: FooterSettings = {
   description: {
-    en: "ShapeHive is a luxury fragrance house dedicated to crafting unique, high-quality perfumes that captivate the senses.",
-    ar: "معمل العطور الفاخرة مكرس لصناعة عطور فريدة وعالية الجودة تأسر الحواس.",
+    en: "Discover Sasan Perfumes, a UAE fragrance destination for perfumes, hair mist, all over sprays, and gift-ready scent collections.",
+    ar: "اكتشف ساسان للعطور، وجهتك في الإمارات للعطور، معطرات الشعر، بخاخات الجسم، ومجموعات الهدايا العطرية.",
   },
   copyright: {
-    en: "© 2025 ShapeHive. All rights reserved.",
-    ar: "© 2025 معمل العطور. جميع الحقوق محفوظة.",
+    en: "All rights reserved.",
+    ar: "جميع الحقوق محفوظة.",
   },
   newsletter: {
     title: { en: "Stay in the Scent Loop", ar: "ابقَ في عالم العطور" },
@@ -1300,19 +1351,25 @@ const defaultFooterSettings: FooterSettings = {
   quickLinks: {
     heading: { en: "Quick Links", ar: "روابط سريعة" },
     items: [
-      { label: { en: "Shop All", ar: "تسوق الكل" }, url: "/shop" },
-      { label: { en: "New Arrivals", ar: "وصل حديثاً" }, url: "/new-arrivals" },
-      { label: { en: "Best Sellers", ar: "الأكثر مبيعاً" }, url: "/best-sellers" },
-      { label: { en: "About Us", ar: "من نحن" }, url: "/about" },
+      { label: { en: "Home", ar: "الرئيسية" }, url: "/" },
+      { label: { en: "Shop", ar: "المتجر" }, url: "/shop" },
+      { label: { en: "Perfumes", ar: "العطور" }, url: "/category/perfumes" },
+      { label: { en: "All Over Spray", ar: "بخاخ الجسم" }, url: "/category/all-over-spray" },
+      { label: { en: "Hair Mist", ar: "معطر الشعر" }, url: "/category/sasan-hair-mist" },
+      { label: { en: "Gift Sets", ar: "أطقم الهدايا" }, url: "/category/gift-set" },
+      { label: { en: "Contact", ar: "تواصل معنا" }, url: "/contact" },
     ],
   },
   customerService: {
     heading: { en: "Customer Service", ar: "خدمة العملاء" },
     items: [
-      { label: { en: "Contact Us", ar: "اتصل بنا" }, url: "/contact" },
-      { label: { en: "Shipping Policy", ar: "سياسة الشحن" }, url: "/shipping-policy" },
-      { label: { en: "Return & Exchange", ar: "الإرجاع والاستبدال" }, url: "/return-exchange" },
-      { label: { en: "FAQs", ar: "الأسئلة الشائعة" }, url: "/faqs" },
+      { label: { en: "FAQ", ar: "الأسئلة الشائعة" }, url: "/faq" },
+      { label: { en: "Shipping Information", ar: "معلومات الشحن" }, url: "/shipping" },
+      { label: { en: "Return Policy", ar: "سياسة الإرجاع" }, url: "/returns" },
+      { label: { en: "Track Order", ar: "تتبع الطلب" }, url: "/track-order" },
+      { label: { en: "Privacy Policy", ar: "سياسة الخصوصية" }, url: "/privacy" },
+      { label: { en: "Terms & Conditions", ar: "الشروط والأحكام" }, url: "/terms-and-conditions" },
+      { label: { en: "Private Labeling", ar: "التصنيع الخاص" }, url: "/private-labeling" },
     ],
   },
   social: {
@@ -1321,7 +1378,7 @@ const defaultFooterSettings: FooterSettings = {
     twitter: "",
     tiktok: "",
     snapchat: "",
-    whatsapp: "",
+    whatsapp: "https://wa.me/971506071405",
   },
   poweredBy: {
     text: { en: "Powered by", ar: "مدعوم من" },

@@ -1,16 +1,16 @@
 /**
  * Site Configuration
  * 
- * Main configuration file for the ShapeHive frontend.
+ * Main configuration file for the Sasan Perfumes frontend.
  * These values are read from environment variables when available,
  * with fallbacks for local development.
  */
 export const siteConfig = {
   // Site name - displayed in browser title, meta tags, etc.
-  name: "ShapeHive",
+  name: "Sasan Perfumes",
   
   // Site description - used for SEO meta description
-  description: "ShapeHive ecommerce storefront connected to the ShapeHive WordPress and WooCommerce backend.",
+  description: "Sasan Perfumes is a UAE fragrance store for perfumes, hair mist, all over sprays, and gift-ready scent collections.",
   
   // Frontend URL - reads from NEXT_PUBLIC_SITE_URL environment variable
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://shapehive.com",
@@ -24,7 +24,7 @@ export const siteConfig = {
 
   // Optional brand assets for this copied frontend. Backend products still load
   // from WooCommerce, but the old backend logo/site name is not reused by default.
-  logoUrl: process.env.NEXT_PUBLIC_BRAND_LOGO_URL || "",
+  logoUrl: process.env.NEXT_PUBLIC_BRAND_LOGO_URL || "/images/logo-sasanperfumes.svg",
   faviconUrl: process.env.NEXT_PUBLIC_BRAND_FAVICON_URL || "",
   useBackendBrandAssets: process.env.NEXT_PUBLIC_USE_BACKEND_BRAND_ASSETS === "true",
   
@@ -37,9 +37,9 @@ export const siteConfig = {
 
   // Public contact details used by contact buttons and structured data.
   contact: {
-    whatsapp: "97143442448",
-    phone: "+971 4 344 2448",
-    callPhone: "+971 4 344 2448",
+    whatsapp: "971506071405",
+    phone: "+971 50 607 1405",
+    callPhone: "+971506071405",
     email: "",
     address: "United Arab Emirates",
   },
