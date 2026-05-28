@@ -1,6 +1,6 @@
 <?php
 /**
- * POS Refunded Order email - Sasan Perfumes Custom Style
+ * POS Refunded Order email - ShapeHive Custom Style
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/pos-refunded-order.php.
  *

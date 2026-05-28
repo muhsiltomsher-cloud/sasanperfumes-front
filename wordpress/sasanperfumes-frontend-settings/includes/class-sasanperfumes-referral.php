@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Referral Program
+ * ShapeHive Referral Program
  *
  * Each customer gets a unique referral code. When a new user registers
  * using that code (via ?ref=CODE in the URL, stored in a cookie/meta),

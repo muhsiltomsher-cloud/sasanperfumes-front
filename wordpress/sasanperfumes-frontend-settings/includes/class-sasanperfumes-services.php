@@ -1,9 +1,9 @@
 <?php
 /**
- * Sasan Perfumes Services CPT
+ * ShapeHive Services CPT
  *
  * Custom Post Type for services with REST API endpoints.
- * Admin: Sasan Perfumes Settings → Services
+ * Admin: ShapeHive Settings → Services
  * REST: GET /sasanperfumes/v1/services, GET /sasanperfumes/v1/services/{slug}
  *
  * @package sasanperfumes_Frontend_Settings

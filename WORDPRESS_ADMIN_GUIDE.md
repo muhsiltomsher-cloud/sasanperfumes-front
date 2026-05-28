@@ -1,6 +1,6 @@
-# WordPress Admin Guide - Sasan Perfumes
+# WordPress Admin Guide - ShapeHive
 
-This guide documents how the Sasan Perfumes WordPress backend is managed for the headless Next.js storefront.
+This guide documents how the ShapeHive WordPress backend is managed for the headless Next.js storefront.
 
 The frontend does not execute PHP files directly. The WordPress plugin runs on the CMS server, stores settings in the WordPress database, and exposes JSON through REST API endpoints. The Next.js app reads those endpoints using `NEXT_PUBLIC_WC_API_URL`.
 
@@ -12,7 +12,7 @@ The frontend does not execute PHP files directly. The WordPress plugin runs on t
 | Storefront URL | `https://shapehive.com` |
 | REST API base | `https://cms.shapehive.com/wp-json` |
 | Main custom namespace | `sasanperfumes/v1` |
-| Plugin name | `Sasan Perfumes Frontend Settings` |
+| Plugin name | `ShapeHive Frontend Settings` |
 | Local plugin source | `wordpress/sasanperfumes-frontend-settings/` |
 | Live plugin path | `wp-content/plugins/sasanperfumes-frontend-settings/` |
 | Local wp-content mirror | `fnf_wp_contents/` |
@@ -58,7 +58,7 @@ woocommerce/
 Then activate:
 
 ```text
-WP Admin -> Plugins -> Sasan Perfumes Frontend Settings -> Activate
+WP Admin -> Plugins -> ShapeHive Frontend Settings -> Activate
 ```
 
 The plugin can also be updated by uploading only changed files into the existing plugin folder.
@@ -100,7 +100,7 @@ The plugin can also be updated by uploading only changed files into the existing
 Main menu:
 
 ```text
-WP Admin -> Sasan Perfumes Settings
+WP Admin -> ShapeHive Settings
 ```
 
 Common pages:
@@ -163,7 +163,7 @@ If upload buttons fail in WP Admin:
 Feature toggles live in:
 
 ```text
-Sasan Perfumes Settings -> Feature Toggles
+ShapeHive Settings -> Feature Toggles
 ```
 
 REST endpoint:
@@ -314,7 +314,7 @@ Issues observed during the latest check:
 |---|---|---|
 | `/sasanperfumes/v1/mobile-bar` | 404 on live before local fix | Local plugin source now registers this route in `class-sasanperfumes-settings.php`; upload plugin changes to apply |
 | `/sasanperfumes/v1/referral/settings` | 404 on live before local fix | Local plugin source now loads `class-sasanperfumes-referral.php`; upload plugin changes to apply |
-| `/wp-json/sasanperfumes/v1/currencies` | 404 on live | Local plugin source now provides `/sasanperfumes/v1/currencies` as the Sasan Perfumes alias for legacy `asl_currencies_data` |
+| `/wp-json/sasanperfumes/v1/currencies` | 404 on live | Local plugin source now provides `/sasanperfumes/v1/currencies` as the ShapeHive alias for legacy `asl_currencies_data` |
 | `/sasanperfumes/v1/product-pages/mimosa-glow` | 404 | Product page CPT record not found for that slug |
 | `/sasanperfumes/v1/guides/art-of-perfumery-crafting-memorable-scent-experiences` | 404 | That slug is a blog slug, not a guide slug |
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer note email - Sasan Perfumes Custom Style
+ * Customer note email - ShapeHive Custom Style
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-note.php.
  *

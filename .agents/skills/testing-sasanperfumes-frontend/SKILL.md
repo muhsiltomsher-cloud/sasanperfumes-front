@@ -1,11 +1,11 @@
 ---
 name: testing-sasanperfumes-frontend
-description: Test the Sasan Perfumes/Cadvil headless ecommerce frontend and WordPress admin plugin end-to-end. Use when verifying admin settings UI, REST API responses, or Next.js frontend rendering.
+description: Test the ShapeHive/Cadvil headless ecommerce frontend and WordPress admin plugin end-to-end. Use when verifying admin settings UI, REST API responses, or Next.js frontend rendering.
 ---
 
-# Testing Sasan Perfumes Frontend
+# Testing ShapeHive Frontend
 
-Next.js e-commerce frontend for Sasan Perfumes (sasanperfumes.example).
+Next.js e-commerce frontend for ShapeHive (sasanperfumes.example).
 
 ## Local Dev Setup
 
@@ -103,7 +103,7 @@ Use browser `set_mobile` to toggle mobile viewport (390px). Key mobile-specific 
 
 - URL: https://cms.sasanperfumes.ae/wp-admin
 - Credentials: Use saved WordPress admin credentials
-- Plugin: Cadvil Settings (Sasan Perfumes Frontend Settings)
+- Plugin: Cadvil Settings (ShapeHive Frontend Settings)
 - Plugin path on server: `/home/u327034204/domains/cms.sasanperfumes.ae/public_html/wp-content/plugins/sasanperfumes-frontend-settings/`
 - Local plugin source: `wordpress/sasanperfumes-frontend-settings/`
 

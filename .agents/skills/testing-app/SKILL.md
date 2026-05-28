@@ -1,6 +1,6 @@
 ---
 name: testing-app
-description: General app testing patterns for Sasan Perfumes — SEO metadata, HTML entity handling, product page verification, cart price normalization. Use when verifying product detail pages, SEO changes, hero slider content, or cart/checkout pricing.
+description: General app testing patterns for ShapeHive — SEO metadata, HTML entity handling, product page verification, cart price normalization. Use when verifying product detail pages, SEO changes, hero slider content, or cart/checkout pricing.
 ---
 
 # Testing the Application
@@ -122,7 +122,7 @@ curl -s http://localhost:3001/en/shipping | grep -o 'Order Processing'
 curl -s http://localhost:3001/en/returns | grep -o '14-Day Return Window'
 curl -s http://localhost:3001/en/privacy | grep -o 'Information We Collect'
 curl -s http://localhost:3001/en/terms-and-conditions | grep -o 'General Terms'
-curl -s http://localhost:3001/en/faq | grep -o 'What is Sasan Perfumes'
+curl -s http://localhost:3001/en/faq | grep -o 'What is ShapeHive'
 curl -s http://localhost:3001/en/contact | grep -o 'Visit Us'
 
 # Verify no double locale prefix in CTA links

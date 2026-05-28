@@ -1,4 +1,4 @@
-# Testing Sasan Perfumes Frontend
+# Testing ShapeHive Frontend
 
 ## Dev Server
 - Run `npm run dev` in the repo root to start Next.js dev server on `http://localhost:3000`

@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin new order email - Sasan Perfumes Custom Style
+ * Admin new order email - ShapeHive Custom Style
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/admin-new-order.php.
  *

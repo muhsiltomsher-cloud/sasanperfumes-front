@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer Reset Password email - Sasan Perfumes Custom Style
+ * Customer Reset Password email - ShapeHive Custom Style
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-reset-password.php.
  *

@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer invoice email - Sasan Perfumes Custom Style
+ * Customer invoice email - ShapeHive Custom Style
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-invoice.php.
  *

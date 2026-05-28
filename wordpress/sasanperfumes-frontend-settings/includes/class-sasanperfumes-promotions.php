@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Promotions
+ * ShapeHive Promotions
  *
  * Handles:
  * 1. Promotional popup settings (admin + REST API)

@@ -1,12 +1,12 @@
-# Sasan Perfumes Site Documentation
+# ShapeHive Site Documentation
 
-Sasan Perfumes is a headless ecommerce storefront. The frontend is a Next.js app. The backend is WordPress + WooCommerce with a custom plugin named `sasanperfumes-frontend-settings`.
+ShapeHive is a headless ecommerce storefront. The frontend is a Next.js app. The backend is WordPress + WooCommerce with a custom plugin named `sasanperfumes-frontend-settings`.
 
 ## Project Summary
 
 | Item | Value |
 |---|---|
-| Project | Sasan Perfumes |
+| Project | ShapeHive |
 | Frontend | Next.js 16, React 19, TypeScript |
 | Backend | WordPress, WooCommerce, CoCart, WPGraphQL, custom plugin |
 | Production storefront | `https://shapehive.com` |

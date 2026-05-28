@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Frontend URL Rewriting
+ * ShapeHive Frontend URL Rewriting
  * 
  * Rewrites WordPress admin URLs (Visit Site, View Product, permalinks, etc.)
  * to point to the headless Next.js frontend instead of the WordPress backend.

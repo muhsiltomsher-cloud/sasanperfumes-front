@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Customer Tracking - Order Tracking Data Display
+ * ShapeHive Customer Tracking - Order Tracking Data Display
  * 
  * Displays customer tracking data (landing page, referrer, UTM params,
  * device info, pages visited) on the WooCommerce order admin page.
@@ -12,7 +12,7 @@
 if (!defined('ABSPATH')) exit;
 
 /**
- * Initialize Sasan Perfumes Customer Tracking
+ * Initialize ShapeHive Customer Tracking
  */
 function sasanperfumes_customer_tracking_init() {
     // Add meta box to WooCommerce order page

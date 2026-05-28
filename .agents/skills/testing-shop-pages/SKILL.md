@@ -1,7 +1,7 @@
-# Testing Sasan Perfumes Frontend - Shop Pages & Product Ordering
+# Testing ShapeHive Frontend - Shop Pages & Product Ordering
 
 ## Overview
-The Sasan Perfumes Frontend is a Next.js e-commerce site that connects to a WooCommerce backend at `https://sasanperfumes.example`. It supports two locales: English (`en`) and Arabic (`ar`, RTL).
+The ShapeHive Frontend is a Next.js e-commerce site that connects to a WooCommerce backend at `https://sasanperfumes.example`. It supports two locales: English (`en`) and Arabic (`ar`, RTL).
 
 ## Local Setup
 1. Copy `.env.example` to `.env.local` (default values point to the live WooCommerce backend)

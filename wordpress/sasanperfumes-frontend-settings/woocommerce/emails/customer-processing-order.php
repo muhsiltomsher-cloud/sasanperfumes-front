@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer processing order email - Sasan Perfumes Custom Style
+ * Customer processing order email - ShapeHive Custom Style
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-processing-order.php.
  *

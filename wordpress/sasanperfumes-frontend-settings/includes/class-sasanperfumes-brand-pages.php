@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Brand Pages
+ * ShapeHive Brand Pages
  *
  * Extended brand metadata for product brands.
  * Stores banner images, descriptions, perfume notes, and SEO fields

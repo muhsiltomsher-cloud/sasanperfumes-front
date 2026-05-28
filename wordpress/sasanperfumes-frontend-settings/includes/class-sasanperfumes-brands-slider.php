@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Brands Slider
+ * ShapeHive Brands Slider
  *
  * Admin page and REST API endpoint for the homepage brands/partners logo slider.
  * Each brand has a name, image URL, and optional link.

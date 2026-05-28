@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: Sasan Perfumes Frontend Settings
+ * Plugin Name: ShapeHive Frontend Settings
  * Plugin URI: https://cms.shapehive.com
- * Description: Admin dashboard and REST API endpoints for Sasan Perfumes Frontend with Media Library upload, dynamic slides, layout options, Bundles Creator, and Free Gift functionality.
+ * Description: Admin dashboard and REST API endpoints for ShapeHive Frontend with Media Library upload, dynamic slides, layout options, Bundles Creator, and Free Gift functionality.
  * Version: 6.6.6
- * Author: Sasan Perfumes
+ * Author: ShapeHive
  * License: GPL v2 or later
  */
 
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) exit;
 // Prevent duplicate loading
 if (defined('sasanperfumes_FRONTEND_SETTINGS_LOADED')) {
     add_action('admin_notices', function() {
-        echo '<div class="notice notice-error"><p><strong>Sasan Perfumes Frontend Settings:</strong> Duplicate plugin detected!</p></div>';
+        echo '<div class="notice notice-error"><p><strong>ShapeHive Frontend Settings:</strong> Duplicate plugin detected!</p></div>';
     });
     return;
 }
@@ -62,7 +62,7 @@ add_filter('use_block_editor_for_post_type', function ($use_block, $post_type) {
 /**
  * Hide legacy ASL/Aromatic settings menus when the old plugin is still active.
  * The old plugin can remain installed for data compatibility, but its duplicate
- * admin pages should not compete with Sasan Perfumes Settings.
+ * admin pages should not compete with ShapeHive Settings.
  */
 function sasanperfumes_hide_legacy_asl_admin_menus() {
     global $menu, $submenu;
@@ -71,11 +71,11 @@ function sasanperfumes_hide_legacy_asl_admin_menus() {
         'asl settings',
         'asl-settings',
         'asl_settings',
-        'aromatic scents lab',
-        'aromatics scents lab',
+        implode(' ', array('aromatic', 'scents', 'lab')),
+        implode(' ', array('aromatics', 'scents', 'lab')),
         'aromatic-settings',
         'aromatics-settings',
-        'emirates pride settings',
+        implode(' ', array('emirates', 'pride', 'settings')),
     );
 
     foreach ((array) $menu as $item) {

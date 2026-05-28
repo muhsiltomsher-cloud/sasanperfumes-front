@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Email Templates
+ * ShapeHive Email Templates
  *
  * Overrides WooCommerce email templates with custom sasanperfumes-branded versions
  * that use the headless frontend URLs instead of WordPress admin URLs.

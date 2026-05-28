@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Advanced Settings
+ * ShapeHive Advanced Settings
  *
  * Handles:
  * 1. Live chat widget configuration (Tidio / Tawk.to / Crisp / Custom)

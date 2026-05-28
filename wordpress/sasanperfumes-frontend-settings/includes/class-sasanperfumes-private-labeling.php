@@ -1,10 +1,10 @@
 <?php
 /**
- * Sasan Perfumes Private Labeling Module
+ * ShapeHive Private Labeling Module
  *
  * Landing page settings + enquiry form submissions CPT.
- * Admin: Sasan Perfumes Settings → Private Labeling (page content)
- *        Sasan Perfumes Settings → PL Submissions (form entries)
+ * Admin: ShapeHive Settings → Private Labeling (page content)
+ *        ShapeHive Settings → PL Submissions (form entries)
  * REST:  GET  /sasanperfumes/v1/private-labeling      (page content)
  *        POST /sasanperfumes/v1/private-labeling/submit (form submission)
  *

@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer refunded order email - Sasan Perfumes Custom Style
+ * Customer refunded order email - ShapeHive Custom Style
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-refunded-order.php.
  *

@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer completed order email - Sasan Perfumes Custom Style
+ * Customer completed order email - ShapeHive Custom Style
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-completed-order.php.
  *

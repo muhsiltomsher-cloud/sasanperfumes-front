@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Notes CPT — Fragrance Notes as Custom Post Type
+ * ShapeHive Notes CPT — Fragrance Notes as Custom Post Type
  *
  * Each note is an individual post with bilingual fields (EN/AR).
  * Pattern follows class-sasanperfumes-guide-pages.php.

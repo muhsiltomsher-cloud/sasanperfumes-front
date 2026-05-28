@@ -22,7 +22,7 @@ The legacy `asl-security` plugin is still installed and active on the staging se
 2. Go to **Plugins** → **Installed Plugins**
 3. Find and **Deactivate** any of these plugins:
    - `asl-security`
-   - `Aromatic Scents Lab`
+   - `ShapeHive`
    - `ASL Settings`
    - Any other "Aromatic" or "ASL" plugin
 4. (Optional) Delete the plugin folder from `/wp-content/plugins/`

@@ -1,7 +1,7 @@
 <?php
 /**
- * Sasan Perfumes Home Sections — Why Choose Us, Our Story, FAQ, SEO Content
- * Tabs render inside Sasan Perfumes Settings > Home Page (class-sasanperfumes-settings.php)
+ * ShapeHive Home Sections — Why Choose Us, Our Story, FAQ, SEO Content
+ * Tabs render inside ShapeHive Settings > Home Page (class-sasanperfumes-settings.php)
  * REST API: GET /sasanperfumes/v1/home-sections
  * @since 6.1.0
  */

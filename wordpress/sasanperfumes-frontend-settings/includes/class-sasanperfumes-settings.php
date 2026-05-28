@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Settings - Core Settings Functionality
+ * ShapeHive Settings - Core Settings Functionality
  * 
  * Handles admin pages, REST API endpoints, and settings management
  * for Home Page, Header & Topbar, SEO, and Mobile Settings.
@@ -12,7 +12,7 @@
 if (!defined('ABSPATH')) exit;
 
 /**
- * Initialize Sasan Perfumes Settings
+ * Initialize ShapeHive Settings
  */
 function sasanperfumes_settings_init() {
     // Admin menu
@@ -30,7 +30,7 @@ function sasanperfumes_settings_init() {
     // Admin styles
     add_action('admin_head', 'sasanperfumes_settings_admin_styles');
     
-    // Sync: when blogname/blogdescription change (Settings > General), update Sasan Perfumes SEO
+    // Sync: when blogname/blogdescription change (Settings > General), update ShapeHive SEO
     add_action('update_option_blogname', 'sasanperfumes_sync_blogname_to_seo', 10, 2);
     add_action('update_option_blogdescription', 'sasanperfumes_sync_blogdescription_to_seo', 10, 2);
 }
@@ -51,7 +51,7 @@ function sasanperfumes_sync_blogdescription_to_seo($old_value, $new_value) {
  * Register admin menus
  */
 function sasanperfumes_settings_register_menus() {
-    add_menu_page('Sasan Perfumes Settings', 'Sasan Perfumes Settings', 'manage_options', 'sasanperfumes-settings', 'sasanperfumes_render_admin_page', 'dashicons-admin-customizer', 30);
+    add_menu_page('ShapeHive Settings', 'ShapeHive Settings', 'manage_options', 'sasanperfumes-settings', 'sasanperfumes_render_admin_page', 'dashicons-admin-customizer', 30);
     add_submenu_page('sasanperfumes-settings', 'Home Page', 'Home Page', 'manage_options', 'sasanperfumes-settings', 'sasanperfumes_render_admin_page');
     add_submenu_page('sasanperfumes-settings', 'Header & Topbar', 'Header & Topbar', 'manage_options', 'sasanperfumes-settings-header', 'sasanperfumes_render_header_page');
     add_submenu_page('sasanperfumes-settings', 'SEO Settings', 'SEO Settings', 'manage_options', 'sasanperfumes-settings-seo', 'sasanperfumes_render_seo_page');
@@ -954,7 +954,7 @@ function sasanperfumes_get_mobile_bar_settings() {
  * Get currencies.
  *
  * Current live installs store currency data in the legacy CADVIL/ASL currency
- * plugin option. This endpoint gives the frontend a Sasan Perfumes namespace
+ * plugin option. This endpoint gives the frontend a ShapeHive namespace
  * while preserving that stored data.
  */
 function sasanperfumes_get_currencies() {
@@ -1209,5 +1209,5 @@ function sasanperfumes_settings_admin_styles() {
     echo '<style>.nav-tab-wrapper{margin-bottom:0}.tab-content{margin-top:0}.form-table th{width:200px}.sasanperfumes-image-field{display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px}.sasanperfumes-preview{flex-basis:100%}</style>';
 }
 
-// Initialize Sasan Perfumes Settings
+// Initialize ShapeHive Settings
 sasanperfumes_settings_init();

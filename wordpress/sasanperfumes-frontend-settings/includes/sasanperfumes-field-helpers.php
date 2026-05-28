@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Field Helpers — Small reusable field components
+ * ShapeHive Field Helpers — Small reusable field components
  * Used by page-fields, notes-cpt, and other modules.
  * @since 6.3.0
  */

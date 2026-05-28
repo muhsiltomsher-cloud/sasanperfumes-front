@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer failed order email - Sasan Perfumes Custom Style
+ * Customer failed order email - ShapeHive Custom Style
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-failed-order.php.
  *

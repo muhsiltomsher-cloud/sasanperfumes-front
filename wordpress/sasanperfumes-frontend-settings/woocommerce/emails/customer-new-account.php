@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer new account email - Sasan Perfumes Custom Style
+ * Customer new account email - ShapeHive Custom Style
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-new-account.php.
  *

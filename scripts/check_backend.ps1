@@ -1,8 +1,8 @@
-# Sasan Perfumes WordPress Backend REST API Health Checker
+# ShapeHive WordPress Backend REST API Health Checker
 $ErrorActionPreference = "Continue"
 
 Write-Host "=============================================" -ForegroundColor Cyan
-Write-Host "  SASAN PERFUMES BACKEND HEALTH CHECKER   " -ForegroundColor Cyan
+Write-Host "  SHAPEHIVE BACKEND HEALTH CHECKER   " -ForegroundColor Cyan
 Write-Host "=============================================" -ForegroundColor Cyan
 Write-Host ""
 

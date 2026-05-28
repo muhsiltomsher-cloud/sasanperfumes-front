@@ -1,6 +1,6 @@
 <?php
 /**
- * Email Footer - Sasan Perfumes Custom Style
+ * Email Footer - ShapeHive Custom Style
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/email-footer.php.
  *

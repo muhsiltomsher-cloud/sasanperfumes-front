@@ -1,7 +1,7 @@
 <?php
 /**
- * Sasan Perfumes Static Pages — Dynamic content for About, Contact, FAQ, Privacy, Terms, Shipping, Returns
- * Admin: Sasan Perfumes Settings → Pages (submenu)
+ * ShapeHive Static Pages — Dynamic content for About, Contact, FAQ, Privacy, Terms, Shipping, Returns
+ * Admin: ShapeHive Settings → Pages (submenu)
  * REST API: GET /sasanperfumes/v1/pages/{slug}
  * @since 6.2.0
  */

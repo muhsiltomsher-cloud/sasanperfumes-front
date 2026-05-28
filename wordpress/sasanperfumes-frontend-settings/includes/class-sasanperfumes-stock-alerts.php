@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Stock Alerts — Back in Stock Notifications
+ * ShapeHive Stock Alerts — Back in Stock Notifications
  *
  * Stores email subscriptions in a custom DB table.
  * Sends emails when a product transitions from out_of_stock → instock.

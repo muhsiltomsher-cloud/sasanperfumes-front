@@ -1,12 +1,12 @@
 <?php
 /**
- * Sasan Perfumes Guide Pages
+ * ShapeHive Guide Pages
  * 
  * Custom Post Type for SEO guide pages, replacing the hardcoded guides.ts file.
  * Each guide has: hero (eyebrow, title, intro), products (repeater), content blocks,
  * FAQs, SEO fields, and related guides — all with EN/AR bilingual support.
  * 
- * Admin: Sasan Perfumes Settings → Guides (CPT submenu)
+ * Admin: ShapeHive Settings → Guides (CPT submenu)
  * REST API: GET /sasanperfumes/v1/guides and GET /sasanperfumes/v1/guides/{slug}
  * 
  * @package sasanperfumes_Frontend_Settings

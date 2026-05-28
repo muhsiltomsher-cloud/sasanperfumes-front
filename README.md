@@ -1,4 +1,4 @@
-# Sasan Perfumes - Headless E-commerce Frontend
+# ShapeHive - Headless E-commerce Frontend
 
 A modern, bilingual (English/Arabic) headless e-commerce frontend built with Next.js 15, Tailwind CSS, and WordPress/WooCommerce REST API.
 
@@ -105,7 +105,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 - WooCommerce Multilingual & Multicurrency (WCML)
 - TI WooCommerce Wishlist
 - JWT Authentication for WP REST API
-- Sasan Perfumes Frontend Settings (custom plugin, see `wordpress/` folder)
+- ShapeHive Frontend Settings (custom plugin, see `wordpress/` folder)
 
 ### REST API Configuration
 
@@ -113,7 +113,7 @@ Ensure the following WordPress REST API endpoints are accessible:
 - `/wp-json/wc/store/v1/` - WooCommerce Store API (products, categories)
 - `/wp-json/wc/v3/` - WooCommerce REST API (orders, customers)
 - `/wp-json/cocart/v2/` - CoCart API (cart operations)
-- `/wp-json/sasanperfumes/v1/` - Sasan Perfumes custom settings API
+- `/wp-json/sasanperfumes/v1/` - ShapeHive custom settings API
 
 ## Available Scripts
 
@@ -192,4 +192,4 @@ See `TODO-LIVE.md` for detailed Cloudflare rule expressions and verification che
 
 ## License
 
-This project is proprietary software for Sasan Perfumes.
+This project is proprietary software for ShapeHive.

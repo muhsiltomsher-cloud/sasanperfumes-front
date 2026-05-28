@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer cancelled order email - Sasan Perfumes Custom Style
+ * Customer cancelled order email - ShapeHive Custom Style
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-cancelled-order.php.
  *

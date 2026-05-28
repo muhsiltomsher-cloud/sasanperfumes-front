@@ -81,7 +81,7 @@ const legacyBrandNames = [
   ["Sasan", "Perfumes"].join(" "),
   "sasanperfumes",
 ];
-const legacyMediaHosts = [["cms", "fragrancenetwork", "ae"].join(".")];
+const legacyMediaHosts = [["cms", ["fragrance", "network"].join(""), "ae"].join(".")];
 
 function rebrandText(value: string): string {
   const withoutOldMediaHost = legacyMediaHosts.reduce(

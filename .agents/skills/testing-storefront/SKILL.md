@@ -3,7 +3,7 @@ name: testing-storefront
 description: Test storefront flows end-to-end — shop infinite scroll, product variations, cart/checkout, reviews, Arabic RTL. Use when verifying product page, cart, or checkout changes.
 ---
 
-# Testing Sasan Perfumes Storefront
+# Testing ShapeHive Storefront
 
 ## Environment Setup
 
@@ -184,7 +184,7 @@ fetch('/api/product-variations?product_id=10345')
 - Bottom navigation: Home, Menu, Search, Wishlist, Account
 
 ### 16. Loyalty Points (Backend Settings)
-- Product page: look for "Earn X points" or "Sasan Perfumes Points" badge (based on product/variation price)
+- Product page: look for "Earn X points" or "ShapeHive Points" badge (based on product/variation price)
 - The label comes from backend `label_en` / `label_ar` with `{points}` interpolation
 - Points calculation: `Math.floor((price / divisor) * pointsPerAed)` where divisor=100 for minor units
 - Checkout: guest state shows "Sign in to earn points on this order"
@@ -210,7 +210,7 @@ fetch('/api/product-variations?product_id=10345')
   - New Products, Featured, Bestsellers product sliders
   - Our Brands slider with brand logos
   - Hero slider, banners, FAQ, Our Story, collections
-- All sections should be enable/disable-able from backend Cadvil/Sasan Perfumes Settings
+- All sections should be enable/disable-able from backend Cadvil/ShapeHive Settings
 - No hardcoded product IDs, brand names, or business content in frontend
 
 ## PR #18 Regression Checklist
@@ -228,6 +228,6 @@ fetch('/api/product-variations?product_id=10345')
 
 ## Minor Known Issues
 - Hero text on `/en` homepage shows `&#39;` (HTML entity) — this is backend content from WordPress that may intermittently have HTML entities; the `decodeHtmlEntities` function handles known patterns but new entity formats from the CMS might appear
-- WPML has an unrelated JS error — do not treat as Sasan Perfumes plugin issue
+- WPML has an unrelated JS error — do not treat as ShapeHive plugin issue
 - Pre-existing React hydration mismatch (#418) on production — console error on page load, not related to any specific PR
 - Review images: Code exists in `ProductReviews.tsx` but no test reviews with images in backend — mark UNTESTED if testing review images

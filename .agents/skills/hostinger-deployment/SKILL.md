@@ -1,7 +1,7 @@
 # Hostinger Deployment & Server Error Troubleshooting
 
 ## Overview
-The Sasan Perfumes Frontend (Next.js) is hosted on Hostinger Cloud Professional plan. The WordPress backend (WooCommerce) is hosted separately on the same Hostinger account. This document captures all known deployment issues and their fixes.
+The ShapeHive Frontend (Next.js) is hosted on Hostinger Cloud Professional plan. The WordPress backend (WooCommerce) is hosted separately on the same Hostinger account. This document captures all known deployment issues and their fixes.
 
 ## Architecture
 - **Frontend**: Next.js app at `sasanperfumes.example` (Hostinger Cloud, Node.js via Phusion Passenger)

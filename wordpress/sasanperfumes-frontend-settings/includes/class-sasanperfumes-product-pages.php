@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Product Pages - Product-Type Dynamic Page System
+ * ShapeHive Product Pages - Product-Type Dynamic Page System
  * 
  * Registers a Custom Post Type "sasanperfumes_product_page" with structured meta fields
  * for creating dynamic, bilingual (EN/AR) product-oriented pages directly
@@ -13,7 +13,7 @@
 if (!defined('ABSPATH')) exit;
 
 /**
- * Initialize Sasan Perfumes Product Pages
+ * Initialize ShapeHive Product Pages
  */
 function sasanperfumes_product_pages_init() {
     add_action('init', 'sasanperfumes_register_product_page_cpt');

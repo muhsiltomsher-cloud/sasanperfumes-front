@@ -1,6 +1,6 @@
 <?php
 /**
- * Sasan Perfumes Size Guide Manager
+ * ShapeHive Size Guide Manager
  *
  * Provides a proper manual size guide system for fashion/clothing products.
  * Replaces the raw JSON textarea approach with a structured builder.
@@ -49,7 +49,7 @@ function sasanperfumes_sg_register_cpt() {
         ],
         'public'          => false,
         'show_ui'         => true,
-        'show_in_menu'    => false, // shown under Sasan Perfumes Settings submenu
+        'show_in_menu'    => false, // shown under ShapeHive Settings submenu
         'supports'        => ['title'],
         'has_archive'     => false,
         'rewrite'         => false,

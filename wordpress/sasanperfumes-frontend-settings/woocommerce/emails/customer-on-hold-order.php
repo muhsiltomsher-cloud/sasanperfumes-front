@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer on-hold order email - Sasan Perfumes Custom Style
+ * Customer on-hold order email - ShapeHive Custom Style
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/emails/customer-on-hold-order.php.
  *
