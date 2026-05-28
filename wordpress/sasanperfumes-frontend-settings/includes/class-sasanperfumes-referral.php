@@ -62,17 +62,17 @@ function sasanperfumes_referral_assign_code(int $user_id) {
 // ---------------------------------------------------------------------------
 
 function sasanperfumes_referral_register_routes() {
-    fnf_register_rest_route( '/referral', [
+    sasanperfumes_register_rest_route( '/referral', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_referral_get_info',
         'permission_callback' => '__return_true',
     ]);
-    fnf_register_rest_route( '/referral/settings', [
+    sasanperfumes_register_rest_route( '/referral/settings', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_referral_get_settings',
         'permission_callback' => '__return_true',
     ]);
-    fnf_register_rest_route( '/referral/register', [
+    sasanperfumes_register_rest_route( '/referral/register', [
         'methods'             => 'POST',
         'callback'            => 'sasanperfumes_referral_process',
         'permission_callback' => '__return_true',

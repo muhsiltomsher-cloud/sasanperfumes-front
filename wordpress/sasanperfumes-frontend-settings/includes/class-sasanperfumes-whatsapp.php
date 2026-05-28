@@ -2,7 +2,7 @@
 /**
  * ShapeHive WhatsApp Floating Button Settings
  *
- * Admin: ShapeHive Settings → WhatsApp Button
+ * Admin: sasanperfumes → WhatsApp Button
  * REST:  GET /sasanperfumes/v1/whatsapp
  *
  * @package sasanperfumes_Frontend_Settings
@@ -69,7 +69,7 @@ function sasanperfumes_wa_render() {
 
 // REST API
 add_action('rest_api_init', function () {
-    fnf_register_rest_route( '/whatsapp', [
+    sasanperfumes_register_rest_route( '/whatsapp', [
         'methods'             => 'GET',
         'callback'            => function () {
             return rest_ensure_response([

@@ -8,7 +8,7 @@
  *   GET  /sasanperfumes/v1/loyalty           ?customer_id=   (auth required)
  *   POST /sasanperfumes/v1/loyalty/redeem    { customer_id, points }  → returns coupon_code
  *
- * Settings (ShapeHive Settings > Loyalty):
+ * Settings (sasanperfumes > Loyalty):
  *   - points_per_aed     : points earned per 1 AED spent  (default: 1)
  *   - aed_per_point      : discount per point when redeeming (default: 0.05 AED)
  *   - min_redeem_points  : minimum points needed to redeem  (default: 100)
@@ -44,27 +44,27 @@ function sasanperfumes_loyalty_add_points(int $customer_id, int $delta): void {
 // ---------------------------------------------------------------------------
 
 function sasanperfumes_loyalty_register_routes() {
-    fnf_register_rest_route( '/loyalty', [
+    sasanperfumes_register_rest_route( '/loyalty', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_loyalty_get_balance',
         'permission_callback' => 'sasanperfumes_loyalty_auth_check',
     ]);
-    fnf_register_rest_route( '/loyalty/redeem', [
+    sasanperfumes_register_rest_route( '/loyalty/redeem', [
         'methods'             => 'POST',
         'callback'            => 'sasanperfumes_loyalty_redeem',
         'permission_callback' => 'sasanperfumes_loyalty_auth_check',
     ]);
-    fnf_register_rest_route( '/loyalty/settings', [
+    sasanperfumes_register_rest_route( '/loyalty/settings', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_loyalty_get_settings',
         'permission_callback' => '__return_true',
     ]);
-    fnf_register_rest_route( '/loyalty/history', [
+    sasanperfumes_register_rest_route( '/loyalty/history', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_loyalty_get_history',
         'permission_callback' => 'sasanperfumes_loyalty_auth_check',
     ]);
-    fnf_register_rest_route( '/loyalty/admin/adjust', [
+    sasanperfumes_register_rest_route( '/loyalty/admin/adjust', [
         'methods'             => 'POST',
         'callback'            => 'sasanperfumes_loyalty_admin_adjust',
         'permission_callback' => fn() => current_user_can('manage_woocommerce'),

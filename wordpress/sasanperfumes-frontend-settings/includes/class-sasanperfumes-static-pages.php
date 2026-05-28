@@ -1,7 +1,7 @@
 <?php
 /**
  * ShapeHive Static Pages — Dynamic content for About, Contact, FAQ, Privacy, Terms, Shipping, Returns
- * Admin: ShapeHive Settings → Pages (submenu)
+ * Admin: sasanperfumes → Pages (submenu)
  * REST API: GET /sasanperfumes/v1/pages/{slug}
  * @since 6.2.0
  */
@@ -439,11 +439,11 @@ function sasanperfumes_sp_save($page_slug, $cfg) {
 
 // --- REST API ---
 function sasanperfumes_sp_rest_init() {
-    fnf_register_rest_route( '/notes-seo/(?P<slug>[a-zA-Z0-9_-]+)', [
+    sasanperfumes_register_rest_route( '/notes-seo/(?P<slug>[a-zA-Z0-9_-]+)', [
         'methods' => 'GET', 'callback' => 'sasanperfumes_sp_get_note_seo', 'permission_callback' => '__return_true',
         'args' => ['slug' => ['required' => true, 'sanitize_callback' => 'sanitize_text_field']],
     ]);
-    fnf_register_rest_route( '/notes-seo', [
+    sasanperfumes_register_rest_route( '/notes-seo', [
         'methods' => 'GET', 'callback' => 'sasanperfumes_sp_get_all_notes_seo', 'permission_callback' => '__return_true',
     ]);
 }

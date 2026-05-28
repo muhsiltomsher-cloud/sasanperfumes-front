@@ -534,12 +534,12 @@ function sasanperfumes_product_page_save_meta($post_id, $post) {
 // ──────────────────────────────────────────────
 
 function sasanperfumes_product_pages_register_rest_routes() {
-    fnf_register_rest_route( '/product-pages', array(
+    sasanperfumes_register_rest_route( '/product-pages', array(
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_rest_get_product_pages',
         'permission_callback' => '__return_true',
     ));
-    fnf_register_rest_route( '/product-pages/(?P<slug>[a-zA-Z0-9_-]+)', array(
+    sasanperfumes_register_rest_route( '/product-pages/(?P<slug>[a-zA-Z0-9_-]+)', array(
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_rest_get_product_page',
         'permission_callback' => '__return_true',

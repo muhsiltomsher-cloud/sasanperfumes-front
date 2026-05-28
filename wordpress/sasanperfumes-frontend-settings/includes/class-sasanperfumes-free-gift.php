@@ -360,13 +360,13 @@ function sasanperfumes_free_gifts_get_products_list() {
  * Register REST API routes
  */
 function sasanperfumes_free_gift_register_rest_routes() {
-    fnf_register_free_gifts_rest_route( '/rules', array(
+    sasanperfumes_register_free_gifts_rest_route( '/rules', array(
         'methods' => 'GET',
         'callback' => 'sasanperfumes_free_gifts_api_get_rules',
         'permission_callback' => '__return_true',
     ));
     
-    fnf_register_free_gifts_rest_route( '/settings', array(
+    sasanperfumes_register_free_gifts_rest_route( '/settings', array(
         'methods' => 'GET',
         'callback' => 'sasanperfumes_free_gifts_api_get_settings',
         'permission_callback' => '__return_true',

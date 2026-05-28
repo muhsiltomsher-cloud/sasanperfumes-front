@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: ShapeHive Frontend Settings
+ * Plugin Name: sasanperfumes
  * Plugin URI: https://cms.shapehive.com
- * Description: Admin dashboard and REST API endpoints for ShapeHive Frontend with Media Library upload, dynamic slides, layout options, Bundles Creator, and Free Gift functionality.
+ * Description: Admin dashboard and REST API endpoints for sasanperfumes with Media Library upload, dynamic slides, layout options, Bundles Creator, and Free Gift functionality.
  * Version: 6.6.6
  * Author: ShapeHive
  * License: GPL v2 or later
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) exit;
 // Prevent duplicate loading
 if (defined('sasanperfumes_FRONTEND_SETTINGS_LOADED')) {
     add_action('admin_notices', function() {
-        echo '<div class="notice notice-error"><p><strong>ShapeHive Frontend Settings:</strong> Duplicate plugin detected!</p></div>';
+        echo '<div class="notice notice-error"><p><strong>sasanperfumes:</strong> Duplicate plugin detected!</p></div>';
     });
     return;
 }
@@ -21,32 +21,20 @@ define('sasanperfumes_FRONTEND_SETTINGS_LOADED', true);
 define('sasanperfumes_SETTINGS_VERSION', '6.6.6');
 define('sasanperfumes_SETTINGS_PATH', plugin_dir_path(__FILE__));
 
-define('FNF_REST_NAMESPACE', 'sasanperfumes/v1');
-define('FNF_LEGACY_REST_NAMESPACE', 'sasanperfumes/v1');
-define('FNF_BUNDLES_REST_NAMESPACE', 'sasanperfumes-bundles/v1');
-define('FNF_LEGACY_BUNDLES_REST_NAMESPACE', 'sasanperfumes-bundles/v1');
-define('FNF_FREE_GIFTS_REST_NAMESPACE', 'sasanperfumes-free-gifts/v1');
-define('FNF_LEGACY_FREE_GIFTS_REST_NAMESPACE', 'sasanperfumes-free-gifts/v1');
+define('SASANPERFUMES_REST_NAMESPACE', 'sasanperfumes/v1');
+define('SASANPERFUMES_BUNDLES_REST_NAMESPACE', 'sasanperfumes-bundles/v1');
+define('SASANPERFUMES_FREE_GIFTS_REST_NAMESPACE', 'sasanperfumes-free-gifts/v1');
 
-function fnf_register_rest_route($route, $args = array(), $override = false) {
-    register_rest_route(FNF_REST_NAMESPACE, $route, $args, $override);
-    if (FNF_LEGACY_REST_NAMESPACE !== FNF_REST_NAMESPACE) {
-        register_rest_route(FNF_LEGACY_REST_NAMESPACE, $route, $args, $override);
-    }
+function sasanperfumes_register_rest_route($route, $args = array(), $override = false) {
+    register_rest_route(SASANPERFUMES_REST_NAMESPACE, $route, $args, $override);
 }
 
-function fnf_register_bundles_rest_route($route, $args = array(), $override = false) {
-    register_rest_route(FNF_BUNDLES_REST_NAMESPACE, $route, $args, $override);
-    if (FNF_LEGACY_BUNDLES_REST_NAMESPACE !== FNF_BUNDLES_REST_NAMESPACE) {
-        register_rest_route(FNF_LEGACY_BUNDLES_REST_NAMESPACE, $route, $args, $override);
-    }
+function sasanperfumes_register_bundles_rest_route($route, $args = array(), $override = false) {
+    register_rest_route(SASANPERFUMES_BUNDLES_REST_NAMESPACE, $route, $args, $override);
 }
 
-function fnf_register_free_gifts_rest_route($route, $args = array(), $override = false) {
-    register_rest_route(FNF_FREE_GIFTS_REST_NAMESPACE, $route, $args, $override);
-    if (FNF_LEGACY_FREE_GIFTS_REST_NAMESPACE !== FNF_FREE_GIFTS_REST_NAMESPACE) {
-        register_rest_route(FNF_LEGACY_FREE_GIFTS_REST_NAMESPACE, $route, $args, $override);
-    }
+function sasanperfumes_register_free_gifts_rest_route($route, $args = array(), $override = false) {
+    register_rest_route(SASANPERFUMES_FREE_GIFTS_REST_NAMESPACE, $route, $args, $override);
 }
 
 /**
@@ -62,7 +50,7 @@ add_filter('use_block_editor_for_post_type', function ($use_block, $post_type) {
 /**
  * Hide legacy ASL/Aromatic settings menus when the old plugin is still active.
  * The old plugin can remain installed for data compatibility, but its duplicate
- * admin pages should not compete with ShapeHive Settings.
+ * admin pages should not compete with sasanperfumes.
  */
 function sasanperfumes_hide_legacy_asl_admin_menus() {
     global $menu, $submenu;

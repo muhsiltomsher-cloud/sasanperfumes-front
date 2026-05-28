@@ -145,7 +145,7 @@ function sasanperfumes_category_seo_save_fields($term_id) {
  */
 function sasanperfumes_category_seo_register_routes() {
     // Get SEO content for a single category by slug
-    fnf_register_rest_route( '/category-seo/(?P<slug>[a-zA-Z0-9_-]+)', array(
+    sasanperfumes_register_rest_route( '/category-seo/(?P<slug>[a-zA-Z0-9_-]+)', array(
         'methods'  => 'GET',
         'callback' => 'sasanperfumes_get_category_seo',
         'permission_callback' => '__return_true',
@@ -158,7 +158,7 @@ function sasanperfumes_category_seo_register_routes() {
     ));
 
     // Get category subtitle
-    fnf_register_rest_route( '/category-subtitle/(?P<slug>[a-zA-Z0-9_-]+)', array(
+    sasanperfumes_register_rest_route( '/category-subtitle/(?P<slug>[a-zA-Z0-9_-]+)', array(
         'methods'  => 'GET',
         'callback' => 'sasanperfumes_get_category_subtitle',
         'permission_callback' => '__return_true',
@@ -171,7 +171,7 @@ function sasanperfumes_category_seo_register_routes() {
     ));
 
     // Get SEO content for all categories
-    fnf_register_rest_route( '/category-seo', array(
+    sasanperfumes_register_rest_route( '/category-seo', array(
         'methods'  => 'GET',
         'callback' => 'sasanperfumes_get_all_category_seo',
         'permission_callback' => '__return_true',

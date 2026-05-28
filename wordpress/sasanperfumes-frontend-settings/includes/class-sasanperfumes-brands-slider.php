@@ -28,7 +28,7 @@ function sasanperfumes_brands_slider_register_menu() {
 }
 
 function sasanperfumes_brands_slider_register_rest() {
-    fnf_register_rest_route( '/brands-slider', array(
+    sasanperfumes_register_rest_route( '/brands-slider', array(
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_brands_slider_get',
         'permission_callback' => '__return_true',

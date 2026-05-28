@@ -3,8 +3,8 @@
  * ShapeHive Private Labeling Module
  *
  * Landing page settings + enquiry form submissions CPT.
- * Admin: ShapeHive Settings → Private Labeling (page content)
- *        ShapeHive Settings → PL Submissions (form entries)
+ * Admin: sasanperfumes → Private Labeling (page content)
+ *        sasanperfumes → PL Submissions (form entries)
  * REST:  GET  /sasanperfumes/v1/private-labeling      (page content)
  *        POST /sasanperfumes/v1/private-labeling/submit (form submission)
  *
@@ -493,14 +493,14 @@ add_action('manage_sasanperfumes_pl_inquiry_posts_custom_column', function ($col
 
 add_action('rest_api_init', function () {
     // Page content endpoint
-    fnf_register_rest_route( '/private-labeling', [
+    sasanperfumes_register_rest_route( '/private-labeling', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_pl_api_get',
         'permission_callback' => '__return_true',
     ]);
 
     // Form submission endpoint
-    fnf_register_rest_route( '/private-labeling/submit', [
+    sasanperfumes_register_rest_route( '/private-labeling/submit', [
         'methods'             => 'POST',
         'callback'            => 'sasanperfumes_pl_api_submit',
         'permission_callback' => '__return_true',

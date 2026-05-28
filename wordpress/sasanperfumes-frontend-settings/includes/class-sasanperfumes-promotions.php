@@ -32,12 +32,12 @@ sasanperfumes_promotions_init();
 // ---------------------------------------------------------------------------
 
 function sasanperfumes_promotions_register_routes() {
-    fnf_register_rest_route( '/popup-settings', [
+    sasanperfumes_register_rest_route( '/popup-settings', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_get_popup_settings',
         'permission_callback' => '__return_true',
     ]);
-    fnf_register_rest_route( '/badge-tags', [
+    sasanperfumes_register_rest_route( '/badge-tags', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_get_badge_tags',
         'permission_callback' => '__return_true',

@@ -37,49 +37,49 @@ function sasanperfumes_bundle_builder_init() {
  */
 function sasanperfumes_bundle_builder_register_rest_routes() {
     // Get bundle config by product slug (for frontend detection)
-    fnf_register_bundles_rest_route( '/config', array(
+    sasanperfumes_register_bundles_rest_route( '/config', array(
         'methods' => 'GET',
         'callback' => 'sasanperfumes_bundles_get_config_by_slug',
         'permission_callback' => '__return_true',
     ));
 
     // Get all bundles or filter by product_id
-    fnf_register_bundles_rest_route( '/bundles', array(
+    sasanperfumes_register_bundles_rest_route( '/bundles', array(
         'methods' => 'GET',
         'callback' => 'sasanperfumes_bundles_get_all',
         'permission_callback' => '__return_true',
     ));
 
     // Get single bundle by ID
-    fnf_register_bundles_rest_route( '/bundles/(?P<id>[a-zA-Z0-9-]+)', array(
+    sasanperfumes_register_bundles_rest_route( '/bundles/(?P<id>[a-zA-Z0-9-]+)', array(
         'methods' => 'GET',
         'callback' => 'sasanperfumes_bundles_get_single',
         'permission_callback' => '__return_true',
     ));
 
     // Create new bundle
-    fnf_register_bundles_rest_route( '/bundles', array(
+    sasanperfumes_register_bundles_rest_route( '/bundles', array(
         'methods' => 'POST',
         'callback' => 'sasanperfumes_bundles_create',
         'permission_callback' => 'sasanperfumes_bundles_check_permission',
     ));
 
     // Update bundle
-    fnf_register_bundles_rest_route( '/bundles/(?P<id>[a-zA-Z0-9-]+)', array(
+    sasanperfumes_register_bundles_rest_route( '/bundles/(?P<id>[a-zA-Z0-9-]+)', array(
         'methods' => 'PUT',
         'callback' => 'sasanperfumes_bundles_update',
         'permission_callback' => 'sasanperfumes_bundles_check_permission',
     ));
 
     // Delete bundle
-    fnf_register_bundles_rest_route( '/bundles/(?P<id>[a-zA-Z0-9-]+)', array(
+    sasanperfumes_register_bundles_rest_route( '/bundles/(?P<id>[a-zA-Z0-9-]+)', array(
         'methods' => 'DELETE',
         'callback' => 'sasanperfumes_bundles_delete',
         'permission_callback' => 'sasanperfumes_bundles_check_permission',
     ));
     
     // Get all bundle-enabled product slugs (for frontend to identify bundle products)
-    fnf_register_bundles_rest_route( '/enabled-products', array(
+    sasanperfumes_register_bundles_rest_route( '/enabled-products', array(
         'methods' => 'GET',
         'callback' => 'sasanperfumes_bundles_get_enabled_product_slugs',
         'permission_callback' => '__return_true',

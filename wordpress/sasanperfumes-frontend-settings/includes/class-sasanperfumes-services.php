@@ -3,7 +3,7 @@
  * ShapeHive Services CPT
  *
  * Custom Post Type for services with REST API endpoints.
- * Admin: ShapeHive Settings → Services
+ * Admin: sasanperfumes → Services
  * REST: GET /sasanperfumes/v1/services, GET /sasanperfumes/v1/services/{slug}
  *
  * @package sasanperfumes_Frontend_Settings
@@ -147,17 +147,17 @@ add_action('save_post_sasanperfumes_service', function ($post_id) {
 // ── REST API ───────────────────────────────────────────────────────
 
 add_action('rest_api_init', function () {
-    fnf_register_rest_route( '/services', [
+    sasanperfumes_register_rest_route( '/services', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_services_list',
         'permission_callback' => '__return_true',
     ]);
-    fnf_register_rest_route( '/services/(?P<slug>[a-zA-Z0-9_-]+)', [
+    sasanperfumes_register_rest_route( '/services/(?P<slug>[a-zA-Z0-9_-]+)', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_services_single',
         'permission_callback' => '__return_true',
     ]);
-    fnf_register_rest_route( '/services-page', [
+    sasanperfumes_register_rest_route( '/services-page', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_services_page_settings',
         'permission_callback' => '__return_true',

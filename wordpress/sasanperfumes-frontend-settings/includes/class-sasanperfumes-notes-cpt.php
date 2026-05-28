@@ -144,11 +144,11 @@ function sasanperfumes_note_save_meta($post_id, $post) {
    ================================================================ */
 
 function sasanperfumes_note_register_routes() {
-    fnf_register_rest_route( '/notes-seo/(?P<slug>[a-zA-Z0-9_-]+)', [
+    sasanperfumes_register_rest_route( '/notes-seo/(?P<slug>[a-zA-Z0-9_-]+)', [
         'methods' => 'GET', 'callback' => 'sasanperfumes_note_rest_single', 'permission_callback' => '__return_true',
         'args' => ['slug' => ['required' => true, 'sanitize_callback' => 'sanitize_text_field']],
     ]);
-    fnf_register_rest_route( '/notes-seo', [
+    sasanperfumes_register_rest_route( '/notes-seo', [
         'methods' => 'GET', 'callback' => 'sasanperfumes_note_rest_all', 'permission_callback' => '__return_true',
     ]);
 }

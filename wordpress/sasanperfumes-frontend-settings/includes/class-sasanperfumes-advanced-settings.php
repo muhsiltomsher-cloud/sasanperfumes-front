@@ -42,7 +42,7 @@ function sasanperfumes_adv_register_routes() {
         'product-variation-images' => 'sasanperfumes_adv_get_variation_images',
     ];
     foreach ($routes as $path => $cb) {
-        fnf_register_rest_route( "/{$path}", ['methods' => 'GET', 'callback' => $cb, 'permission_callback' => '__return_true']);
+        sasanperfumes_register_rest_route( "/{$path}", ['methods' => 'GET', 'callback' => $cb, 'permission_callback' => '__return_true']);
     }
 }
 

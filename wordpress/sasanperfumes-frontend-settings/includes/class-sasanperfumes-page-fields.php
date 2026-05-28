@@ -703,11 +703,11 @@ function sasanperfumes_pf_save($post_id) {
    ================================================================ */
 
 function sasanperfumes_pf_rest_init() {
-    fnf_register_rest_route( '/pages/(?P<slug>[a-z0-9-]+)', [
+    sasanperfumes_register_rest_route( '/pages/(?P<slug>[a-z0-9-]+)', [
         'methods' => 'GET', 'callback' => 'sasanperfumes_pf_rest_page', 'permission_callback' => '__return_true',
         'args' => ['slug' => ['required' => true, 'sanitize_callback' => 'sanitize_text_field']],
     ]);
-    fnf_register_rest_route( '/home-sections', [
+    sasanperfumes_register_rest_route( '/home-sections', [
         'methods' => 'GET', 'callback' => 'sasanperfumes_pf_rest_home_sections', 'permission_callback' => '__return_true',
     ]);
 }

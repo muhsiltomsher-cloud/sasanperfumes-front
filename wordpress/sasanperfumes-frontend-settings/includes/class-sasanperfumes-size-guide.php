@@ -49,7 +49,7 @@ function sasanperfumes_sg_register_cpt() {
         ],
         'public'          => false,
         'show_ui'         => true,
-        'show_in_menu'    => false, // shown under ShapeHive Settings submenu
+        'show_in_menu'    => false, // shown under sasanperfumes submenu
         'supports'        => ['title'],
         'has_archive'     => false,
         'rewrite'         => false,
@@ -671,7 +671,7 @@ function sasanperfumes_sg_format_template($post) {
 // ---------------------------------------------------------------------------
 
 function sasanperfumes_sg_register_routes() {
-    fnf_register_rest_route( '/size-guide', [
+    sasanperfumes_register_rest_route( '/size-guide', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_sg_api_get',
         'permission_callback' => '__return_true',

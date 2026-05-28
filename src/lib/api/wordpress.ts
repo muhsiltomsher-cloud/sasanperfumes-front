@@ -32,7 +32,7 @@ const WP_API_HEADERS: HeadersInit = {
   Accept: "application/json",
   "User-Agent": WP_API_USER_AGENT,
 };
-const WP_NAMESPACE_FALLBACKS = ["sasanperfumes/v1", "fnf/v1", "Anbar/v1"];
+const WP_NAMESPACE_FALLBACKS = ["sasanperfumes/v1"];
 
 function formatFetchError(error: unknown): string {
   if (!(error instanceof Error)) {

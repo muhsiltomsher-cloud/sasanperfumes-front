@@ -21,7 +21,7 @@ function sasanperfumes_footer_settings_init() {
 }
 
 /**
- * Register admin submenu page under ShapeHive Settings
+ * Register admin submenu page under sasanperfumes
  */
 function sasanperfumes_footer_register_menu() {
     add_submenu_page(
@@ -38,7 +38,7 @@ function sasanperfumes_footer_register_menu() {
  * Register REST API route
  */
 function sasanperfumes_footer_register_rest_routes() {
-    fnf_register_rest_route( '/footer-settings', array(
+    sasanperfumes_register_rest_route( '/footer-settings', array(
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_get_footer_settings',
         'permission_callback' => '__return_true',

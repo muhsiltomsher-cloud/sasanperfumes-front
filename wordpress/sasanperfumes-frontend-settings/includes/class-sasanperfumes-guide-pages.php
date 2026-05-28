@@ -6,7 +6,7 @@
  * Each guide has: hero (eyebrow, title, intro), products (repeater), content blocks,
  * FAQs, SEO fields, and related guides — all with EN/AR bilingual support.
  * 
- * Admin: ShapeHive Settings → Guides (CPT submenu)
+ * Admin: sasanperfumes → Guides (CPT submenu)
  * REST API: GET /sasanperfumes/v1/guides and GET /sasanperfumes/v1/guides/{slug}
  * 
  * @package sasanperfumes_Frontend_Settings
@@ -352,13 +352,13 @@ function sasanperfumes_guide_save_meta($post_id, $post) {
  * Register REST API routes
  */
 function sasanperfumes_guide_register_routes() {
-    fnf_register_rest_route( '/guides', array(
+    sasanperfumes_register_rest_route( '/guides', array(
         'methods'  => 'GET',
         'callback' => 'sasanperfumes_get_guides',
         'permission_callback' => '__return_true',
     ));
 
-    fnf_register_rest_route( '/guides/(?P<slug>[a-zA-Z0-9_-]+)', array(
+    sasanperfumes_register_rest_route( '/guides/(?P<slug>[a-zA-Z0-9_-]+)', array(
         'methods'  => 'GET',
         'callback' => 'sasanperfumes_get_guide_by_slug',
         'permission_callback' => '__return_true',

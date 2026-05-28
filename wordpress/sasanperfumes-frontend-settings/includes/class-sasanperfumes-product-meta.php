@@ -47,7 +47,7 @@ add_action('rest_api_init', 'sasanperfumes_product_meta_register_routes');
  * Register REST API routes for product meta descriptions
  */
 function sasanperfumes_product_meta_register_routes() {
-    fnf_register_rest_route( '/product-meta/(?P<slug>[a-zA-Z0-9_-]+)', array(
+    sasanperfumes_register_rest_route( '/product-meta/(?P<slug>[a-zA-Z0-9_-]+)', array(
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_get_product_meta_description',
         'permission_callback' => '__return_true',

@@ -25,7 +25,7 @@ class sasanperfumes_Forms {
      */
     public function register_rest_routes() {
         // Contact form endpoint
-        fnf_register_rest_route( '/contact', array(
+        sasanperfumes_register_rest_route( '/contact', array(
             'methods' => 'POST',
             'callback' => array($this, 'handle_contact_form'),
             'permission_callback' => '__return_true',
@@ -64,7 +64,7 @@ class sasanperfumes_Forms {
         ));
         
         // Newsletter subscription endpoint
-        fnf_register_rest_route( '/newsletter', array(
+        sasanperfumes_register_rest_route( '/newsletter', array(
             'methods' => 'POST',
             'callback' => array($this, 'handle_newsletter_form'),
             'permission_callback' => '__return_true',

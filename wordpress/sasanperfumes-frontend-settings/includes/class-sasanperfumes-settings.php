@@ -1,6 +1,6 @@
 <?php
 /**
- * ShapeHive Settings - Core Settings Functionality
+ * sasanperfumes - Core Settings Functionality
  * 
  * Handles admin pages, REST API endpoints, and settings management
  * for Home Page, Header & Topbar, SEO, and Mobile Settings.
@@ -12,7 +12,7 @@
 if (!defined('ABSPATH')) exit;
 
 /**
- * Initialize ShapeHive Settings
+ * Initialize sasanperfumes settings
  */
 function sasanperfumes_settings_init() {
     // Admin menu
@@ -51,7 +51,7 @@ function sasanperfumes_sync_blogdescription_to_seo($old_value, $new_value) {
  * Register admin menus
  */
 function sasanperfumes_settings_register_menus() {
-    add_menu_page('ShapeHive Settings', 'ShapeHive Settings', 'manage_options', 'sasanperfumes-settings', 'sasanperfumes_render_admin_page', 'dashicons-admin-customizer', 30);
+    add_menu_page('sasanperfumes', 'sasanperfumes', 'manage_options', 'sasanperfumes-settings', 'sasanperfumes_render_admin_page', 'dashicons-admin-customizer', 30);
     add_submenu_page('sasanperfumes-settings', 'Home Page', 'Home Page', 'manage_options', 'sasanperfumes-settings', 'sasanperfumes_render_admin_page');
     add_submenu_page('sasanperfumes-settings', 'Header & Topbar', 'Header & Topbar', 'manage_options', 'sasanperfumes-settings-header', 'sasanperfumes_render_header_page');
     add_submenu_page('sasanperfumes-settings', 'SEO Settings', 'SEO Settings', 'manage_options', 'sasanperfumes-settings-seo', 'sasanperfumes_render_seo_page');
@@ -870,15 +870,15 @@ function sasanperfumes_save_seo_settings() {
  * Register REST API routes
  */
 function sasanperfumes_settings_register_rest_routes() {
-    fnf_register_rest_route( '/customizer', array('methods'=>'GET','callback'=>'sasanperfumes_get_customizer_settings','permission_callback'=>'__return_true'));
-    fnf_register_rest_route( '/home-settings', array('methods'=>'GET','callback'=>'sasanperfumes_get_home_settings','permission_callback'=>'__return_true'));
-    fnf_register_rest_route( '/site-settings', array('methods'=>'GET','callback'=>'sasanperfumes_get_site_settings','permission_callback'=>'__return_true'));
-    fnf_register_rest_route( '/header-settings', array('methods'=>'GET','callback'=>'sasanperfumes_get_header_settings','permission_callback'=>'__return_true'));
-    fnf_register_rest_route( '/seo-settings', array('methods'=>'GET','callback'=>'sasanperfumes_get_seo_settings','permission_callback'=>'__return_true'));
-    fnf_register_rest_route( '/topbar', array('methods'=>'GET','callback'=>'sasanperfumes_get_topbar_settings','permission_callback'=>'__return_true'));
-    fnf_register_rest_route( '/mobile-bar', array('methods'=>'GET','callback'=>'sasanperfumes_get_mobile_bar_settings','permission_callback'=>'__return_true'));
-    fnf_register_rest_route( '/currencies', array('methods'=>'GET','callback'=>'sasanperfumes_get_currencies','permission_callback'=>'__return_true'));
-    fnf_register_rest_route( '/menu/(?P<location>[a-zA-Z0-9_-]+)', array('methods'=>'GET','callback'=>'sasanperfumes_get_menu','permission_callback'=>'__return_true'));
+    sasanperfumes_register_rest_route( '/customizer', array('methods'=>'GET','callback'=>'sasanperfumes_get_customizer_settings','permission_callback'=>'__return_true'));
+    sasanperfumes_register_rest_route( '/home-settings', array('methods'=>'GET','callback'=>'sasanperfumes_get_home_settings','permission_callback'=>'__return_true'));
+    sasanperfumes_register_rest_route( '/site-settings', array('methods'=>'GET','callback'=>'sasanperfumes_get_site_settings','permission_callback'=>'__return_true'));
+    sasanperfumes_register_rest_route( '/header-settings', array('methods'=>'GET','callback'=>'sasanperfumes_get_header_settings','permission_callback'=>'__return_true'));
+    sasanperfumes_register_rest_route( '/seo-settings', array('methods'=>'GET','callback'=>'sasanperfumes_get_seo_settings','permission_callback'=>'__return_true'));
+    sasanperfumes_register_rest_route( '/topbar', array('methods'=>'GET','callback'=>'sasanperfumes_get_topbar_settings','permission_callback'=>'__return_true'));
+    sasanperfumes_register_rest_route( '/mobile-bar', array('methods'=>'GET','callback'=>'sasanperfumes_get_mobile_bar_settings','permission_callback'=>'__return_true'));
+    sasanperfumes_register_rest_route( '/currencies', array('methods'=>'GET','callback'=>'sasanperfumes_get_currencies','permission_callback'=>'__return_true'));
+    sasanperfumes_register_rest_route( '/menu/(?P<location>[a-zA-Z0-9_-]+)', array('methods'=>'GET','callback'=>'sasanperfumes_get_menu','permission_callback'=>'__return_true'));
 }
 
 /**
@@ -1209,5 +1209,5 @@ function sasanperfumes_settings_admin_styles() {
     echo '<style>.nav-tab-wrapper{margin-bottom:0}.tab-content{margin-top:0}.form-table th{width:200px}.sasanperfumes-image-field{display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px}.sasanperfumes-preview{flex-basis:100%}</style>';
 }
 
-// Initialize ShapeHive Settings
+// Initialize sasanperfumes settings
 sasanperfumes_settings_init();

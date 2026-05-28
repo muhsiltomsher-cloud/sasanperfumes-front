@@ -1,7 +1,7 @@
 <?php
 /**
  * ShapeHive Home Sections — Why Choose Us, Our Story, FAQ, SEO Content
- * Tabs render inside ShapeHive Settings > Home Page (class-sasanperfumes-settings.php)
+ * Tabs render inside sasanperfumes > Home Page (class-sasanperfumes-settings.php)
  * REST API: GET /sasanperfumes/v1/home-sections
  * @since 6.1.0
  */
@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) exit;
 
 function sasanperfumes_home_sections_init() {
     add_action('rest_api_init', function() {
-        fnf_register_rest_route( '/home-sections', array(
+        sasanperfumes_register_rest_route( '/home-sections', array(
             'methods' => 'GET', 'callback' => 'sasanperfumes_get_home_sections', 'permission_callback' => '__return_true',
         ));
     });

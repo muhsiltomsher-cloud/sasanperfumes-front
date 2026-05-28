@@ -18,17 +18,17 @@ if (!defined('ABSPATH')) exit;
 // ── REST API ───────────────────────────────────────────────────────
 
 add_action('rest_api_init', function () {
-    fnf_register_rest_route( '/brands', [
+    sasanperfumes_register_rest_route( '/brands', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_brands_list',
         'permission_callback' => '__return_true',
     ]);
-    fnf_register_rest_route( '/brands/(?P<slug>[a-zA-Z0-9_-]+)', [
+    sasanperfumes_register_rest_route( '/brands/(?P<slug>[a-zA-Z0-9_-]+)', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_brands_single',
         'permission_callback' => '__return_true',
     ]);
-    fnf_register_rest_route( '/brands-page', [
+    sasanperfumes_register_rest_route( '/brands-page', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_brands_page_settings',
         'permission_callback' => '__return_true',

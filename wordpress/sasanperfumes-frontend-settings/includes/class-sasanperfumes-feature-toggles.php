@@ -2,7 +2,7 @@
 /**
  * ShapeHive Feature Toggles — Centralized enable/disable for pages & sections
  *
- * Admin: ShapeHive Settings → Feature Toggles
+ * Admin: sasanperfumes → Feature Toggles
  * REST API: GET /sasanperfumes/v1/feature-toggles
  *
  * @since 6.7.0
@@ -135,24 +135,24 @@ function sasanperfumes_ft_render() {
             <tbody>
             <?php
             $ref = [
-                ['Size Guide',     'sasanperfumes_size_guide_enabled',          'ShapeHive Settings → Advanced'],
-                ['Loyalty',        'sasanperfumes_loyalty_enabled',             'ShapeHive Settings → Loyalty Points'],
-                ['Scent Guide',    'sasanperfumes_scent_guide_section_enabled', 'ShapeHive Settings → Advanced'],
-                ['Brands Slider',  'sasanperfumes_brands_slider_enabled',      'ShapeHive Settings → Brands Slider'],
-                ['Popup',          'sasanperfumes_popup_enabled',               'ShapeHive Settings → Promotions'],
-                ['Chat Widget',    'sasanperfumes_chat_enabled',                'ShapeHive Settings → Advanced'],
-                ['Gift Wrap',      'sasanperfumes_gift_wrap_enabled',           'ShapeHive Settings → Advanced'],
-                ['Video Hero',     'sasanperfumes_video_hero_enabled',          'ShapeHive Settings → Advanced'],
-                ['Hero Slider',    'sasanperfumes_hero_enabled',                'ShapeHive Settings → Home Page → Hero'],
-                ['Categories',     'sasanperfumes_categories_enabled',          'ShapeHive Settings → Home Page → Categories'],
-                ['Collections',    'sasanperfumes_collections_enabled',         'ShapeHive Settings → Home Page → Collections'],
-                ['Banners',        'sasanperfumes_banners_enabled',             'ShapeHive Settings → Home Page → Banners'],
-                ['Topbar',         'sasanperfumes_topbar_enabled',              'ShapeHive Settings → Header & Topbar'],
-                ['Why Choose Us',  'sasanperfumes_home_wcus_enabled',           'ShapeHive Settings → Home Sections'],
-                ['Our Story',      'sasanperfumes_home_story_enabled',          'ShapeHive Settings → Home Sections'],
-                ['Home FAQ',       'sasanperfumes_home_faq_enabled',            'ShapeHive Settings → Home Sections'],
-                ['Home SEO Content','sasanperfumes_home_seo_enabled',           'ShapeHive Settings → Home Sections'],
-                ['WhatsApp Button','sasanperfumes_whatsapp_enabled',            'ShapeHive Settings → WhatsApp Button'],
+                ['Size Guide',     'sasanperfumes_size_guide_enabled',          'sasanperfumes → Advanced'],
+                ['Loyalty',        'sasanperfumes_loyalty_enabled',             'sasanperfumes → Loyalty Points'],
+                ['Scent Guide',    'sasanperfumes_scent_guide_section_enabled', 'sasanperfumes → Advanced'],
+                ['Brands Slider',  'sasanperfumes_brands_slider_enabled',      'sasanperfumes → Brands Slider'],
+                ['Popup',          'sasanperfumes_popup_enabled',               'sasanperfumes → Promotions'],
+                ['Chat Widget',    'sasanperfumes_chat_enabled',                'sasanperfumes → Advanced'],
+                ['Gift Wrap',      'sasanperfumes_gift_wrap_enabled',           'sasanperfumes → Advanced'],
+                ['Video Hero',     'sasanperfumes_video_hero_enabled',          'sasanperfumes → Advanced'],
+                ['Hero Slider',    'sasanperfumes_hero_enabled',                'sasanperfumes → Home Page → Hero'],
+                ['Categories',     'sasanperfumes_categories_enabled',          'sasanperfumes → Home Page → Categories'],
+                ['Collections',    'sasanperfumes_collections_enabled',         'sasanperfumes → Home Page → Collections'],
+                ['Banners',        'sasanperfumes_banners_enabled',             'sasanperfumes → Home Page → Banners'],
+                ['Topbar',         'sasanperfumes_topbar_enabled',              'sasanperfumes → Header & Topbar'],
+                ['Why Choose Us',  'sasanperfumes_home_wcus_enabled',           'sasanperfumes → Home Sections'],
+                ['Our Story',      'sasanperfumes_home_story_enabled',          'sasanperfumes → Home Sections'],
+                ['Home FAQ',       'sasanperfumes_home_faq_enabled',            'sasanperfumes → Home Sections'],
+                ['Home SEO Content','sasanperfumes_home_seo_enabled',           'sasanperfumes → Home Sections'],
+                ['WhatsApp Button','sasanperfumes_whatsapp_enabled',            'sasanperfumes → WhatsApp Button'],
             ];
             foreach ($ref as $r) {
                 $raw = get_option($r[1]);
@@ -169,7 +169,7 @@ function sasanperfumes_ft_render() {
 
 // ── REST API ─────────────────────────────────────────────
 add_action('rest_api_init', function() {
-    fnf_register_rest_route( '/feature-toggles', [
+    sasanperfumes_register_rest_route( '/feature-toggles', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_ft_api',
         'permission_callback' => '__return_true',

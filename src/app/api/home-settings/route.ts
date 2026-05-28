@@ -25,8 +25,6 @@ const fallbackHomeSettings = {
 };
 const homeSettingsEndpoints = [
   `${API_BASE}/wp-json/sasanperfumes/v1/home-settings`,
-  `${API_BASE}/wp-json/fnf/v1/home-settings`,
-  `${API_BASE}/wp-json/Anbar/v1/home-settings`,
 ];
 
 function fallbackResponse() {

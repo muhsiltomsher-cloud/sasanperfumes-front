@@ -56,11 +56,11 @@ function sasanperfumes_stock_alerts_maybe_create_table() {
 // ---------------------------------------------------------------------------
 
 function sasanperfumes_stock_alerts_register_routes() {
-    fnf_register_rest_route( '/stock-alerts', [
+    sasanperfumes_register_rest_route( '/stock-alerts', [
         ['methods' => 'POST',   'callback' => 'sasanperfumes_stock_alerts_subscribe',   'permission_callback' => '__return_true'],
         ['methods' => 'DELETE', 'callback' => 'sasanperfumes_stock_alerts_unsubscribe', 'permission_callback' => '__return_true'],
     ]);
-    fnf_register_rest_route( '/stock-alerts/check', [
+    sasanperfumes_register_rest_route( '/stock-alerts/check', [
         'methods'             => 'GET',
         'callback'            => 'sasanperfumes_stock_alerts_check',
         'permission_callback' => '__return_true',
