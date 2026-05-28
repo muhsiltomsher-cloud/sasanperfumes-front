@@ -162,15 +162,15 @@ function sasanperfumes_render_footer_general_tab() {
         </tr>
         <tr>
             <th>Name (EN)</th>
-            <td><input type="text" name="sasanperfumes_footer_powered_name_en" value="<?php echo esc_attr(get_theme_mod('sasanperfumes_footer_powered_name_en', 'Cadvil Solutions')); ?>" class="regular-text"></td>
+            <td><input type="text" name="sasanperfumes_footer_powered_name_en" value="<?php echo esc_attr(get_theme_mod('sasanperfumes_footer_powered_name_en', '')); ?>" class="regular-text"></td>
         </tr>
         <tr>
             <th>Name (AR)</th>
-            <td><input type="text" name="sasanperfumes_footer_powered_name_ar" value="<?php echo esc_attr(get_theme_mod('sasanperfumes_footer_powered_name_ar', 'Cadvil Solutions')); ?>" class="regular-text" dir="rtl"></td>
+            <td><input type="text" name="sasanperfumes_footer_powered_name_ar" value="<?php echo esc_attr(get_theme_mod('sasanperfumes_footer_powered_name_ar', '')); ?>" class="regular-text" dir="rtl"></td>
         </tr>
         <tr>
             <th>URL</th>
-            <td><input type="url" name="sasanperfumes_footer_powered_url" value="<?php echo esc_attr(get_theme_mod('sasanperfumes_footer_powered_url', 'https://cadvil.com/')); ?>" class="regular-text"></td>
+            <td><input type="url" name="sasanperfumes_footer_powered_url" value="<?php echo esc_attr(get_theme_mod('sasanperfumes_footer_powered_url', '')); ?>" class="regular-text"></td>
         </tr>
     </table>
     <?php
@@ -522,10 +522,10 @@ function sasanperfumes_get_footer_settings() {
                 'ar' => get_theme_mod('sasanperfumes_footer_powered_text_ar', 'مدعوم من'),
             ),
             'name' => array(
-                'en' => get_theme_mod('sasanperfumes_footer_powered_name_en', 'Cadvil Solutions'),
-                'ar' => get_theme_mod('sasanperfumes_footer_powered_name_ar', 'Cadvil Solutions'),
+                'en' => get_theme_mod('sasanperfumes_footer_powered_name_en', ''),
+                'ar' => get_theme_mod('sasanperfumes_footer_powered_name_ar', ''),
             ),
-            'url' => get_theme_mod('sasanperfumes_footer_powered_url', 'https://cadvil.com/'),
+            'url' => get_theme_mod('sasanperfumes_footer_powered_url', ''),
         ),
     );
 }

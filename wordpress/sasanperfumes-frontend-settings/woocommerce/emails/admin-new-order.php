@@ -11,7 +11,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // Frontend app URL for headless setup (for customer-facing links)
-$frontend_url = 'https://app.sasanperfumes.ae';
+$frontend_url = 'https://shapehive.com';
 $order_url = $frontend_url . '/en/account/orders/' . $order->get_id() . '/';
 
 /*

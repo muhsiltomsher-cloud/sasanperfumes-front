@@ -8,9 +8,9 @@ The frontend does not execute PHP files directly. The WordPress plugin runs on t
 
 | Item | Value |
 |---|---|
-| CMS URL | `https://cms.sasanperfumes.ae` |
-| Storefront URL | `https://app.sasanperfumes.ae` |
-| REST API base | `https://cms.sasanperfumes.ae/wp-json` |
+| CMS URL | `https://cms.shapehive.com` |
+| Storefront URL | `https://shapehive.com` |
+| REST API base | `https://cms.shapehive.com/wp-json` |
 | Main custom namespace | `sasanperfumes/v1` |
 | Plugin name | `Sasan Perfumes Frontend Settings` |
 | Local plugin source | `wordpress/sasanperfumes-frontend-settings/` |
@@ -199,7 +199,7 @@ Next.js pages may cache toggle values through ISR. After changing toggles on pro
 Base:
 
 ```text
-https://cms.sasanperfumes.ae/wp-json
+https://cms.shapehive.com/wp-json
 ```
 
 Main settings/content endpoints:
@@ -323,9 +323,9 @@ Issues observed during the latest check:
 Create `.env.local` in the project root:
 
 ```env
-NEXT_PUBLIC_WC_API_URL=https://cms.sasanperfumes.ae
-NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL=https://cms.sasanperfumes.ae/graphql
-NEXT_PUBLIC_SITE_URL=https://app.sasanperfumes.ae
+NEXT_PUBLIC_WC_API_URL=https://cms.shapehive.com
+NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL=https://cms.shapehive.com/graphql
+NEXT_PUBLIC_SITE_URL=https://shapehive.com
 
 WC_CONSUMER_KEY=ck_xxx
 WC_CONSUMER_SECRET=cs_xxx
@@ -352,7 +352,7 @@ Without private credentials, public APIs work but authenticated/payment routes r
 From PowerShell:
 
 ```powershell
-Invoke-WebRequest -Uri "https://cms.sasanperfumes.ae/wp-json/sasanperfumes/v1/home-settings" -UseBasicParsing
+Invoke-WebRequest -Uri "https://cms.shapehive.com/wp-json/sasanperfumes/v1/home-settings" -UseBasicParsing
 Invoke-WebRequest -Uri "http://localhost:3000/api/health" -UseBasicParsing
 Invoke-WebRequest -Uri "http://localhost:3000/api/debug-backend" -UseBasicParsing
 ```

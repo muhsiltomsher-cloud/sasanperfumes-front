@@ -66,7 +66,7 @@ src/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/muhsiltomsher-cloud/sasanperfumes.git
+git clone https://github.com/muhsiltomsher-cloud/sasanperfumes-front.git
 cd sasanperfumes
 ```
 
@@ -82,8 +82,8 @@ cp .env.example .env.local
 
 4. Update `.env.local` with your WordPress backend details:
 ```
-NEXT_PUBLIC_SITE_URL=https://app.sasanperfumes.ae
-NEXT_PUBLIC_WC_API_URL=https://cms.sasanperfumes.ae
+NEXT_PUBLIC_SITE_URL=https://shapehive.com
+NEXT_PUBLIC_WC_API_URL=https://cms.shapehive.com
 WC_CONSUMER_KEY=ck_xxxxx
 WC_CONSUMER_SECRET=cs_xxxxx
 ```

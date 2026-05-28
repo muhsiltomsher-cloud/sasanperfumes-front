@@ -4,7 +4,7 @@ import { disableRuntimeCache } from "@/config/site";
 
 const WORDPRESS_GRAPHQL_ENDPOINT =
   process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL ||
-  "https://cms.sasanperfumes.ae/graphql";
+  "https://cms.shapehive.com/graphql";
 
 const httpLink = createHttpLink({
   uri: WORDPRESS_GRAPHQL_ENDPOINT,

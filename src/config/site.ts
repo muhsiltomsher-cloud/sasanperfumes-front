@@ -7,24 +7,24 @@
  */
 export const siteConfig = {
   // Site name - displayed in browser title, meta tags, etc.
-  name: "Sasan Perfumes",
+  name: "ShapeHive",
   
   // Site description - used for SEO meta description
-  description: "Premium perfumes, Arabian oud, body care, home fragrances and aromatic oils from Sasan Perfumes. Free delivery on orders over 500 AED.",
+  description: "ShapeHive ecommerce storefront connected to the ShapeHive WordPress and WooCommerce backend.",
   
   // Frontend URL - reads from NEXT_PUBLIC_SITE_URL environment variable
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://app.sasanperfumes.ae",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://shapehive.com",
 
   // Open Graph image URL - uses the site URL for the og image
-  ogImage: `${process.env.NEXT_PUBLIC_SITE_URL || "https://app.sasanperfumes.ae"}/og.jpg`,
+  ogImage: `${process.env.NEXT_PUBLIC_SITE_URL || "https://shapehive.com"}/og.jpg`,
   
   // WordPress/WooCommerce Backend API URL - reads from NEXT_PUBLIC_WC_API_URL environment variable
   // This can be different from the public frontend URL.
-  apiUrl: process.env.NEXT_PUBLIC_WC_API_URL || "https://cms.sasanperfumes.ae",
+  apiUrl: process.env.NEXT_PUBLIC_WC_API_URL || "https://cms.shapehive.com",
 
   // Optional brand assets for this copied frontend. Backend products still load
   // from WooCommerce, but the old backend logo/site name is not reused by default.
-  logoUrl: process.env.NEXT_PUBLIC_BRAND_LOGO_URL || "/images/logo-sasanperfumes.svg",
+  logoUrl: process.env.NEXT_PUBLIC_BRAND_LOGO_URL || "",
   faviconUrl: process.env.NEXT_PUBLIC_BRAND_FAVICON_URL || "",
   useBackendBrandAssets: process.env.NEXT_PUBLIC_USE_BACKEND_BRAND_ASSETS === "true",
   
@@ -40,7 +40,7 @@ export const siteConfig = {
     whatsapp: "97143442448",
     phone: "+971 4 344 2448",
     callPhone: "+971 4 344 2448",
-    email: "muhsil.v@cadvil.ae",
+    email: "",
     address: "United Arab Emirates",
   },
   

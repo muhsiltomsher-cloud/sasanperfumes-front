@@ -17,12 +17,12 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cms.sasanperfumes.ae",
+        hostname: "cms.shapehive.com",
         pathname: "/wp-content/uploads/**",
       },
       {
         protocol: "http",
-        hostname: "cms.sasanperfumes.ae",
+        hostname: "cms.shapehive.com",
         pathname: "/wp-content/uploads/**",
       },
       {
@@ -77,7 +77,7 @@ const nextConfig: NextConfig = {
     ];
   },
   async rewrites() {
-    const apiUrl = process.env.NEXT_PUBLIC_WC_API_URL || "https://cms.sasanperfumes.ae";
+    const apiUrl = process.env.NEXT_PUBLIC_WC_API_URL || "https://cms.shapehive.com";
     return [
       {
         source: '/cms-media/:path*',

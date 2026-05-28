@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $header_text = $email_heading;
 
 // Frontend app URL for headless setup
-$frontend_url = 'https://app.sasanperfumes.ae';
+$frontend_url = 'https://shapehive.com';
 
 // Get the custom logo URL - fallback to Sasan Perfumes logo
 $logo_url = $frontend_url . '/images/logo-sasanperfumes.svg';

@@ -9,9 +9,9 @@ Sasan Perfumes is a headless ecommerce storefront. The frontend is a Next.js app
 | Project | Sasan Perfumes |
 | Frontend | Next.js 16, React 19, TypeScript |
 | Backend | WordPress, WooCommerce, CoCart, WPGraphQL, custom plugin |
-| Production storefront | `https://app.sasanperfumes.ae` |
-| CMS/API | `https://cms.sasanperfumes.ae` |
-| WordPress REST base | `https://cms.sasanperfumes.ae/wp-json` |
+| Production storefront | `https://shapehive.com` |
+| CMS/API | `https://cms.shapehive.com` |
+| WordPress REST base | `https://cms.shapehive.com/wp-json` |
 | Custom REST namespace | `sasanperfumes/v1` |
 | Local plugin source | `wordpress/sasanperfumes-frontend-settings/` |
 | Local wp-content reference | `fnf_wp_contents/` |
@@ -145,7 +145,7 @@ process.env.NEXT_PUBLIC_WC_API_URL
 Fallback:
 
 ```text
-https://cms.sasanperfumes.ae
+https://cms.shapehive.com
 ```
 
 Required local environment file:
@@ -157,9 +157,9 @@ Required local environment file:
 Common values:
 
 ```env
-NEXT_PUBLIC_WC_API_URL=https://cms.sasanperfumes.ae
-NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL=https://cms.sasanperfumes.ae/graphql
-NEXT_PUBLIC_SITE_URL=https://app.sasanperfumes.ae
+NEXT_PUBLIC_WC_API_URL=https://cms.shapehive.com
+NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL=https://cms.shapehive.com/graphql
+NEXT_PUBLIC_SITE_URL=https://shapehive.com
 ```
 
 Private server-side credentials:
@@ -386,7 +386,7 @@ The local folder `fnf_wp_contents/` is ignored by Git and is only for reference.
 Base:
 
 ```text
-https://cms.sasanperfumes.ae/wp-json
+https://cms.shapehive.com/wp-json
 ```
 
 Core custom endpoints:
@@ -650,7 +650,7 @@ Invoke-WebRequest -Uri "http://localhost:3000/api/debug-backend" -UseBasicParsin
 Live CMS:
 
 ```powershell
-Invoke-WebRequest -Uri "https://cms.sasanperfumes.ae/wp-json/sasanperfumes/v1/home-settings" -UseBasicParsing
+Invoke-WebRequest -Uri "https://cms.shapehive.com/wp-json/sasanperfumes/v1/home-settings" -UseBasicParsing
 ```
 
 Recommended page checks:

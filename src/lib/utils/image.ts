@@ -7,8 +7,7 @@ export function isWordPressMediaUrl(src?: string): boolean {
   if (!src || typeof src !== 'string') return false;
   return (
     src.includes('/wp-content/uploads') ||
-    src.includes('cms.sasanperfumes.ae') ||
-    src.includes('.stagingndemo.com')
+    src.includes('cms.shapehive.com')
   );
 }
 

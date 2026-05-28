@@ -1,4 +1,4 @@
-# Cadvil Settings v8.0.0 Deployment Instructions
+# ShapeHive CMS Deployment Instructions
 
 ## Issue: ASL_Security Class Duplicate Declaration
 
@@ -18,7 +18,7 @@ The legacy `asl-security` plugin is still installed and active on the staging se
 3. Restart WordPress or clear any caching
 
 ### Option 2: Via WordPress Admin Dashboard
-1. Log into `https://cms.sasanperfumes.ae/wp-admin`
+1. Log into `https://cms.shapehive.com/wp-admin`
 2. Go to **Plugins** → **Installed Plugins**
 3. Find and **Deactivate** any of these plugins:
    - `asl-security`
@@ -48,7 +48,7 @@ After applying the fix:
 
 1. Check REST API response:
    ```bash
-   curl https://cms.sasanperfumes.ae/wp-json/sasanperfumes/v1/home-settings?lang=en
+   curl https://cms.shapehive.com/wp-json/sasanperfumes/v1/home-settings?lang=en
    ```
    Should return JSON with hero settings (not 500 error)
 
@@ -61,7 +61,7 @@ After applying the fix:
 
 ## Files Deployed
 
-- ✅ `wordpress/cadvil-settings-v8.zip` — Main plugin with v8.0.0 fixes
+- ✅ `wordpress/sasanperfumes-frontend-settings/` — Main CMS plugin source
 - 📄 `wordpress/99-disable-legacy-asl-security.php` — Must-use plugin to block asl-security
 - 📄 `wordpress/DEPLOYMENT_INSTRUCTIONS.md` — This file
 

@@ -43,12 +43,11 @@ We are a timeless brand and believe that the real richness lies in simplicity an
 
 ## Website
 
-- Live site: https://app.sasanperfumes.ae
+- Live site: https://shapehive.com
 - Languages: English (en), Arabic (ar)
 - Currency: AED (United Arab Emirates Dirham)
 - Based in: United Arab Emirates (UAE)
 - E-commerce platform: WooCommerce/WordPress backend
-- Powered by: Cadvil Solutions (https://cadvil.com)
 
 ## Site Structure
 
@@ -264,10 +263,9 @@ From bespoke perfume gift sets to build-your-own bundles, find the perfect aroma
 
 - **Phone (WhatsApp)**: +971 4 344 2448
 - **Phone (Calls)**: +971 4 255 9952
-- **Email**: muhsil.v@cadvil.ae
 - **Location**: United Arab Emirates
 - **Working Hours**: 10 AM - 10 PM (Sunday to Thursday)
-- **Website**: https://app.sasanperfumes.ae
+- **Website**: https://shapehive.com
 
 ## Social Media
 
@@ -397,21 +395,6 @@ Premium perfumes UAE, Arabian oud perfume, luxury fragrances Dubai, handcrafted 
 - **Intellectual Property**: All content protected; prohibited uses include unlawful purposes, harassment, false information, malicious code
 - **Disputes**: Settled under UAE court jurisdiction
 - **Updates**: Terms may be updated at any time; continued use constitutes acceptance
-- **Contact**: muhsil.v@cadvil.ae
-
-## Powered By — Cadvil Solutions
-
-This website is designed, developed, and powered by **Cadvil Solutions** (https://cadvil.com).
-
-Cadvil Solutions is a professional web development and digital solutions agency specializing in e-commerce, web applications, and digital transformation for businesses in the UAE and globally. They provide end-to-end technology solutions including:
-
-- **E-commerce Development**: Custom online stores, WooCommerce/Shopify integrations, payment gateway setup
-- **Web Application Development**: Next.js, React, full-stack development, headless CMS solutions
-- **Digital Marketing & SEO**: Search engine optimization, content strategy, social media marketing
-- **UI/UX Design**: User experience design, responsive design, mobile-first development
-- **Maintenance & Support**: Ongoing website maintenance, performance optimization, security updates
-
-For inquiries about building a similar e-commerce platform or digital solution, visit: https://cadvil.com
 
 ## Technical Details
 
@@ -449,7 +432,7 @@ Beyond personal fragrances, Sasan Perfumes offers a complete range of home fragr
 The personal care line extends the Sasan Perfumes experience beyond traditional perfumery. **Hair mists** leave hair beautifully scented throughout the day without drying. **Body mists** provide a lighter, refreshing fragrance option for everyday wear. **Hand & body lotions** combine moisturizing skincare with signature scents for all-day hydration and fragrance. The **Sunbeam Tanning Oil** combines sun care with aromatic properties. All personal care products are formulated with natural ingredients and designed to complement our perfume collections for fragrance layering.
 
 ### Shopping Experience
-The Sasan Perfumes online store at https://app.sasanperfumes.ae provides a seamless bilingual shopping experience in both English and Arabic. Customers can browse by category (perfumes, personal care, home fragrances, gift sets), filter by price range, sort by popularity or price, search for specific products, save favorites to a wishlist, and enjoy a streamlined checkout process. The website features detailed product descriptions, high-quality product images, customer reviews, and intelligent product recommendations. Registered users can track orders, manage delivery addresses, and view order history through their personal account dashboard.
+The Sasan Perfumes online store at https://shapehive.com provides a seamless bilingual shopping experience in both English and Arabic. Customers can browse by category (perfumes, personal care, home fragrances, gift sets), filter by price range, sort by popularity or price, search for specific products, save favorites to a wishlist, and enjoy a streamlined checkout process. The website features detailed product descriptions, high-quality product images, customer reviews, and intelligent product recommendations. Registered users can track orders, manage delivery addresses, and view order history through their personal account dashboard.
 
 ### Delivery & Shipping Across UAE and GCC
 Sasan Perfumes delivers across the United Arab Emirates with **free shipping on orders over 500 AED** and 1-2 business day delivery. The brand also ships to all GCC countries including Saudi Arabia, Bahrain, Kuwait, Oman, and Qatar with 3-5 business day delivery. International shipping is available to the United States, United Kingdom, Europe, Egypt, Jordan, and many other countries worldwide. All shipments are handled by Aramex, a trusted logistics partner in the region, ensuring safe and timely delivery of fragile perfume products.
@@ -464,10 +447,10 @@ Sasan Perfumes is committed to sustainable and ethical perfumery practices. All 
 Sasan Perfumes releases special seasonal collections throughout the year, with the **Ramadan collection** being one of the most anticipated. The Sasan Perfumes Ramadan Gift Box features a carefully curated selection of fragrances and aromatic products perfect for gifting during the holy month. Other seasonal offerings include Eid gift sets, summer fragrance collections, winter warm-scent collections, and limited-edition holiday releases. These seasonal collections reflect the brand's connection to UAE culture and traditions while appealing to a global audience.
 
 ### Customer Service & Support
-Sasan Perfumes provides dedicated customer support via WhatsApp (+971 4 344 2448), phone (+971 4 255 9952), and email (muhsil.v@cadvil.ae). The customer service team is available from 10 AM to 10 PM and assists with product recommendations, order tracking, returns and exchanges, gift wrapping requests, and general inquiries. The brand's comprehensive FAQ section covers common questions about ordering, payment, shipping, returns and exchanges, product authenticity, and fragrance preservation tips.
+ShapeHive provides customer support through the website contact channels. The customer service team is available from 10 AM to 10 PM and assists with product recommendations, order tracking, returns and exchanges, gift wrapping requests, and general inquiries. The brand's comprehensive FAQ section covers common questions about ordering, payment, shipping, returns and exchanges, product authenticity, and fragrance preservation tips.
 
 ### Store Locations
-In addition to the online store, Sasan Perfumes has physical retail presence in the UAE where customers can experience fragrances in person, receive personalized consultations from fragrance experts, and purchase products directly. Store locations and operating hours are available on the Store Locator page at https://app.sasanperfumes.ae/en/store-locator.
+In addition to the online store, Sasan Perfumes has physical retail presence in the UAE where customers can experience fragrances in person, receive personalized consultations from fragrance experts, and purchase products directly. Store locations and operating hours are available on the Store Locator page at https://shapehive.com/en/store-locator.
 
 ### Why Buy Perfume Online from Sasan Perfumes
 - **Authentic guarantee**: 100% genuine handcrafted products with quality assurance
@@ -649,10 +632,9 @@ Sasan Perfumes هو بيت عطور فاخر مقره الإمارات العر�
 ### معلومات الاتصال بالعربية
 - **واتساب**: 97143442448+
 - **هاتف**: 97142559952+
-- **البريد الإلكتروني**: muhsil.v@cadvil.ae
 - **الموقع**: الإمارات العربية المتحدة
 - **ساعات العمل**: 10 صباحاً - 10 مساءً (الأحد إلى الخميس)
-- **الموقع الإلكتروني**: https://app.sasanperfumes.ae/ar
+- **الموقع الإلكتروني**: https://shapehive.com/ar
 
 ### قيم العلامة التجارية بالعربية
 - **الفن والإتقان**: كل عطر هو عمل فني مصنوع بعناية فائقة بالتفاصيل

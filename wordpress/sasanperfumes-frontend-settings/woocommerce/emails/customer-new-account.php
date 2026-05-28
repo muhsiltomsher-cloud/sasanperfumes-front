@@ -11,7 +11,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // Frontend app URL for headless setup
-$frontend_url = 'https://app.sasanperfumes.ae';
+$frontend_url = 'https://shapehive.com';
 // Correct URL structure: /en/account/
 $account_url = $frontend_url . '/en/account/';
 $login_url = $frontend_url . '/en/login/';

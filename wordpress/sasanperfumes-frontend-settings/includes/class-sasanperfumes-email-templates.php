@@ -52,11 +52,11 @@ class sasanperfumes_Email_Templates {
 	}
 
 	public function override_email_from_name( $from_name ) {
-		return 'Sasan Perfumes';
+		return get_bloginfo( 'name' ) ?: 'ShapeHive';
 	}
 
 	public function override_email_from_address( $from_address ) {
-		return 'muhsil.v@cadvil.ae';
+		return get_option( 'admin_email' ) ?: $from_address;
 	}
 
 	public function override_woocommerce_template( $template, $template_name, $template_path ) {

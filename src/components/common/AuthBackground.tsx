@@ -2,7 +2,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { shouldUseUnoptimizedImage } from "@/lib/utils/image";
 
-const AUTH_BACKGROUND_IMAGE = "https://cms.sasanperfumes.ae/wp-content/uploads/2025/12/page-bg.jpg";
+const AUTH_BACKGROUND_IMAGE = "https://cms.shapehive.com/wp-content/uploads/2025/12/page-bg.jpg";
 
 interface AuthBackgroundProps {
   children: React.ReactNode;

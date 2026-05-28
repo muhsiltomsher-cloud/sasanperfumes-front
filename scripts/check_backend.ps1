@@ -6,7 +6,7 @@ Write-Host "  SASAN PERFUMES BACKEND HEALTH CHECKER   " -ForegroundColor Cyan
 Write-Host "=============================================" -ForegroundColor Cyan
 Write-Host ""
 
-$cmsBaseUrl = "https://cms.sasanperfumes.ae/wp-json"
+$cmsBaseUrl = "https://cms.shapehive.com/wp-json"
 Write-Host "Target CMS Base URL: $cmsBaseUrl" -ForegroundColor Yellow
 Write-Host ""
 

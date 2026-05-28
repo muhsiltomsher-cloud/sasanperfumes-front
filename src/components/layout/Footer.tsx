@@ -124,12 +124,12 @@ export function Footer({ locale, dictionary, siteSettings, footerSettings, featu
     : dictionary.footer.copyright;
 
   const poweredByText = footerSettings?.poweredBy
-    ? t(footerSettings.poweredBy.text)
-    : "Powered by";
+    ? t(footerSettings.poweredBy.text).trim()
+    : "";
   const poweredByName = footerSettings?.poweredBy
-    ? t(footerSettings.poweredBy.name)
-    : "Cadvil Solutions";
-  const poweredByUrl = footerSettings?.poweredBy?.url || "https://cadvil.com/";
+    ? t(footerSettings.poweredBy.name).trim()
+    : "";
+  const poweredByUrl = footerSettings?.poweredBy?.url?.trim() || "";
 
   const quickLinksHeading = footerSettings?.quickLinks?.heading
     ? t(footerSettings.quickLinks.heading)
@@ -210,17 +210,23 @@ export function Footer({ locale, dictionary, siteSettings, footerSettings, featu
           <p className="text-center text-xs text-white/40 md:text-left">
             &copy; {currentYear} {siteConfig.name}. {copyrightText}
           </p>
-          <p className="text-center text-xs text-white/40">
-            {poweredByText}{" "}
-            <a
-              href={poweredByUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/40 transition-colors hover:text-white underline"
-            >
-              {poweredByName}
-            </a>
-          </p>
+          {poweredByText && poweredByName && (
+            <p className="text-center text-xs text-white/40">
+              {poweredByText}{" "}
+              {poweredByUrl ? (
+                <a
+                  href={poweredByUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/40 transition-colors hover:text-white underline"
+                >
+                  {poweredByName}
+                </a>
+              ) : (
+                <span>{poweredByName}</span>
+              )}
+            </p>
+          )}
         </div>
       </div>
 

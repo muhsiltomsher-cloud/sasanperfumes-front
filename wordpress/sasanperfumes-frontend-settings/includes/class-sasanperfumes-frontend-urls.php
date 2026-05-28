@@ -16,7 +16,7 @@ class sasanperfumes_Frontend_Urls {
     private $frontend_url = '';
 
     public function __construct() {
-        $this->frontend_url = get_option('sasanperfumes_frontend_url', 'https://app.sasanperfumes.ae');
+        $this->frontend_url = get_option('sasanperfumes_frontend_url', 'https://shapehive.com');
 
         if (empty($this->frontend_url)) {
             return;
@@ -60,7 +60,7 @@ class sasanperfumes_Frontend_Urls {
         register_setting('sasanperfumes_frontend_url_group', 'sasanperfumes_frontend_url', array(
             'type' => 'string',
             'sanitize_callback' => 'esc_url_raw',
-            'default' => 'https://app.sasanperfumes.ae',
+            'default' => 'https://shapehive.com',
         ));
     }
 
@@ -76,7 +76,7 @@ class sasanperfumes_Frontend_Urls {
                     <tr>
                         <th scope="row"><label for="sasanperfumes_frontend_url">Frontend URL</label></th>
                         <td>
-                            <input type="url" id="sasanperfumes_frontend_url" name="sasanperfumes_frontend_url" value="<?php echo esc_attr($this->frontend_url); ?>" class="regular-text" placeholder="https://app.sasanperfumes.ae">
+                            <input type="url" id="sasanperfumes_frontend_url" name="sasanperfumes_frontend_url" value="<?php echo esc_attr($this->frontend_url); ?>" class="regular-text" placeholder="https://shapehive.com">
                             <p class="description">The public URL of your Next.js frontend (no trailing slash).</p>
                         </td>
                     </tr>

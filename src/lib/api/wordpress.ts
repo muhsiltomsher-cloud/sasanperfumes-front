@@ -1286,8 +1286,8 @@ const defaultFooterSettings: FooterSettings = {
   },
   poweredBy: {
     text: { en: "Powered by", ar: "مدعوم من" },
-    name: { en: "Cadvil", ar: "كادفل" },
-    url: "https://cadvil.ae",
+    name: { en: "", ar: "" },
+    url: "",
   },
 };
 
@@ -1526,7 +1526,7 @@ function extractCategorySlugFromUrl(url: string): string {
 
 /**
  * Transform a WordPress URL to a frontend category URL
- * WordPress URLs like https://adminSasan Perfumes.stagingndemo.com/product-category/perfumes-oils/
+ * WordPress URLs like https://cms.shapehive.com/product-category/perfumes-oils/
  * become /{locale}/category/{slug}
  */
 function transformToFrontendCategoryUrl(url: string, slug: string, locale?: Locale): string {

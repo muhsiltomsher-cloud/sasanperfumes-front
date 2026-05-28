@@ -4,7 +4,7 @@ import { disableRuntimeCache } from "@/config/site";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-const WP = process.env.NEXT_PUBLIC_WC_API_URL || "https://cms.sasanperfumes.ae";
+const WP = process.env.NEXT_PUBLIC_WC_API_URL || "https://cms.shapehive.com";
 let cache: { data: unknown; ts: number } | null = null;
 const TTL = 5 * 60 * 1000;
 
