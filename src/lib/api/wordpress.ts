@@ -50,6 +50,17 @@ function formatFetchError(error: unknown): string {
   return error.message;
 }
 
+function isExpectedNextDynamicServerError(error: unknown): boolean {
+  if (!(error instanceof Error)) {
+    return false;
+  }
+
+  return (
+    error.message.includes("Dynamic server usage") ||
+    error.message.includes("couldn't be rendered statically")
+  );
+}
+
 function buildWPAPIUrls(endpoint: string, locale?: Locale): string[] {
   const withLocale = (baseEndpoint: string): string => {
     let url = `${WP_API_BASE}${baseEndpoint}`;
@@ -665,7 +676,9 @@ async function fetchWPAPI<T>(
 
     return null;
   } catch (error) {
-    console.warn(`WordPress API fetch failed (${urls[0]}): ${formatFetchError(error)}`);
+    if (!isExpectedNextDynamicServerError(error)) {
+      console.warn(`WordPress API fetch failed (${urls[0]}): ${formatFetchError(error)}`);
+    }
     return null;
   }
 }
