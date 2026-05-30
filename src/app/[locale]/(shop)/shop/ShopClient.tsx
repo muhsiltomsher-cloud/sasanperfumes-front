@@ -159,7 +159,6 @@ export function ShopClient({
         locale={locale}
         showToolbar={true}
         bundleProductSlugs={bundleProductSlugs}
-        totalCount={total}
       />
       
       <div ref={loadMoreRef} className="flex min-h-12 justify-center py-5">

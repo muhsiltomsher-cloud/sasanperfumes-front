@@ -1,39 +1,24 @@
 import { Suspense } from "react";
 import { getDictionary } from "@/i18n";
 import { generateMetadata as generateSeoMetadata } from "@/lib/utils/seo";
-import { getNewProducts, getFreeGiftProductInfo, getBundleEnabledProductSlugs } from "@/lib/api/woocommerce";
+import { getNewProducts, getFreeGiftProductInfo, getBundleEnabledProductSlugs, getCategories } from "@/lib/api/woocommerce";
 import { getHomePageSettings, getSeoSettings, getHomeSections } from "@/lib/api/wordpress";
 import {
   HeroSlider,
   ProductSection,
-  CollectionsSection,
+  CategorySection,
   BannersSection,
   BrandsSlider,
   SeoContentSection,
   OurStorySection,
 } from "@/components/sections";
 import { ProductSectionSkeleton } from "@/components/sections/ProductSection";
+import { CategorySectionSkeleton } from "@/components/sections/CategorySection";
 import { siteConfig, type Locale } from "@/config/site";
-import type { Collection } from "@/types/wordpress";
 import type { Metadata } from "next";
 
 export const revalidate = 300;
 const HOME_PRODUCT_COUNT = 5;
-const HOME_DISCOVER_COUNT = 5;
-const placeholderImage = (title: string) => ({
-  id: 0,
-  url: "/images/sasanperfumes-placeholder.svg",
-  alt: title,
-  title,
-  width: 600,
-  height: 800,
-  sizes: {
-    thumbnail: "/images/sasanperfumes-placeholder.svg",
-    medium: "/images/sasanperfumes-placeholder.svg",
-    large: "/images/sasanperfumes-placeholder.svg",
-    full: "/images/sasanperfumes-placeholder.svg",
-  },
-});
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
@@ -127,6 +112,64 @@ async function NewProductsSection({ locale, isRTL, dictionary, homeSettings }: {
 // ─── Main homepage component ───
 // Only fetches hero/banner settings for instant above-the-fold render.
 // Product sections stream in via Suspense boundaries.
+async function DiscoverCategoriesSection({ locale, isRTL, dictionary, homeSettings }: {
+  locale: Locale;
+  isRTL: boolean;
+  dictionary: Awaited<ReturnType<typeof getDictionary>>;
+  homeSettings: Awaited<ReturnType<typeof getHomePageSettings>>;
+}) {
+  const categories = await getCategories(locale);
+  const mainCategoryCount = categories.filter((cat) => cat.parent === 0 && cat.slug !== "uncategorized").length;
+  const normalizeKey = (value: string) => value.toLowerCase().replace(/&amp;/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  const collectionImages = new Map<string, { src: string; alt: string }>();
+
+  homeSettings.collections.collections.forEach((collection) => {
+    if (!collection.image?.url) return;
+    const image = { src: collection.image.url, alt: collection.image.alt || collection.title };
+    collectionImages.set(normalizeKey(collection.title), image);
+
+    const categorySlug = collection.link?.url?.match(/\/category\/([^/?#]+)/)?.[1];
+    if (categorySlug) {
+      collectionImages.set(normalizeKey(categorySlug), image);
+    }
+  });
+
+  const fallbackImages = Object.fromEntries(
+    categories
+      .map((category) => {
+        const image = collectionImages.get(normalizeKey(category.slug)) || collectionImages.get(normalizeKey(category.name));
+        return image ? [category.id, image] : null;
+      })
+      .filter((entry): entry is [number, { src: string; alt: string }] => entry !== null)
+  );
+
+  const settings = {
+    ...homeSettings.shop_by_category,
+    enabled: homeSettings.collections.enabled !== false,
+    section_title: homeSettings.collections.section_title || (isRTL ? dictionary.sections.collections.title : "Discover More"),
+    section_subtitle: homeSettings.collections.section_subtitle || dictionary.sections.collections.subtitle,
+    categories_count: mainCategoryCount,
+    selected_category_ids: [],
+    show_view_all: false,
+    responsive_columns: {
+      desktop: 5,
+      tablet: 3,
+      mobile: 2,
+    },
+  };
+
+  return (
+    <CategorySection
+      settings={settings}
+      categories={categories}
+      locale={locale}
+      isRTL={isRTL}
+      variant="dark"
+      fallbackImages={fallbackImages}
+    />
+  );
+}
+
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
   const validLocale = locale as Locale;
@@ -141,31 +184,6 @@ export default async function HomePage({ params }: HomePageProps) {
   ]);
 
   const t = (bi: { en: string; ar: string }) => isRTL ? bi.ar : bi.en;
-
-  const discoverFallbacks: Collection[] = [
-    {
-      title: dictionary.common.shop,
-      description: isRTL ? "" : "Explore every fragrance, mist, and gift-ready scent in the shop.",
-      image: placeholderImage(dictionary.common.shop),
-      link: { title: dictionary.common.shop, url: `/${validLocale}/shop`, target: "_self" },
-    },
-  ];
-  const discoverCollections = [
-    ...homeSettings.collections.collections,
-    ...discoverFallbacks,
-  ].slice(0, HOME_DISCOVER_COUNT);
-
-  const collectionsSettings = {
-    ...homeSettings.collections,
-    section_title: homeSettings.collections.section_title || (isRTL ? dictionary.sections.collections.title : "Discover More"),
-    section_subtitle: homeSettings.collections.section_subtitle || dictionary.sections.collections.subtitle,
-    collections: discoverCollections,
-    responsive_columns: {
-      desktop: HOME_DISCOVER_COUNT,
-      tablet: homeSettings.collections.responsive_columns?.tablet ?? 2,
-      mobile: homeSettings.collections.responsive_columns?.mobile ?? 1,
-    },
-  };
 
   // H1 heading text for SEO - hidden visually but read by search engines
   const h1Text = isRTL ? "ساسان للعطور" : siteConfig.name;
@@ -187,7 +205,14 @@ export default async function HomePage({ params }: HomePageProps) {
           />
         </Suspense>
 
-        <CollectionsSection settings={collectionsSettings} />
+        <Suspense fallback={<CategorySectionSkeleton count={5} variant="dark" />}>
+          <DiscoverCategoriesSection
+            locale={validLocale}
+            isRTL={isRTL}
+            dictionary={dictionary}
+            homeSettings={homeSettings}
+          />
+        </Suspense>
 
         <BannersSection settings={homeSettings.banners} />
 

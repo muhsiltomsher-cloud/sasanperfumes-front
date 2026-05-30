@@ -306,8 +306,8 @@ export function WCProductCard({
           </div>
 
           {/* Info */}
-          <div className="relative flex min-h-[88px] flex-1 items-center justify-center overflow-hidden px-2.5 py-2.5 text-center sm:min-h-[92px] sm:px-3">
-            <div className="flex w-full flex-col items-center gap-0.5">
+          <div className="relative flex min-h-[76px] flex-1 items-center justify-center overflow-hidden px-2.5 py-2 text-center sm:min-h-[82px] sm:px-3">
+            <div className="flex w-full flex-col items-center gap-0">
             {/* Variation terms */}
             {hasVariations && visibleVariationTerms.length > 0 && (
               <div className="hidden flex-wrap justify-center gap-1 sm:flex">
@@ -332,7 +332,7 @@ export function WCProductCard({
               onTouchStart={prefetchProduct}
             >
               <h3 className={cn(
-                "text-[12px] font-semibold leading-snug text-brand-primary-dark sm:text-[13px]",
+                "text-[13px] font-semibold leading-tight text-brand-primary-dark sm:text-sm",
                 productNameLines === 1 ? "line-clamp-1" : "line-clamp-2"
               )}>
                 {productName}
@@ -351,7 +351,7 @@ export function WCProductCard({
             )}
 
             {/* Price */}
-            <div className={cn(reviewCount > 0 ? "mt-1" : "mt-0.5")}>
+            <div className={cn(reviewCount > 0 ? "mt-0.5" : "mt-0")}>
               {!hasPrice && !hasPriceRange ? (
                 <span className="text-xs font-bold text-brand-primary/45">{isRTL ? "غير متاح" : "Unavailable"}</span>
               ) : showAsVariable && hasPriceRange && minPrice !== maxPrice ? (

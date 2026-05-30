@@ -73,7 +73,7 @@ export function RecentlyViewed({
   }
 
   return (
-    <section className="mt-16 border-t border-brand-border/70 pt-12">
+    <section className="mb-16 mt-16 border-t border-brand-border/70 pb-6 pt-12 md:mb-20">
       <div className="mb-8 flex items-center justify-between px-5 md:px-7 lg:px-12">
         <div>
           <h2 className="font-title text-3xl text-brand-primary">

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Columns4, Grid2X2, Grid3X3, SlidersHorizontal, Check } from "lucide-react";
+import { SlidersHorizontal, Check } from "lucide-react";
 import { Drawer } from "@/components/common/Drawer";
 import { cn } from "@/lib/utils";
 
 export type ViewMode = "grid" | "list";
-export type GridColumns = 2 | 3 | 4 | 5;
+export type GridColumns = 5;
 export type SortOption = "default" | "price-asc" | "price-desc" | "name-asc" | "name-desc" | "date-desc";
 
 interface ProductViewToggleProps {
@@ -16,7 +16,6 @@ interface ProductViewToggleProps {
   onGridColumnsChange: (columns: GridColumns) => void;
   locale: "en" | "ar";
   className?: string;
-  productCount?: number;
   sortBy?: SortOption;
   onSortChange?: (sort: SortOption) => void;
 }
@@ -57,7 +56,6 @@ export function ProductViewToggle({
   onGridColumnsChange,
   locale,
   className,
-  productCount,
   sortBy = "default",
   onSortChange,
 }: ProductViewToggleProps) {
@@ -75,9 +73,6 @@ export function ProductViewToggle({
   ];
 
   const gridOptions: { columns: GridColumns; icon: React.ReactNode; label: string }[] = [
-    { columns: 2, icon: <Grid2X2 className="h-4 w-4" />, label: "2" },
-    { columns: 3, icon: <Grid3X3 className="h-4 w-4" />, label: "3" },
-    { columns: 4, icon: <Columns4 className="h-4 w-4" />, label: "4" },
     { columns: 5, icon: <span className="text-[11px] font-bold leading-none">5</span>, label: "5" },
   ];
 
@@ -95,14 +90,6 @@ export function ProductViewToggle({
         )}
         dir={isRTL ? "rtl" : "ltr"}
       >
-        <div className="hidden items-center md:flex">
-          {productCount !== undefined && (
-            <span className="text-[13px] font-semibold text-brand-muted">
-              {productCount} {productCount === 1 ? t.product : t.products}
-            </span>
-          )}
-        </div>
-
         <button
           type="button"
           onClick={() => setIsDrawerOpen(true)}
@@ -112,10 +99,7 @@ export function ProductViewToggle({
           )}
         >
           <SlidersHorizontal className="h-4 w-4" />
-          <span>
-            {t.filterSort}
-            {productCount !== undefined ? ` (${productCount})` : ""}
-          </span>
+          <span>{t.filterSort}</span>
         </button>
 
         <div className="flex items-center gap-5 md:ms-auto">

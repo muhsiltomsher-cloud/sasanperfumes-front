@@ -36,12 +36,13 @@ interface CategorySectionProps {
   englishCategorySlugs?: Record<number, string>;
   extraItems?: ExtraCategoryItem[];
   fallbackImages?: Record<number, { src: string; alt: string } | undefined>;
+  variant?: "light" | "dark";
 }
 
 function CategoryCardSkeleton() {
   return (
     <div className="flex flex-col">
-      <Skeleton className="aspect-[3/4] w-full rounded-none" />
+      <Skeleton className="aspect-[5/4] w-full rounded-lg" />
       <div className="mt-3 space-y-2 p-1">
         <Skeleton className="h-4 w-3/4" />
       </div>
@@ -49,9 +50,11 @@ function CategoryCardSkeleton() {
   );
 }
 
-export function CategorySectionSkeleton({ count = 6 }: { count?: number }) {
+export function CategorySectionSkeleton({ count = 6, variant = "light" }: { count?: number; variant?: "light" | "dark" }) {
+  const isDark = variant === "dark";
+
   return (
-    <section className="bg-transparent pb-0 pt-10 md:pt-12 lg:pt-14">
+    <section className={isDark ? "bg-brand-primary py-8 md:py-9 lg:py-10" : "bg-transparent pb-0 pt-10 md:pt-12 lg:pt-14"}>
       <div className="mb-8 px-5 md:px-7 lg:px-12 md:mb-10">
         <SectionHeaderSkeleton />
       </div>
@@ -74,6 +77,7 @@ export function CategorySection({
   englishCategorySlugs = {},
   extraItems = [],
   fallbackImages = {},
+  variant = "light",
 }: CategorySectionProps) {
   if (isLoading) {
     return <CategorySectionSkeleton count={settings.categories_count || 6} />;
@@ -108,6 +112,19 @@ export function CategorySection({
 
   const navPrefix = `category-slider-${settings.section_title?.replace(/\s+/g, "-").toLowerCase().replace(/[^a-z0-9-]/g, "") || "default"}`;
   const cols = settings.responsive_columns ?? { desktop: 5, tablet: 4, mobile: 2 };
+  const isDark = variant === "dark";
+  const sectionClassName = isDark
+    ? "bg-brand-primary py-8 text-brand-ivory md:py-9 lg:py-10"
+    : "bg-transparent pb-0 pt-10 md:pt-12 lg:pt-14";
+  const titleClassName = isDark ? "text-brand-ivory" : "text-brand-primary";
+  const subtitleClassName = isDark ? "text-brand-ivory/68" : "text-brand-muted";
+  const arrowClassName = isDark
+    ? "flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/10 text-brand-ivory shadow-[0_8px_20px_rgba(0,0,0,0.16)] transition-colors hover:border-white/45 hover:bg-white hover:text-brand-primary md:h-10 md:w-10"
+    : "flex h-9 w-9 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory text-brand-primary shadow-[0_8px_20px_rgba(20,15,10,0.1)] transition-colors hover:border-brand-primary/45 hover:bg-brand-primary hover:text-white md:h-10 md:w-10";
+  const cardClassName = isDark
+    ? "relative aspect-[5/4] overflow-hidden rounded-lg border border-white/10 bg-white/10 shadow-[0_16px_34px_rgba(0,0,0,0.16)]"
+    : "relative aspect-[5/4] overflow-hidden rounded-lg border border-brand-border/70 bg-brand-ivory shadow-[0_16px_34px_rgba(20,15,10,0.08)]";
+  const nameClassName = isDark ? "text-brand-ivory" : "text-brand-primary";
 
   const getVisibilityClass = () => {
     if (settings.hide_on_mobile && settings.hide_on_desktop) return "hidden";
@@ -117,14 +134,14 @@ export function CategorySection({
   };
 
   return (
-    <section className={`bg-transparent pb-0 pt-10 md:pt-12 lg:pt-14 ${className} ${getVisibilityClass()}`}>
-      <div className="mb-6 flex items-end justify-between gap-4 px-5 md:px-7 lg:px-12 md:mb-8">
+    <section className={`${sectionClassName} ${className} ${getVisibilityClass()}`}>
+      <div className="mb-5 flex items-end justify-between gap-4 px-5 md:px-7 lg:px-12 md:mb-6">
         <div className={`${isRTL ? "text-right" : "text-left"}`}>
-          <h2 className="font-title text-3xl text-brand-primary md:text-4xl">
+          <h2 className={`font-title text-3xl md:text-4xl ${titleClassName}`}>
             {settings.section_title}
           </h2>
           {settings.section_subtitle && (
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-brand-muted md:text-base">
+            <p className={`mt-2 max-w-2xl text-sm leading-relaxed md:text-base ${subtitleClassName}`}>
               {settings.section_subtitle}
             </p>
           )}
@@ -135,14 +152,14 @@ export function CategorySection({
           <div className="flex items-center gap-2">
             <button
               type="button"
-              className={`${navPrefix}-prev flex h-9 w-9 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory text-brand-primary shadow-[0_8px_20px_rgba(20,15,10,0.1)] transition-colors hover:border-brand-primary/45 hover:bg-brand-primary hover:text-white md:h-10 md:w-10`}
+              className={`${navPrefix}-prev ${arrowClassName}`}
               aria-label="Previous"
             >
               <ChevronLeft className={`h-4 w-4 ${isRTL ? "rotate-180" : ""}`} />
             </button>
             <button
               type="button"
-              className={`${navPrefix}-next flex h-9 w-9 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory text-brand-primary shadow-[0_8px_20px_rgba(20,15,10,0.1)] transition-colors hover:border-brand-primary/45 hover:bg-brand-primary hover:text-white md:h-10 md:w-10`}
+              className={`${navPrefix}-next ${arrowClassName}`}
               aria-label="Next"
             >
               <ChevronRight className={`h-4 w-4 ${isRTL ? "rotate-180" : ""}`} />
@@ -172,7 +189,7 @@ export function CategorySection({
               1024: { slidesPerView: cols.desktop, spaceBetween: 16 },
             }}
             loop={allItems.length > 5}
-            className="!pb-12"
+            className="!pb-9"
             dir={isRTL ? "rtl" : "ltr"}
           >
             {allItems.map((item) => {
@@ -188,7 +205,7 @@ export function CategorySection({
                       href={`/${locale}/category/${categorySlugForUrl}`}
                       className="group flex flex-col"
                     >
-                      <div className="relative aspect-[3/4] overflow-hidden rounded-lg border border-brand-border/70 bg-brand-ivory shadow-[0_16px_34px_rgba(20,15,10,0.08)]">
+                      <div className={cardClassName}>
                         {categoryImage?.src ? (
                           <Image
                             src={categoryImage.src}
@@ -201,13 +218,15 @@ export function CategorySection({
                             blurDataURL={BLUR_DATA_URL}
                           />
                         ) : (
-                          <div className="absolute inset-0 flex items-center justify-center bg-stone-200">
-                            <span className="text-stone-400">No image</span>
+                          <div className={`absolute inset-0 flex items-center justify-center px-4 text-center ${isDark ? "bg-white/8" : "bg-stone-200"}`}>
+                            <span className={`font-title text-2xl leading-tight ${isDark ? "text-brand-ivory/80" : "text-brand-primary/45"}`}>
+                              {decodeHtmlEntities(category.name)}
+                            </span>
                           </div>
                         )}
                       </div>
                       <div className="mt-3">
-                        <h3 className="text-sm font-semibold text-brand-primary lowercase">
+                        <h3 className={`text-sm font-semibold lowercase ${nameClassName}`}>
                           {decodeHtmlEntities(category.name)}
                         </h3>
                       </div>
@@ -220,7 +239,7 @@ export function CategorySection({
               return (
                 <SwiperSlide key={extra.id}>
                   <Link href={extra.href} className="group flex flex-col">
-                    <div className="relative aspect-[3/4] overflow-hidden rounded-lg border border-brand-border/70 bg-brand-ivory shadow-[0_16px_34px_rgba(20,15,10,0.08)]">
+                    <div className={cardClassName}>
                       {extra.image ? (
                         <Image
                           src={extra.image}
@@ -233,13 +252,15 @@ export function CategorySection({
                           blurDataURL={BLUR_DATA_URL}
                         />
                       ) : (
-                        <div className="absolute inset-0 flex items-center justify-center bg-stone-200">
-                          <span className="text-stone-400">No image</span>
+                        <div className={`absolute inset-0 flex items-center justify-center px-4 text-center ${isDark ? "bg-white/8" : "bg-stone-200"}`}>
+                          <span className={`font-title text-2xl leading-tight ${isDark ? "text-brand-ivory/80" : "text-brand-primary/45"}`}>
+                            {extra.name[locale]}
+                          </span>
                         </div>
                       )}
                     </div>
                     <div className="mt-3">
-                        <h3 className="text-sm font-semibold text-brand-primary lowercase">
+                        <h3 className={`text-sm font-semibold lowercase ${nameClassName}`}>
                         {extra.name[locale]}
                       </h3>
                     </div>

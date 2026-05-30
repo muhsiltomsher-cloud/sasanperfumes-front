@@ -140,20 +140,20 @@ export function Footer({ locale, dictionary, siteSettings, footerSettings, featu
 
   return (
     <>
-    <SocialIconLinks links={socialLinks} variant="light" className="bg-brand-ivory" />
-    <footer className="main-footer relative overflow-hidden border-t border-brand-border/70 bg-brand-ivory pb-20 text-brand-primary md:pb-0">
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(20,15,10,0.035)_0_1px,transparent_1px_20px)]" />
+    <SocialIconLinks links={socialLinks} variant="dark" />
+    <footer className="main-footer relative overflow-hidden border-t border-white/10 bg-brand-primary pb-20 text-brand-ivory md:pb-0">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.035)_0_1px,transparent_1px_20px)]" />
 
       <div className="relative w-full px-5 py-10 md:px-7 md:py-14 lg:px-12">
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
-          <div className="border-b border-brand-border/70 pb-8 lg:border-b-0 lg:border-e lg:pe-12">
+          <div className="border-b border-white/10 pb-8 lg:border-b-0 lg:border-e lg:pe-12">
             <p className="mb-4 text-[11px] font-semibold uppercase text-brand-gold">
               {siteSettings?.tagline || "Fragrance house"}
             </p>
-            <h2 className="font-title text-4xl leading-none text-brand-primary md:text-5xl">
+            <h2 className="font-title text-4xl leading-none text-brand-ivory md:text-5xl">
               {siteSettings?.site_name || siteConfig.name}
             </h2>
-            <p className="mt-5 max-w-xl text-sm leading-7 text-brand-muted">{description}</p>
+            <p className="mt-5 max-w-xl text-sm leading-7 text-brand-ivory/68">{description}</p>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2">
@@ -166,7 +166,7 @@ export function Footer({ locale, dictionary, siteSettings, footerSettings, featu
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-sm text-brand-muted transition-colors hover:text-brand-primary"
+                      className="text-sm text-brand-ivory/68 transition-colors hover:text-white"
                     >
                       {link.name}
                     </Link>
@@ -184,7 +184,7 @@ export function Footer({ locale, dictionary, siteSettings, footerSettings, featu
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-sm text-brand-muted transition-colors hover:text-brand-primary"
+                      className="text-sm text-brand-ivory/68 transition-colors hover:text-white"
                     >
                       {link.name}
                     </Link>
@@ -195,7 +195,7 @@ export function Footer({ locale, dictionary, siteSettings, footerSettings, featu
           </div>
         </div>
 
-        <div className="mt-10 grid gap-6 rounded-lg bg-brand-primary p-5 text-brand-ivory shadow-[0_22px_54px_rgba(20,15,10,0.18)] md:grid-cols-[0.8fr_1.2fr] md:p-7">
+        <div className="mt-10 grid gap-6 rounded-lg border border-white/10 bg-white/8 p-5 text-brand-ivory shadow-[0_22px_54px_rgba(0,0,0,0.22)] md:grid-cols-[0.8fr_1.2fr] md:p-7">
           <div>
             <h3 className="font-title text-2xl text-brand-ivory">
               {newsletterTitle}
@@ -215,19 +215,19 @@ export function Footer({ locale, dictionary, siteSettings, footerSettings, featu
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col items-center gap-3 border-t border-brand-border/70 pt-6 md:flex-row md:justify-between">
-          <p className="text-center text-xs text-brand-muted md:text-left">
+        <div className="mt-8 flex flex-col items-center gap-3 border-t border-white/10 pt-6 md:flex-row md:justify-between">
+          <p className="text-center text-xs text-brand-ivory/55 md:text-left">
             &copy; {currentYear} {siteConfig.name}. {copyrightText}
           </p>
           {poweredByText && poweredByName && (
-            <p className="text-center text-xs text-brand-muted">
+            <p className="text-center text-xs text-brand-ivory/55">
               {poweredByText}{" "}
               {poweredByUrl ? (
                 <a
                   href={poweredByUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-brand-primary underline transition-colors hover:text-brand-gold"
+                  className="text-brand-gold underline transition-colors hover:text-white"
                 >
                   {poweredByName}
                 </a>

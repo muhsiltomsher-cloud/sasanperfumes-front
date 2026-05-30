@@ -23,10 +23,10 @@ export function ProductCardSkeleton({ placeholderLogo: _placeholderLogo }: { pla
             <Skeleton className="h-8 w-8 rounded-full" />
             <Skeleton className="h-8 w-8 rounded-full" />
           </div>
-          <Skeleton className="absolute bottom-3 right-3 h-9 w-9 rounded-full" />
+          <Skeleton className="absolute inset-x-3 bottom-3 h-9 rounded-md" />
         </div>
 
-        <div className="relative flex min-h-[88px] flex-1 items-center justify-center overflow-hidden px-2.5 py-2.5 text-center sm:min-h-[92px] sm:px-3">
+        <div className="relative flex min-h-[76px] flex-1 items-center justify-center overflow-hidden px-2.5 py-2 text-center sm:min-h-[82px] sm:px-3">
           <div className="flex w-full flex-col items-center">
             <div className="mb-1 flex justify-center gap-1">
               <Skeleton className="h-4 w-12 rounded-full" />

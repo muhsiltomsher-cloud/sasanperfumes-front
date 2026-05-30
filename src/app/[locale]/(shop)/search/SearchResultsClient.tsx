@@ -206,7 +206,6 @@ export function SearchResultsClient({
           locale={locale}
           showToolbar
           bundleProductSlugs={bundleProductSlugs}
-          totalCount={products.length}
         />
       )}
     </div>

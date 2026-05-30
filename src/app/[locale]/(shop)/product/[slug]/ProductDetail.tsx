@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
-import { Heart, Minus, Plus, ChevronDown, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Move, ShoppingBag, Check, Star } from "lucide-react";
+import { Heart, Minus, Plus, ChevronDown, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Move, Check, Star } from "lucide-react";
 import { Badge } from "@/components/common/Badge";
 import { FormattedPrice } from "@/components/common/FormattedPrice";
 import { CountdownTimer } from "@/components/common/CountdownTimer";
@@ -533,7 +533,6 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
   const [selectedImage, setSelectedImage] = useState(0);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
-  const [hasAddedToCartOnce, setHasAddedToCartOnce] = useState(false);
   const [isAddingToWishlist, setIsAddingToWishlist] = useState(false);
   const [detailsMounted, setDetailsMounted] = useState(false);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
@@ -549,11 +548,9 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
   const [addonErrors, setAddonErrors] = useState<Record<string, string>>({});
   const [selectedVariations, setSelectedVariations] = useState<Record<string, string>>({});
   const [variationError, setVariationError] = useState<string | null>(null);
-  const [showStickyBar, setShowStickyBar] = useState(false);
   const [variationStockBadgeEnabled, setVariationStockBadgeEnabled] = useState(true);
   const [variationImageEntries, setVariationImageEntries] = useState<{ variation_id: number; id: number; src: string; thumbnail: string; alt: string; attributes?: Record<string, string> }[]>([]);
   const [variationsWithPricing, setVariationsWithPricing] = useState<WCProductVariation[]>([]);
-  const addToCartRef = useRef<HTMLDivElement>(null);
     const { addToCart } = useCart();
     const { currency, convertPrice, getCurrencyInfo } = useCurrency();
     const { addToWishlist, removeFromWishlist, isInWishlist, getWishlistItemId } = useWishlist();
@@ -684,23 +681,6 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
     }
     return { byVariationId: map, byAttributes: attrMap };
   }, [variationImageEntries, galleryImages]);
-
-  const handleStickyObserver = useCallback((entries: IntersectionObserverEntry[]) => {
-    entries.forEach((entry) => {
-      setShowStickyBar(!entry.isIntersecting);
-    });
-  }, []);
-
-  useEffect(() => {
-    const target = addToCartRef.current;
-    if (!target) return;
-    const observer = new IntersectionObserver(handleStickyObserver, {
-      threshold: 0,
-      rootMargin: "0px",
-    });
-    observer.observe(target);
-    return () => observer.disconnect();
-  }, [handleStickyObserver]);
 
   useEffect(() => {
     fetch("/api/product-detail-settings")
@@ -851,7 +831,6 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
           : undefined;
 
       await addToCart(product.id, quantity, variationId, variation, itemData);
-      setHasAddedToCartOnce(true);
       setIsAddedToCart(true);
       setTimeout(() => setIsAddedToCart(false), 1500);
     } catch (error) {
@@ -1142,16 +1121,16 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
       </div>
 
       <div className="w-full px-0">
-        <div className="grid w-full gap-x-6 gap-y-7 px-5 md:px-7 lg:grid-cols-[minmax(0,1.12fr)_minmax(360px,0.88fr)] lg:px-12 xl:grid-cols-[minmax(0,1.08fr)_minmax(430px,0.92fr)]">
+        <div className="grid w-full gap-x-8 gap-y-7 px-5 pb-8 md:px-7 lg:grid-cols-[minmax(0,1.08fr)_minmax(380px,0.92fr)] lg:px-12 xl:grid-cols-[minmax(0,1.12fr)_minmax(420px,0.88fr)]">
         {/* Product Gallery */}
         <div className="min-w-0">
           {renderImageGallery()}
         </div>
 
-        {/* Product Info - Sticky on desktop */}
-        <aside className="min-w-0 pb-10 pt-2 text-brand-primary md:pb-12 md:pt-8 lg:sticky lg:top-24 lg:max-h-[calc(100vh-6rem)] lg:self-start lg:overflow-y-auto lg:pt-10">
-          <div className="luxury-panel p-5 md:p-7 lg:p-8">
-          <div className="mx-auto flex w-full max-w-[560px] flex-col items-stretch space-y-0 lg:ml-0 lg:mr-auto">
+        {/* Product Info */}
+        <aside className="min-w-0 pb-10 pt-2 text-brand-primary md:pb-12 md:pt-6 lg:pt-6">
+          <div className="rounded-lg border border-brand-border/70 bg-[#fffdf9] p-5 shadow-[0_18px_46px_rgba(20,15,10,0.07)] md:p-7 lg:p-8">
+          <div className="mx-auto flex w-full max-w-[620px] flex-col items-stretch space-y-0 lg:ml-0 lg:mr-auto">
           {/* Category + Brand row */}
           <div className="mb-5 flex w-full flex-wrap items-center gap-x-3 gap-y-2 self-start">
             {primaryCategory && categorySlugForUrl && (
@@ -1200,7 +1179,7 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
           )}
 
           {/* Price and stock indicator */}
-          <div className="mt-5 border-b border-brand-border/70 pb-6">
+          <div className="-mx-5 mt-5 border-y border-brand-border/70 bg-brand-beige/35 px-5 py-4 md:-mx-7 md:px-7 lg:-mx-8 lg:px-8">
             {(() => {
               const displayPrice = getDisplayPrice(product, selectedVariation);
               const isOnSale = selectedVariation?.sale_price || product.on_sale;
@@ -1413,7 +1392,7 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
           )}
 
           {/* Add to Cart Section */}
-          <div ref={addToCartRef} className="flex flex-col gap-4 pt-5">
+          <div className="flex flex-col gap-4 pt-5">
             <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
               <div className="flex h-12 items-center justify-between overflow-hidden rounded-full border border-brand-border/80 bg-brand-ivory">
                 <button
@@ -1601,7 +1580,7 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
 
       {/* Sticky Add to Cart Bar */}
       <div
-        className={`fixed bottom-4 left-1/2 z-40 w-[calc(100%-2rem)] max-w-[680px] -translate-x-1/2 border border-[#d9d0c7] bg-[#f8f3ef]/95 p-3 shadow-2xl shadow-black/10 backdrop-blur-md transition-transform duration-300 sm:bottom-6 sm:p-4 ${(!isMobileViewport || hasAddedToCartOnce) && showStickyBar && !isOutOfStock && !isFullscreen ? "translate-y-0" : "translate-y-[calc(100%+2rem)]"}`}
+        className="hidden"
       >
         <div className="grid items-center gap-3 sm:grid-cols-[minmax(0,1fr)_auto]">
           <div className="flex min-w-0 items-center gap-3">
@@ -1664,7 +1643,7 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
               ) : isSelectedVariationOutOfStock ? (
                 <>{isRTL ? "غير متوفر" : "out of stock"}</>
               ) : (
-                <><ShoppingBag className="h-4 w-4" />{isAddingToCart ? (isRTL ? "جاري الإضافة..." : "adding...") : (isRTL ? "أضف إلى السلة" : "add to cart")}</>
+                <><Plus className="h-4 w-4" />{isAddingToCart ? (isRTL ? "جاري الإضافة..." : "adding...") : (isRTL ? "أضف إلى السلة" : "add to cart")}</>
               )}
             </ProductAddToCartButton>
           </div>

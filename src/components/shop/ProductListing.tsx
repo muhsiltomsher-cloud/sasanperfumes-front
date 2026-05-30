@@ -27,7 +27,6 @@ interface ProductListingProps {
   showToolbar?: boolean;
   toolbarClassName?: string;
   bundleProductSlugs?: string[];
-  totalCount?: number;
 }
 
 const DEFAULT_PREFERENCE: ViewPreference = {
@@ -78,8 +77,8 @@ function getPreferenceSnapshot(): ViewPreference {
     cachedStorageValue = stored;
     if (stored) {
       const parsed = JSON.parse(stored) as ViewPreference;
-      if ([2, 3, 4, 5].includes(parsed.gridColumns)) {
-        cachedPreference = { viewMode: "grid", gridColumns: parsed.gridColumns };
+      if (parsed.gridColumns === 5) {
+        cachedPreference = { viewMode: "grid", gridColumns: 5 };
         return cachedPreference;
       }
     }
@@ -127,7 +126,6 @@ export function ProductListing({
   showToolbar = true,
   toolbarClassName,
   bundleProductSlugs = [],
-  totalCount,
 }: ProductListingProps) {
   const preference = useSyncExternalStore(
     subscribeToPreference,
@@ -167,16 +165,15 @@ export function ProductListing({
   }
 
   return (
-    <div className={cn("bg-transparent pb-4", className)}>
+    <div className={cn("bg-transparent pb-4 pt-5 md:pt-6", className)}>
       {showToolbar && (
-        <div className={cn("mb-0", toolbarClassName)}>
+        <div className={cn("mb-5 md:mb-6", toolbarClassName)}>
           <ProductViewToggle
             viewMode={viewMode}
             gridColumns={gridColumns}
             onViewModeChange={handleViewModeChange}
             onGridColumnsChange={handleGridColumnsChange}
             locale={locale}
-            productCount={totalCount ?? sortedProducts.length}
             sortBy={sortBy}
             onSortChange={handleSortChange}
           />
