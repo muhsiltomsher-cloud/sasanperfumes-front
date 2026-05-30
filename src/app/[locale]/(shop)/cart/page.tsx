@@ -196,28 +196,28 @@ export default function CartPage() {
   };
 
   return (
-    <div className="min-h-screen bg-transparent pb-32 md:pb-8">
-      <div className="container mx-auto px-5 md:px-7 lg:px-12 py-3">
+    <div className="min-h-screen bg-transparent pb-44 md:pb-8">
+      <div className="container mx-auto px-3 py-2 md:px-7 md:py-3 lg:px-12">
         <Breadcrumbs items={breadcrumbItems} locale={locale as Locale} contained={false} />
 
         {/* Login Status Indicator */}
         {!isEmpty && (
-          <div className="luxury-panel mb-6 flex items-center gap-3 p-4">
+          <div className="luxury-panel mb-3 flex items-center gap-2.5 p-3 md:mb-6 md:gap-3 md:p-4">
             {isAuthenticated ? (
               <>
-                <UserCheck className="h-5 w-5 text-green-600" />
+                <UserCheck className="h-4 w-4 text-green-600 md:h-5 md:w-5" />
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-brand-primary">
+                  <p className="text-xs font-medium text-brand-primary md:text-sm">
                     {texts.loggedInAs} <span className="font-semibold">{user?.user_email}</span>
                   </p>
                 </div>
               </>
             ) : (
               <>
-                <User className="h-5 w-5 text-brand-gold" />
+                <User className="h-4 w-4 text-brand-gold md:h-5 md:w-5" />
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-brand-primary">{texts.guestCheckout}</p>
-                  <Link href={`/${locale}/login`} className="text-sm text-brand-muted underline hover:text-brand-primary">
+                  <p className="text-xs font-medium text-brand-primary md:text-sm">{texts.guestCheckout}</p>
+                  <Link href={`/${locale}/login`} className="text-xs text-brand-muted underline hover:text-brand-primary md:text-sm">
                     {texts.loginForBenefits}
                   </Link>
                 </div>
@@ -226,7 +226,7 @@ export default function CartPage() {
           </div>
         )}
 
-        <h1 className="mb-5 font-title text-4xl text-brand-primary md:text-5xl">
+        <h1 className="mb-3 font-title text-[30px] leading-none text-brand-primary md:mb-5 md:text-5xl">
           {texts.cart}
         </h1>
 
@@ -249,22 +249,22 @@ export default function CartPage() {
       ) : (
         <>
         {/* Free Gift Progress & Messages Section - At Top */}
-        <div className="luxury-panel mb-6 overflow-hidden">
+        <div className="luxury-panel mb-3 overflow-hidden md:mb-6">
           {/* Gift Progress - Show how much more to spend */}
           {giftProgress.hasNextGift && (
-            <div className="border-b border-brand-border/70 bg-brand-beige/55 p-4">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand-primary">
-                  <Gift className="h-5 w-5 text-white" />
+            <div className="border-b border-brand-border/70 bg-brand-beige/55 p-3 md:p-4">
+              <div className="flex items-center gap-2.5 md:gap-3">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-brand-primary md:h-10 md:w-10">
+                  <Gift className="h-4 w-4 text-white md:h-5 md:w-5" />
                 </div>
                 <div className="flex-1">
-                                    <p className="text-sm font-semibold text-brand-primary">
+                                    <p className="text-xs font-semibold text-brand-primary md:text-sm">
                                       {isRTL 
                                         ? `أضف ${Math.ceil(convertPrice(giftProgress.amountNeeded, giftProgress.amountNeededCurrency))} ${currency} للحصول على هدية مجانية!`
                                         : `Add ${Math.ceil(convertPrice(giftProgress.amountNeeded, giftProgress.amountNeededCurrency))} ${currency} more to get a free gift!`
                                       }
                                     </p>
-                  <p className="text-xs text-brand-primary">
+                  <p className="text-[11px] text-brand-primary md:text-xs">
                     {isRTL 
                       ? `الهدية التالية: ${(giftProgress.nextGiftRule && getLocalizedProduct(giftProgress.nextGiftRule, locale as string)?.name) || giftProgress.nextGiftRule?.name || "هدية مجانية"}`
                       : `Next gift: ${(giftProgress.nextGiftRule && getLocalizedProduct(giftProgress.nextGiftRule, locale as string)?.name) || ((giftProgress.nextGiftRule?.name && !containsArabic(giftProgress.nextGiftRule.name)) ? giftProgress.nextGiftRule.name : "Free Gift")}`
@@ -273,9 +273,9 @@ export default function CartPage() {
                 </div>
               </div>
               {/* Progress Bar */}
-              <div className="mt-3 h-2 bg-brand-beige overflow-hidden">
-                <div 
-                  className="h-full bg-gradient-to-r from-brand-primary to-orange-500 transition-all duration-500"
+                  <div className="mt-3 h-2 overflow-hidden rounded-full bg-brand-ivory">
+                <div
+                      className="h-full bg-brand-primary transition-all duration-500"
                   style={{ 
                     width: `${Math.min(100, (giftProgress.currentSubtotal / (giftProgress.nextGiftRule?.min_cart_value || 1)) * 100)}%` 
                   }}
@@ -286,13 +286,13 @@ export default function CartPage() {
 
           {/* Active Gifts - Show unlocked gifts */}
           {activeGifts.length > 0 && (
-            <div className="p-4">
-              <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand-primary">
-                  <Gift className="h-5 w-5 text-white" />
+            <div className="p-3 md:p-4">
+              <div className="flex items-start gap-2.5 md:gap-3">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-brand-primary md:h-10 md:w-10">
+                  <Gift className="h-4 w-4 text-white md:h-5 md:w-5" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-base font-semibold text-brand-primary mb-2">
+                  <h3 className="mb-2 text-sm font-semibold text-brand-primary md:text-base">
                     {isRTL ? "تهانينا! لقد حصلت على هدايا مجانية" : "Congratulations! You've unlocked free gifts"}
                   </h3>
                   <div className="space-y-2">
@@ -324,13 +324,13 @@ export default function CartPage() {
 
           {/* Fallback: Show congratulations when gift items are in cart but activeGifts hasn't been populated yet */}
           {activeGifts.length === 0 && hasGiftItemsInCart && (
-            <div className="p-4">
-              <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand-primary">
-                  <Gift className="h-5 w-5 text-white" />
+            <div className="p-3 md:p-4">
+              <div className="flex items-start gap-2.5 md:gap-3">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-brand-primary md:h-10 md:w-10">
+                  <Gift className="h-4 w-4 text-white md:h-5 md:w-5" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-base font-semibold text-brand-primary mb-2">
+                  <h3 className="mb-2 text-sm font-semibold text-brand-primary md:text-base">
                     {isRTL ? "تهانينا! لقد حصلت على هدايا مجانية" : "Congratulations! You've unlocked free gifts"}
                   </h3>
                   <p className="text-sm text-brand-primary">
@@ -343,7 +343,7 @@ export default function CartPage() {
 
           {/* Show message when no gifts and no progress - but not if there are gift items in cart or rules are loading */}
           {!giftProgress.hasNextGift && activeGifts.length === 0 && !hasGiftItemsInCart && !isLoadingGiftRules && rules.length > 0 && (
-            <div className="p-4 text-center text-brand-primary text-sm">
+            <div className="p-3 text-center text-xs text-brand-primary md:p-4 md:text-sm">
               {isRTL ? "لا توجد هدايا متاحة حالياً" : "No gifts available at this time"}
             </div>
           )}
@@ -371,16 +371,16 @@ export default function CartPage() {
                               {cartItems.map((item) => {
                                 const isGiftItem = isFreeGiftItem(item.item_key);
                                 return (
-                                <li key={item.item_key} className={`p-4 ${isGiftItem ? "bg-brand-beige/70" : ""}`}>
-                                  <div className="grid items-center gap-4 md:grid-cols-12">
-                                    <div className="flex gap-4 md:col-span-6">
-                                      <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden bg-gray-100">
+                                <li key={item.item_key} className={`p-3 md:p-4 ${isGiftItem ? "bg-brand-beige/70" : ""}`}>
+                                  <div className="grid items-center gap-3 md:grid-cols-12 md:gap-4">
+                                    <div className="flex gap-3 md:col-span-6 md:gap-4">
+                                      <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-brand-border/70 bg-brand-beige md:h-24 md:w-24">
                                         {item.featured_image ? (
                                           <Image
                                             src={item.featured_image}
                                             alt={item.name}
                                             fill
-                                            sizes="96px"
+                                          sizes="(max-width: 767px) 80px, 96px"
                                             className="object-cover"
                                             loading="lazy"
                                           />
@@ -390,7 +390,7 @@ export default function CartPage() {
                                           </div>
                                         )}
                                         {isGiftItem && (
-                                          <div className="absolute top-0 left-0 bg-gradient-to-r from-brand-primary to-orange-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-lg flex items-center gap-0.5">
+                                          <div className="absolute left-0 top-0 flex items-center gap-0.5 rounded-br-lg bg-brand-primary px-1.5 py-0.5 text-[9px] font-bold text-white md:text-[10px]">
                                             <Gift className="h-3 w-3" />
                                             FREE
                                           </div>
@@ -399,24 +399,24 @@ export default function CartPage() {
                                       <div className="flex flex-col justify-center">
                                         <Link
                                           href={`/${locale}/product/${item.slug}`}
-                                          className="font-medium text-gray-900 hover:text-gray-700 line-clamp-2"
+                                          className="line-clamp-2 text-sm font-medium leading-tight text-brand-primary hover:text-brand-primary/75 md:text-base"
                                         >
                                           {decodeHtmlEntities(item.name)}
                                         </Link>
                                         {(productBrands[getItemLookupId(item)] || productCategories[getItemLookupId(item)]) && (
                                           <p className="font-medium uppercase tracking-wider text-brand-gold mt-0.5" style={{ fontSize: '9px' }}>
                                             {productBrands[getItemLookupId(item)] && <span>{decodeHtmlEntities(productBrands[getItemLookupId(item)])}</span>}
-                                            {productBrands[getItemLookupId(item)] && productCategories[getItemLookupId(item)] && <span className="text-gray-300 mx-1">/</span>}
-                                            {productCategories[getItemLookupId(item)] && <span className="text-gray-500">{decodeHtmlEntities(productCategories[getItemLookupId(item)])}</span>}
+                                            {productBrands[getItemLookupId(item)] && productCategories[getItemLookupId(item)] && <span className="mx-1 text-brand-muted/45">/</span>}
+                                            {productCategories[getItemLookupId(item)] && <span className="text-brand-muted">{decodeHtmlEntities(productCategories[getItemLookupId(item)])}</span>}
                                           </p>
                                         )}
                                         {item.meta?.sku && (
-                                          <p className="mt-0.5 text-[10px] text-gray-400 uppercase tracking-wider">
+                                          <p className="mt-0.5 text-[10px] uppercase text-brand-muted">
                                             SKU: {item.meta.sku}
                                           </p>
                                         )}
                                         {formatVariationAttributes(item.meta.variation) && (
-                                          <p className="mt-1 text-xs text-gray-500">
+                                           <p className="mt-1 text-[11px] leading-snug text-brand-muted md:text-xs">
                                             {formatVariationAttributes(item.meta.variation)}
                                           </p>
                                         )}
@@ -455,7 +455,7 @@ export default function CartPage() {
                                         {!isGiftItem && (
                                           <button
                                             onClick={() => handleRemoveItem(item.item_key)}
-                                            className="mt-2 flex items-center gap-1 text-sm text-red-600 hover:text-red-700 md:hidden"
+                                            className="mt-2 flex items-center gap-1 text-xs text-red-600 hover:text-red-700 md:hidden"
                                             disabled={isLoading}
                                           >
                                             <Trash2 className="h-4 w-4" />
@@ -491,13 +491,13 @@ export default function CartPage() {
                                     </div>
 
                                     <div className="flex items-center justify-between md:col-span-2 md:justify-center">
-                                      <span className="text-sm text-gray-500 md:hidden">
+                                      <span className="text-xs text-gray-500 md:hidden">
                                         {texts.quantity}:
                                       </span>
                                       {isGiftItem ? (
                                         <span className="text-center font-medium">1</span>
                                       ) : (
-                                        <div className="flex items-center gap-2">
+                                        <div className="flex items-center gap-1.5 md:gap-2">
                                           <button
                                             onClick={() =>
                                               handleQuantityChange(
@@ -505,12 +505,12 @@ export default function CartPage() {
                                                 item.quantity.value - 1
                                               )
                                             }
-                                            className="flex h-8 w-8 items-center justify-center border border-gray-200 text-gray-700 hover:bg-gray-100 hover:shadow-sm disabled:opacity-50 transition-all cursor-pointer"
+                                            className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory text-brand-primary transition-all hover:border-brand-primary/45 hover:bg-brand-beige disabled:opacity-50 md:h-8 md:w-8"
                                             disabled={isLoading || updatingItems.has(item.item_key) || item.quantity.value <= 1}
                                           >
-                                            <Minus className="h-4 w-4" />
+                                            <Minus className="h-3.5 w-3.5 md:h-4 md:w-4" />
                                           </button>
-                                          <span className="w-8 text-center relative">
+                                          <span className="relative w-7 text-center text-sm md:w-8">
                                             {updatingItems.has(item.item_key) ? (
                                               <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-brand-primary"></span>
                                             ) : (
@@ -524,17 +524,17 @@ export default function CartPage() {
                                                 item.quantity.value + 1
                                               )
                                             }
-                                            className="flex h-8 w-8 items-center justify-center border border-gray-200 text-gray-700 hover:bg-gray-100 hover:shadow-sm disabled:opacity-50 transition-all cursor-pointer"
+                                            className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory text-brand-primary transition-all hover:border-brand-primary/45 hover:bg-brand-beige disabled:opacity-50 md:h-8 md:w-8"
                                             disabled={isLoading || updatingItems.has(item.item_key)}
                                           >
-                                            <Plus className="h-4 w-4" />
+                                            <Plus className="h-3.5 w-3.5 md:h-4 md:w-4" />
                                           </button>
                                         </div>
                                       )}
                                     </div>
 
                                     <div className="flex items-center justify-between md:col-span-2 md:justify-center">
-                                      <span className="text-sm text-gray-500 md:hidden">
+                                      <span className="text-xs text-gray-500 md:hidden">
                                         {texts.total}:
                                       </span>
                                       {isGiftItem ? (
@@ -552,7 +552,7 @@ export default function CartPage() {
                                       <div className="hidden md:col-span-12 md:flex md:justify-end">
                                         <button
                                           onClick={() => handleRemoveItem(item.item_key)}
-                                          className="text-gray-400 hover:text-red-500"
+                                          className="text-brand-muted hover:text-red-500"
                                           aria-label={texts.remove}
                                           disabled={isLoading}
                                         >
@@ -569,8 +569,8 @@ export default function CartPage() {
           </div>
 
           <div className="lg:col-span-1 lg:sticky lg:top-24 lg:self-start">
-            <div className="luxury-panel p-6">
-              <h2 className="mb-4 font-title text-2xl text-brand-primary">
+            <div className="luxury-panel p-4 md:p-6">
+              <h2 className="mb-3 font-title text-xl text-brand-primary md:mb-4 md:text-2xl">
                 {texts.orderSummary}
               </h2>
 
@@ -609,7 +609,7 @@ export default function CartPage() {
                     {selectedCoupons.map((coupon) => (
                       <div
                         key={coupon.code}
-                        className="flex items-center justify-between border border-green-200 bg-green-50 px-3 py-2"
+                        className="flex items-center justify-between rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2"
                       >
                         <div className="flex items-center gap-2">
                           <Tag className="h-4 w-4 text-green-600" />
@@ -684,7 +684,7 @@ export default function CartPage() {
                               ))}
                             </div>
 
-                            <div className="flex justify-between py-4 text-lg font-semibold text-brand-primary">
+                            <div className="flex justify-between py-3 text-base font-semibold text-brand-primary md:py-4 md:text-lg">
                 <span>{texts.orderTotal}</span>
                 <FormattedPrice
                   price={parseFloat(cartTotal) / divisor}
@@ -715,7 +715,7 @@ export default function CartPage() {
               </Link>
 
               {/* WhatsApp Help */}
-              <div className="mt-6 border border-green-200 bg-green-50 p-4 text-center">
+              <div className="mt-6 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-center">
                 <p className="text-sm text-brand-primary">
                   {isRTL ? "هل تحتاج مساعدة في طلبك؟" : "Need help with your order?"}
                 </p>
@@ -749,17 +749,20 @@ export default function CartPage() {
 
       {/* Mobile Sticky Order Summary */}
       {!isEmpty && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-brand-border/70 bg-brand-ivory/95 px-4 py-3 shadow-[0_-14px_34px_rgba(20,15,10,0.12)] backdrop-blur-xl lg:hidden" style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}>
-          <div className="flex items-center justify-between gap-4">
+        <div
+          className="fixed left-3 right-3 z-40 rounded-full border border-brand-border/70 bg-brand-ivory/96 px-3 py-2 shadow-[0_16px_40px_rgba(20,15,10,0.16)] backdrop-blur-xl lg:hidden"
+          style={{ bottom: "calc(max(0.75rem, env(safe-area-inset-bottom)) + 4.75rem)" }}
+        >
+          <div className="flex items-center justify-between gap-3">
             <div className="flex flex-col">
               <span className="text-xs text-brand-muted">{texts.orderTotal}</span>
               <FormattedPrice
                 price={parseFloat(cartTotal) / divisor}
-                className="text-lg font-bold text-brand-primary"
-                iconSize="sm"
+                className="text-base font-bold text-brand-primary"
+                iconSize="xs"
               />
             </div>
-            <Button size="lg" className="flex-1 max-w-[200px]" asChild>
+            <Button size="lg" className="h-10 max-w-[180px] flex-1 px-4 text-xs" asChild>
               <Link href={`/${locale}/checkout`}>{texts.checkout}</Link>
             </Button>
           </div>

@@ -20,16 +20,16 @@ export function AccountEmptyState({
   actionHref,
 }: AccountEmptyStateProps) {
   return (
-    <div className="text-center py-12">
+    <div className="py-12 text-center">
       <div className="mb-6 flex justify-center">
-        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-gray-100 to-gray-200">
-          <Icon className="h-12 w-12 text-gray-400" />
+        <div className="flex h-20 w-20 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory shadow-[0_12px_28px_rgba(20,15,10,0.08)] md:h-24 md:w-24">
+          <Icon className="h-10 w-10 text-brand-muted md:h-12 md:w-12" />
         </div>
       </div>
       {title && (
-        <h3 className="mb-2 text-lg font-semibold text-gray-900">{title}</h3>
+        <h3 className="mb-2 text-lg font-semibold text-brand-primary">{title}</h3>
       )}
-      <p className="mb-8 text-gray-500">{message}</p>
+      <p className="mb-8 text-brand-muted">{message}</p>
       <Button asChild variant="primary" size="lg">
         <Link href={actionHref}>{actionLabel}</Link>
       </Button>

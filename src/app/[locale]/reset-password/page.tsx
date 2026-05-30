@@ -8,9 +8,9 @@ interface ResetPasswordPageProps {
 
 function LoadingFallback() {
   return (
-    <AuthBackground className="flex min-h-[calc(100vh-200px)] items-center justify-center px-4 py-12">
+    <AuthBackground showImage={false} className="flex min-h-[calc(100vh-200px)] items-center justify-center px-4 py-8 md:py-12">
       <div className="w-full max-w-md">
-        <div className="rounded-lg border border-brand-primary/15 bg-white p-8 shadow-sm">
+        <div className="luxury-panel p-5 md:p-7">
           <div className="mb-8 text-center">
             <div className="h-8 w-48 mx-auto skeleton-shimmer rounded"></div>
             <div className="h-4 w-64 mx-auto mt-4 skeleton-shimmer rounded"></div>

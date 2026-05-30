@@ -121,9 +121,12 @@ export function Header({ locale, dictionary, siteSettings, headerSettings, menuI
   const topbarText = rawTopbarText
     .replace(/\{\{amount\}\}/g, String(topbarSettings?.freeShippingThreshold ?? 500))
     .replace(/\{\{currency\}\}/g, currency);
+  const hideTopbarOnMobile = topbarSettings?.hideOnMobile !== false;
   const mobileDrawerOffsetClass = topbarText && !topbarDismissed
-    ? "top-[120px] h-[calc(100vh-120px)]"
-    : "top-[88px] h-[calc(100vh-88px)]";
+    ? hideTopbarOnMobile
+      ? "top-[76px] h-[calc(100vh-76px)] md:top-[128px] md:h-[calc(100vh-128px)]"
+      : "top-[108px] h-[calc(100vh-108px)] md:top-[128px] md:h-[calc(100vh-128px)]"
+    : "top-[76px] h-[calc(100vh-76px)] md:top-[96px] md:h-[calc(100vh-96px)]";
 
   return (
     <>
@@ -137,7 +140,7 @@ export function Header({ locale, dictionary, siteSettings, headerSettings, menuI
         {/* Top promotional bar */}
         {topbarText && !topbarDismissed && (
           <div
-            className="bg-brand-primary text-brand-ivory"
+            className={cn("bg-brand-primary text-brand-ivory", hideTopbarOnMobile && "hidden md:block")}
             style={{
               backgroundColor: topbarSettings?.bgColor || "#1b1814",
               color: topbarSettings?.textColor || "#f8f4ec",
@@ -171,18 +174,18 @@ export function Header({ locale, dictionary, siteSettings, headerSettings, menuI
         )}
 
         {/* Row 1: Search/Currency/Language — Logo — Account/Cart */}
-        <div className="relative w-full px-3 py-2 md:px-5 lg:px-8">
-          <div className="relative flex h-[4.5rem] items-center justify-between rounded-full border border-brand-border/70 bg-brand-ivory/96 px-3 shadow-[0_16px_40px_rgba(20,15,10,0.12)] md:h-[5rem] md:px-5 xl:grid xl:grid-cols-[minmax(230px,1fr)_minmax(0,2fr)_minmax(230px,1fr)] xl:gap-5 xl:px-6">
+        <div className="relative w-full px-3 py-1.5 md:px-5 md:py-2 lg:px-8">
+          <div className="relative flex h-[4rem] items-center justify-between rounded-full border border-brand-border/70 bg-brand-ivory/96 px-2.5 shadow-[0_16px_40px_rgba(20,15,10,0.12)] md:h-[5rem] md:px-5 xl:grid xl:grid-cols-[minmax(230px,1fr)_minmax(0,2fr)_minmax(230px,1fr)] xl:gap-5 xl:px-6">
             {/* Left: Search + Currency + Language (desktop) / Mobile menu button */}
             <div className="flex items-center gap-1.5 md:gap-3.5 xl:justify-self-start">
               {/* Mobile menu button */}
               <button
                 type="button"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-border/45 bg-brand-ivory/90 text-brand-primary transition-colors hover:border-brand-primary/40 hover:bg-brand-beige xl:hidden"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-brand-border/45 bg-brand-ivory/90 text-brand-primary transition-colors hover:border-brand-primary/40 hover:bg-brand-beige md:h-10 md:w-10 xl:hidden"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 <span className="sr-only">{dictionary.navigation.menu}</span>
-                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {isMobileMenuOpen ? <X className="h-[18px] w-[18px] md:h-5 md:w-5" /> : <Menu className="h-[18px] w-[18px] md:h-5 md:w-5" />}
               </button>
 
               {/* Logo */}
@@ -193,7 +196,7 @@ export function Header({ locale, dictionary, siteSettings, headerSettings, menuI
                   alt={siteSettings.logo.alt || siteSettings.site_name || "Logo"}
                   width={220}
                   height={142}
-                  className="h-14 w-auto md:h-16 xl:h-[70px]"
+                  className="h-12 w-auto md:h-16 xl:h-[70px]"
                   style={{ width: "auto" }}
                   priority
                   unoptimized={shouldUseUnoptimizedImage(siteSettings.logo.url)}
@@ -205,7 +208,7 @@ export function Header({ locale, dictionary, siteSettings, headerSettings, menuI
                   alt={siteSettings?.site_name || siteConfig.name}
                   width={220}
                   height={142}
-                  className="h-14 w-auto md:h-16 xl:h-[70px]"
+                  className="h-12 w-auto md:h-16 xl:h-[70px]"
                   style={{ width: "auto" }}
                   priority
                   unoptimized
@@ -308,11 +311,11 @@ export function Header({ locale, dictionary, siteSettings, headerSettings, menuI
               {/* Cart (all screens) */}
               <button
                 type="button"
-                className="relative flex h-10 w-10 items-center justify-center rounded-full border border-brand-border/45 bg-brand-ivory/90 text-brand-primary transition-all hover:border-brand-primary/40 hover:bg-brand-beige"
+                className="relative flex h-9 w-9 items-center justify-center rounded-full border border-brand-border/45 bg-brand-ivory/90 text-brand-primary transition-all hover:border-brand-primary/40 hover:bg-brand-beige md:h-10 md:w-10"
                 onClick={() => setIsCartOpen(true)}
                 aria-label={dictionary.common.cart}
               >
-                <ShoppingBag className="h-5 w-5" />
+                <ShoppingBag className="h-[18px] w-[18px] md:h-5 md:w-5" />
                 {cartItemsCount > 0 && (
                   <span className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-brand-primary text-[10px] font-bold text-white">
                     {cartItemsCount}

@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import NextTopLoader from "nextjs-toploader";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MobileBottomBar } from "@/components/layout/MobileBottomBar";
 import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { WishlistProvider } from "@/contexts/WishlistContext";
@@ -15,7 +16,7 @@ import { getDictionary } from "@/i18n";
 import { siteConfig, localeConfig, type Locale } from "@/config/site";
 import { INDEX_NOFOLLOW_ROBOTS, generateOrganizationJsonLd, generateWebSiteJsonLd, generateLocalBusinessJsonLd } from "@/lib/utils/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { getSiteSettings, getHeaderSettings, getPrimaryMenu, getMobileHeaderMenu, getMobileBottomBarMenu, getCategoriesDrawerMenu, getTopbarSettings, getSeoSettings, getFooterSettings, getWhatsAppSettings, getFeatureToggles, getStaticPageContent, mapRepeater, pickLocale } from "@/lib/api/wordpress";
+import { getSiteSettings, getHeaderSettings, getPrimaryMenu, getMobileHeaderMenu, getMobileBottomBarMenu, getMobileBarSettings, getCategoriesDrawerMenu, getTopbarSettings, getSeoSettings, getFooterSettings, getWhatsAppSettings, getFeatureToggles, getStaticPageContent, mapRepeater, pickLocale } from "@/lib/api/wordpress";
 import { TrackingScripts } from "@/components/tracking";
 import { Suspense } from "react";
 
@@ -94,13 +95,14 @@ export default async function LocaleLayout({
   const { dir } = localeConfig[validLocale];
 
   // Fetch site settings, header settings, topbar settings, menu, and SEO settings in parallel
-  const [siteSettings, headerSettings, topbarSettings, menuItems, mobileMenuItems, mobileBottomBarMenu, categoriesDrawerMenu, seoSettings, footerSettings, whatsAppSettings, featureToggles, contactPageContent] = await Promise.all([
+  const [siteSettings, headerSettings, topbarSettings, menuItems, mobileMenuItems, mobileBottomBarMenu, mobileBarSettings, categoriesDrawerMenu, seoSettings, footerSettings, whatsAppSettings, featureToggles, contactPageContent] = await Promise.all([
     getSiteSettings(validLocale),
     getHeaderSettings(),
     getTopbarSettings(validLocale),
     getPrimaryMenu(validLocale),
     getMobileHeaderMenu(validLocale),
     getMobileBottomBarMenu(validLocale),
+    getMobileBarSettings(validLocale),
     getCategoriesDrawerMenu(validLocale),
     getSeoSettings(validLocale),
     getFooterSettings(),
@@ -156,7 +158,7 @@ export default async function LocaleLayout({
               <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[9999] focus:rounded-lg focus:bg-brand-primary focus:px-6 focus:py-3 focus:text-white focus:shadow-lg focus:outline-none">
                 {validLocale === "ar" ? "انتقل إلى المحتوى الرئيسي" : "Skip to main content"}
               </a>
-              <div dir={dir} lang={validLocale} className="site-shell flex min-h-screen max-w-full flex-col overflow-x-clip text-brand-primary">
+              <div dir={dir} lang={validLocale} className="site-shell flex min-h-screen max-w-full flex-col text-brand-primary">
                 <nav className="print:hidden" aria-label={validLocale === "ar" ? "التنقل الرئيسي" : "Main navigation"}>
                   <Header
                     locale={validLocale}
@@ -174,6 +176,15 @@ export default async function LocaleLayout({
                   <MobileEnhancements>{children}</MobileEnhancements>
                 </main>
                 <Footer locale={validLocale} dictionary={dictionary} siteSettings={siteSettings} footerSettings={footerSettings} featureToggles={featureToggles} footerTopSocialLinks={footerTopSocialLinks} />
+                <MobileBottomBar
+                  locale={validLocale}
+                  settings={mobileBarSettings}
+                  dictionary={dictionary}
+                  menuItems={menuItems?.items}
+                  mobileMenuItems={mobileMenuItems?.items}
+                  mobileBottomBarMenuItems={mobileBottomBarMenu?.items}
+                  categoriesDrawerMenuItems={categoriesDrawerMenu?.items}
+                />
               </div>
               <MiniCartDrawer
                 locale={validLocale}

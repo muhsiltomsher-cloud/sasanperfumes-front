@@ -6,7 +6,7 @@ import { Drawer } from "@/components/common/Drawer";
 import { cn } from "@/lib/utils";
 
 export type ViewMode = "grid" | "list";
-export type GridColumns = 5;
+export type GridColumns = 4;
 export type SortOption = "default" | "price-asc" | "price-desc" | "name-asc" | "name-desc" | "date-desc";
 
 interface ProductViewToggleProps {
@@ -51,14 +51,19 @@ const translations = {
 
 export function ProductViewToggle({
   viewMode,
-  gridColumns,
-  onViewModeChange,
-  onGridColumnsChange,
+  gridColumns: _gridColumns,
+  onViewModeChange: _onViewModeChange,
+  onGridColumnsChange: _onGridColumnsChange,
   locale,
   className,
   sortBy = "default",
   onSortChange,
 }: ProductViewToggleProps) {
+  void viewMode;
+  void _gridColumns;
+  void _onViewModeChange;
+  void _onGridColumnsChange;
+
   const isRTL = locale === "ar";
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const t = translations[locale];
@@ -72,10 +77,6 @@ export function ProductViewToggle({
     { value: "date-desc", label: t.dateDesc },
   ];
 
-  const gridOptions: { columns: GridColumns; icon: React.ReactNode; label: string }[] = [
-    { columns: 5, icon: <span className="text-[11px] font-bold leading-none">5</span>, label: "5" },
-  ];
-
   const handleSortClick = (value: SortOption) => {
     onSortChange?.(value);
     setIsDrawerOpen(false);
@@ -85,7 +86,7 @@ export function ProductViewToggle({
     <>
       <div
         className={cn(
-          "section-band relative flex items-center justify-between gap-4 px-5 py-3 text-brand-primary md:px-7 lg:px-12",
+          "section-band relative flex items-center justify-between gap-3 px-3 py-2 text-brand-primary md:gap-4 md:px-7 md:py-3 lg:px-12",
           className
         )}
         dir={isRTL ? "rtl" : "ltr"}
@@ -94,7 +95,7 @@ export function ProductViewToggle({
           type="button"
           onClick={() => setIsDrawerOpen(true)}
           className={cn(
-            "flex items-center gap-3 rounded-full border border-brand-border/70 bg-brand-ivory px-4 py-2 text-[13px] font-semibold lowercase text-brand-primary shadow-[0_8px_20px_rgba(20,15,10,0.06)] transition-colors hover:border-brand-primary/35 md:hidden",
+            "flex items-center gap-2 rounded-full border border-brand-border/70 bg-brand-ivory px-3 py-1.5 text-xs font-semibold lowercase text-brand-primary shadow-[0_8px_20px_rgba(20,15,10,0.06)] transition-colors hover:border-brand-primary/35 md:hidden",
             isRTL && "flex-row-reverse"
           )}
         >
@@ -103,33 +104,6 @@ export function ProductViewToggle({
         </button>
 
         <div className="flex items-center gap-5 md:ms-auto">
-          {viewMode === "grid" && (
-            <div className="hidden items-center gap-3 md:flex">
-              {gridOptions.map((option) => (
-                <button
-                  key={option.columns}
-                  type="button"
-                  onClick={() => {
-                    onViewModeChange("grid");
-                    onGridColumnsChange(option.columns);
-                  }}
-                  className={cn(
-                    "flex h-8 w-8 items-center justify-center rounded-full border transition-colors",
-                    gridColumns === option.columns
-                      ? "border-brand-primary bg-brand-primary text-white"
-                      : "border-brand-border/70 bg-brand-ivory text-brand-primary/45 hover:border-brand-primary/35 hover:text-brand-primary"
-                  )}
-                  aria-label={`${option.columns} ${t.columns}`}
-                  title={`${option.columns} ${t.columns}`}
-                >
-                  {option.icon}
-                </button>
-              ))}
-            </div>
-          )}
-
-          <span className="hidden h-5 w-px bg-brand-border/80 md:block" aria-hidden="true" />
-
           <button
             type="button"
             onClick={() => setIsDrawerOpen(true)}
@@ -177,33 +151,6 @@ export function ProductViewToggle({
           </div>
         </div>
 
-        <div className="p-5">
-          <p className="mb-3 text-[11px] font-semibold uppercase text-brand-primary/50">
-            {t.columns}
-          </p>
-          <div className="flex gap-2">
-            {gridOptions.map((option) => (
-              <button
-                key={option.columns}
-                type="button"
-                onClick={() => {
-                  onViewModeChange("grid");
-                  onGridColumnsChange(option.columns);
-                  setIsDrawerOpen(false);
-                }}
-                className={cn(
-                  "flex h-10 w-10 items-center justify-center rounded-full border text-sm transition-all",
-                  gridColumns === option.columns
-                    ? "border-brand-primary bg-brand-primary text-white"
-                    : "border-brand-border/40 text-brand-primary hover:border-brand-primary/40"
-                )}
-                aria-label={`${option.columns} ${t.columns}`}
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>
-        </div>
       </Drawer>
     </>
   );

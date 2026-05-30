@@ -70,21 +70,21 @@ export default async function FeaturedProductsPage({ params }: FeaturedProductsP
   const filteredTotal = productsResult.total - (productsResult.products.length - filteredProducts.length);
 
   return (
-    <div className="container mx-auto px-5 md:px-7 lg:px-12 py-3">
+    <div className="container mx-auto px-3 py-2 md:px-7 md:py-3 lg:px-12">
       <Breadcrumbs items={breadcrumbItems} locale={locale as Locale} contained={false} />
 
-      <div className="mb-6">
-        <h1 className="font-title text-4xl text-brand-primary md:text-5xl">
+      <div className="mb-4 md:mb-6">
+        <h1 className="font-title text-[30px] leading-none text-brand-primary md:text-5xl">
           {dictionary.sections.featuredProducts.title}
         </h1>
-        <p className="mt-3 text-brand-muted">
+        <p className="mt-2 text-sm text-brand-muted md:mt-3 md:text-base">
           {isRTL
             ? "اكتشف منتجاتنا المميزة"
             : "Discover our best sellers"}
         </p>
       </div>
 
-      <Suspense fallback={<ProductGridSkeleton count={15} columns={5} />}>
+      <Suspense fallback={<ProductGridSkeleton count={12} columns={4} />}>
         <FeaturedProductsClient
           products={filteredProducts}
           locale={locale as Locale}

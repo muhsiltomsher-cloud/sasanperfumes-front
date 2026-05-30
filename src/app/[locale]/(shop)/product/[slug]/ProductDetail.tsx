@@ -976,33 +976,51 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
           </div>
 
           {showThumbnails && (
-            <div className="flex gap-2 overflow-x-auto px-5 pb-1 md:px-7 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {images.map((image, index) => (
-                <button
-                  key={`${image.id}-mobile-thumb-${index}`}
-                  type="button"
-                  onClick={() => setSelectedImage(index)}
-                  className={cn(
-                    "relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border bg-white transition-all",
-                    selectedImage === index
-                      ? "border-brand-primary ring-2 ring-brand-primary/10"
-                      : "border-[#e7ded7]"
-                  )}
-                  aria-label={`View image ${index + 1}`}
-                  aria-current={selectedImage === index ? "true" : "false"}
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt || `${productDisplayName} thumbnail ${index + 1}`}
-                    fill
-                    sizes="64px"
-                    className="object-contain p-1"
-                    placeholder="blur"
-                    blurDataURL={BLUR_DATA_URL}
-                    unoptimized={shouldUseUnoptimizedImage(image.src)}
-                  />
-                </button>
-              ))}
+            <div className="relative px-3 pb-1">
+              <button
+                type="button"
+                onClick={goToPreviousImage}
+                className="absolute left-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory/95 text-brand-primary shadow-[0_10px_24px_rgba(20,15,10,0.12)]"
+                aria-label={isRTL ? "الصورة السابقة" : "Previous image"}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <div className="mx-9 flex snap-x gap-2 overflow-x-auto rounded-full border border-brand-border/70 bg-brand-ivory/95 p-1.5 shadow-[0_12px_28px_rgba(20,15,10,0.1)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                {images.map((image, index) => (
+                  <button
+                    key={`${image.id}-mobile-thumb-${index}`}
+                    type="button"
+                    onClick={() => setSelectedImage(index)}
+                    className={cn(
+                      "relative h-14 w-14 shrink-0 snap-center overflow-hidden rounded-md border bg-white transition-all",
+                      selectedImage === index
+                        ? "border-brand-primary ring-2 ring-brand-primary/15"
+                        : "border-brand-border/70 opacity-75"
+                    )}
+                    aria-label={`View image ${index + 1}`}
+                    aria-current={selectedImage === index ? "true" : "false"}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt || `${productDisplayName} thumbnail ${index + 1}`}
+                      fill
+                      sizes="56px"
+                      className="object-contain p-1"
+                      placeholder="blur"
+                      blurDataURL={BLUR_DATA_URL}
+                      unoptimized={shouldUseUnoptimizedImage(image.src)}
+                    />
+                  </button>
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={goToNextImage}
+                className="absolute right-3 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory/95 text-brand-primary shadow-[0_10px_24px_rgba(20,15,10,0.12)]"
+                aria-label={isRTL ? "الصورة التالية" : "Next image"}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
             </div>
           )}
         </div>
@@ -1012,9 +1030,9 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
     const activeImageSrc = activeImage.src;
 
     return (
-      <div className={cn("grid gap-3", showThumbnails && "lg:grid-cols-[82px_minmax(0,1fr)]")}>
-        {showThumbnails && (
-          <div className="order-2 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:order-1 lg:max-h-[calc(100vh-8rem)] lg:flex-col lg:overflow-y-auto lg:pb-0 lg:pr-1 [&::-webkit-scrollbar]:hidden">
+      <div className="space-y-3">
+        {false && showThumbnails && (
+          <div className="hidden">
             {images.map((image, index) => (
               <button
                 key={`${image.id}-thumb-${index}`}
@@ -1044,7 +1062,7 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
           </div>
         )}
 
-        <div className="relative order-1 lg:order-2">
+        <div className="relative">
           <button
             type="button"
             onClick={() => setIsFullscreen(true)}
@@ -1077,18 +1095,18 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
               <button
                 type="button"
                 onClick={goToPreviousImage}
-                className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/95 p-2 shadow-md ring-1 ring-black/5 transition hover:bg-white"
+                className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-brand-border/70 bg-brand-ivory/95 p-2 text-brand-primary shadow-md transition hover:border-brand-primary/45 hover:bg-white"
                 aria-label={isRTL ? "الصورة السابقة" : "Previous image"}
               >
-                <ChevronLeft className="h-5 w-5 text-gray-700" />
+                <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 type="button"
                 onClick={goToNextImage}
-                className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/95 p-2 shadow-md ring-1 ring-black/5 transition hover:bg-white"
+                className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-brand-border/70 bg-brand-ivory/95 p-2 text-brand-primary shadow-md transition hover:border-brand-primary/45 hover:bg-white"
                 aria-label={isRTL ? "الصورة التالية" : "Next image"}
               >
-                <ChevronRight className="h-5 w-5 text-gray-700" />
+                <ChevronRight className="h-5 w-5" />
               </button>
             </>
           )}
@@ -1096,12 +1114,61 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
           <button
             type="button"
             onClick={() => setIsFullscreen(true)}
-            className="absolute right-4 top-4 z-10 rounded-full bg-white p-2 shadow-sm ring-1 ring-black/5 transition hover:shadow-md hover:scale-105"
+            className="absolute right-4 top-4 z-10 rounded-full border border-brand-border/70 bg-brand-ivory/95 p-2 text-brand-primary shadow-sm transition hover:scale-105 hover:shadow-md"
             aria-label={isRTL ? "تكبير الصورة" : "Zoom image"}
           >
-            <ZoomIn className="h-4 w-4 text-gray-700" />
+            <ZoomIn className="h-4 w-4" />
           </button>
         </div>
+
+        {showThumbnails && (
+          <div className="relative">
+            <button
+              type="button"
+              onClick={goToPreviousImage}
+              className="absolute left-1 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory/95 text-brand-primary shadow-[0_12px_28px_rgba(20,15,10,0.12)] transition hover:border-brand-primary/45 hover:bg-white"
+              aria-label={isRTL ? "الصورة السابقة" : "Previous image"}
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <div className="flex snap-x gap-2 overflow-x-auto rounded-full border border-brand-border/70 bg-brand-ivory/95 px-11 py-1.5 shadow-[0_14px_34px_rgba(20,15,10,0.1)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {images.map((image, index) => (
+                <button
+                  key={`${image.id}-thumb-slider-${index}`}
+                  type="button"
+                  onClick={() => setSelectedImage(index)}
+                  className={cn(
+                    "relative h-[68px] w-[68px] shrink-0 snap-center overflow-hidden rounded-md border bg-white transition-all lg:h-[76px] lg:w-[76px]",
+                    selectedImage === index
+                      ? "border-brand-primary ring-2 ring-brand-primary/15"
+                      : "border-brand-border/70 opacity-70 hover:border-brand-primary/45 hover:opacity-100"
+                  )}
+                  aria-label={isRTL ? `عرض الصورة ${index + 1}` : `View image ${index + 1}`}
+                  aria-current={selectedImage === index ? "true" : "false"}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt || `${productDisplayName} thumbnail ${index + 1}`}
+                    fill
+                    sizes="76px"
+                    className="object-contain p-1.5"
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
+                    unoptimized={shouldUseUnoptimizedImage(image.src)}
+                  />
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={goToNextImage}
+              className="absolute right-1 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory/95 text-brand-primary shadow-[0_12px_28px_rgba(20,15,10,0.12)] transition hover:border-brand-primary/45 hover:bg-white"
+              aria-label={isRTL ? "الصورة التالية" : "Next image"}
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+        )}
       </div>
     );
   };

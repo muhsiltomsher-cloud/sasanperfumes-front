@@ -1347,20 +1347,20 @@ export default function CheckoutClient() {
   };
 
   return (
-                <div className="min-h-screen overflow-x-clip bg-transparent pb-32 md:pb-8">
-                  <div className="container mx-auto px-5 md:px-7 lg:px-12 py-6 md:py-8">
+                <div className="min-h-screen bg-transparent pb-44 md:pb-8">
+                  <div className="container mx-auto px-3 py-3 md:px-7 md:py-8 lg:px-12">
 
         {/* Modern User Status Card */}
-        <div className="luxury-panel mb-6 flex items-center justify-between p-4">
-          <div className="flex items-center gap-3">
-            <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold text-white ${isAuthenticated ? 'bg-emerald-600' : 'bg-brand-primary'}`}>
+        <div className="luxury-panel mb-3 flex items-center justify-between p-3 md:mb-6 md:p-4">
+          <div className="flex items-center gap-2.5 md:gap-3">
+            <div className={`flex h-9 w-9 items-center justify-center rounded-full text-xs font-semibold text-white md:h-10 md:w-10 md:text-sm ${isAuthenticated ? 'bg-emerald-600' : 'bg-brand-primary'}`}>
               {isAuthenticated ? (user?.user_email?.charAt(0).toUpperCase() || 'U') : 'G'}
             </div>
             <div>
-              <p className="text-sm font-semibold text-brand-primary">
+              <p className="text-xs font-semibold text-brand-primary md:text-sm">
                 {isAuthenticated ? user?.user_email : (isRTL ? "ضيف" : "Guest")}
               </p>
-              <p className="text-xs text-brand-muted">
+              <p className="text-[11px] text-brand-muted md:text-xs">
                 {isAuthenticated 
                   ? (isRTL ? "حساب مسجل" : "Registered account")
                   : (isRTL ? "الدفع كضيف" : "Checkout as guest")}
@@ -1377,12 +1377,12 @@ export default function CheckoutClient() {
 
         <Breadcrumbs items={breadcrumbItems} locale={locale as Locale} contained={false} />
 
-        <div className="mb-6 border-b border-brand-border/70 pb-6">
-          <h1 className="font-title text-[34px] leading-none text-brand-primary md:text-[46px]">
+        <div className="mb-4 border-b border-brand-border/70 pb-4 md:mb-6 md:pb-6">
+          <h1 className="font-title text-[30px] leading-none text-brand-primary md:text-[46px]">
             {checkoutTitle}
           </h1>
           {checkoutSubtitle && (
-            <p className="mt-3 max-w-xl text-sm leading-6 text-brand-muted md:text-base">
+            <p className="mt-2 max-w-xl text-sm leading-6 text-brand-muted md:mt-3 md:text-base">
               {checkoutSubtitle}
             </p>
           )}
@@ -1451,7 +1451,7 @@ export default function CheckoutClient() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                   </div>
-                  <h2 className="mb-2 font-title text-2xl text-brand-primary">
+                  <h2 className="mb-2 font-title text-xl text-brand-primary md:text-2xl">
                     {isRTL ? "سلة التسوق فارغة" : "Your cart is empty"}
                   </h2>
                   <p className="mb-4 text-brand-muted">
@@ -1479,11 +1479,11 @@ export default function CheckoutClient() {
         <div className="grid gap-3 lg:grid-cols-3 lg:items-start lg:gap-3">
           <div className="space-y-3 lg:col-span-2">
             {/* Contact Information */}
-            <div className="luxury-panel p-5 md:p-6">
-                            <h2 className="mb-5 font-title text-2xl text-brand-primary">
+            <div className="luxury-panel p-4 md:p-6">
+                            <h2 className="mb-3 font-title text-xl text-brand-primary md:mb-5 md:text-2xl">
                               {isRTL ? "معلومات الاتصال" : "Contact Information"}
                             </h2>
-              <div className={`grid gap-4 ${isAuthenticated ? "sm:grid-cols-1" : "sm:grid-cols-2"}`}>
+              <div className={`grid gap-3 md:gap-4 ${isAuthenticated ? "sm:grid-cols-1" : "sm:grid-cols-2"}`}>
                 {!isAuthenticated && (
                 <div className="relative">
                   <Input
@@ -1620,8 +1620,8 @@ export default function CheckoutClient() {
             </div>
 
             {/* Shipping Address */}
-            <div className="luxury-panel p-5 md:p-6">
-                            <h2 className="mb-5 font-title text-2xl text-brand-primary">
+            <div className="luxury-panel p-4 md:p-6">
+                            <h2 className="mb-3 font-title text-xl text-brand-primary md:mb-5 md:text-2xl">
                               {isRTL ? "عنوان الشحن" : "Delivery"}
                             </h2>
 
@@ -1668,25 +1668,25 @@ export default function CheckoutClient() {
                           <button
                             key={address.id}
                             type="button"
-                            className={`w-full p-4 text-left hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${
-                              selectedAddressId === address.id ? "bg-gray-50" : ""
+                            className={`w-full border-b border-brand-border/70 p-4 text-left transition-colors last:border-b-0 hover:bg-brand-beige/55 ${
+                              selectedAddressId === address.id ? "bg-brand-beige/55" : ""
                             }`}
                             onClick={() => handleSelectSavedAddress(address)}
                           >
                             <div className="flex items-start justify-between gap-3">
                               <div className="flex-1">
                                 <div className="flex items-center gap-2">
-                                  <p className="font-medium text-gray-900">{address.label}</p>
+                                  <p className="font-medium text-brand-primary">{address.label}</p>
                                   {address.is_default && (
                                     <span className="inline-flex items-center rounded-full bg-yellow-100 px-2 py-0.5 text-xs font-medium text-yellow-800">
                                       {isRTL ? "افتراضي" : "Default"}
                                     </span>
                                   )}
                                 </div>
-                                <p className="mt-1 text-sm text-gray-600">
+                                <p className="mt-1 text-sm text-brand-muted">
                                   {address.first_name} {address.last_name}
                                 </p>
-                                <p className="text-sm text-gray-500">
+                                <p className="text-sm text-brand-muted">
                                   {address.address_1}
                                   {address.city && `, ${address.city}`}
                                   {address.country && `, ${address.country}`}
@@ -1704,7 +1704,7 @@ export default function CheckoutClient() {
                 </div>
               )}
 
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-3 md:gap-4 sm:grid-cols-2">
                 <Input
                   label={isRTL ? "الاسم الأول" : "First Name"}
                   required
@@ -1763,8 +1763,8 @@ export default function CheckoutClient() {
             </div>
 
             {/* Shipping Method Selection */}
-            <div className="luxury-panel p-5 md:p-6">
-              <h2 className="mb-5 font-title text-2xl text-brand-primary">
+            <div className="luxury-panel p-4 md:p-6">
+              <h2 className="mb-3 font-title text-xl text-brand-primary md:mb-5 md:text-2xl">
                 {isRTL ? "طريقة الشحن" : "Shipping Method"}
               </h2>
               
@@ -1792,9 +1792,9 @@ export default function CheckoutClient() {
                         return (
                           <div
                             key={rate.rate_id}
-                            className={`rounded-lg border p-4 transition-colors ${
+                            className={`rounded-lg border p-3 transition-colors md:p-4 ${
                               rate.method_id === "free_shipping" && rate.free_shipping_eligible === false
-                                ? "border-black/5 bg-gray-50/50 opacity-60"
+                                ? "border-brand-border/60 bg-brand-beige/35 opacity-60"
                                 : isSelected
                                   ? "border-brand-primary bg-brand-beige cursor-pointer"
                                   : "border-brand-border/70 hover:bg-brand-beige cursor-pointer"
@@ -1804,9 +1804,9 @@ export default function CheckoutClient() {
                               handleSelectShippingRate(rate.rate_id, pkg.package_id);
                             }}
                           >
-                            <div className="flex items-center gap-3">
-                              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
-                                <Truck className="h-5 w-5 text-brand-muted" />
+                              <div className="flex items-center gap-2.5 md:gap-3">
+                               <div className="flex h-9 w-9 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory md:h-10 md:w-10">
+                                <Truck className="h-4 w-4 text-brand-muted md:h-5 md:w-5" />
                               </div>
                               <div className="flex-1">
                                 <Radio
@@ -1839,7 +1839,7 @@ export default function CheckoutClient() {
                                 {ratePrice === 0 ? (
                                   <span className={`font-semibold ${
                                     rate.method_id === "free_shipping" && rate.free_shipping_eligible === false
-                                      ? "text-gray-400"
+                                      ? "text-brand-muted"
                                       : "text-green-600"
                                   }`}>
                                     {isRTL ? "مجاني" : "Free"}
@@ -1863,9 +1863,9 @@ export default function CheckoutClient() {
             </div>
 
             {/* Billing Address */}
-            <div className="luxury-panel p-5 md:p-6">
+            <div className="luxury-panel p-4 md:p-6">
               <div className="mb-4 flex items-center justify-between">
-                                <h2 className="font-title text-2xl text-brand-primary">
+                                <h2 className="font-title text-xl text-brand-primary md:text-2xl">
                                   {isRTL ? "عنوان الفاتورة" : "Billing Address"}
                                 </h2>
                 <button
@@ -1878,7 +1878,7 @@ export default function CheckoutClient() {
               </div>
 
               {/* Same as shipping checkbox */}
-              <div className="rounded-lg border border-brand-border/70 p-4 transition-colors hover:bg-brand-beige/55">
+              <div className="rounded-lg border border-brand-border/70 p-3 transition-colors hover:bg-brand-beige/55 md:p-4">
                 <Checkbox
                   checked={formData.sameAsShipping}
                   onChange={(e) => handleSameAsShippingChange(e.target.checked)}
@@ -1888,7 +1888,7 @@ export default function CheckoutClient() {
 
               {/* Billing address form - only show if not same as shipping */}
               {(!formData.sameAsShipping || showBillingSection) && !formData.sameAsShipping && (
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <div className="mt-4 grid gap-3 md:gap-4 sm:grid-cols-2">
                   <Input
                     label={isRTL ? "الاسم الأول" : "First Name"}
                     required
@@ -1960,8 +1960,8 @@ export default function CheckoutClient() {
             </div>
 
                         {/* Payment Method */}
-                        <div className="luxury-panel p-5 md:p-6">
-                                        <h2 className="mb-5 font-title text-2xl text-brand-primary">
+                        <div className="luxury-panel p-4 md:p-6">
+                                        <h2 className="mb-3 font-title text-xl text-brand-primary md:mb-5 md:text-2xl">
                                           {isRTL ? "طريقة الدفع" : "Payment Method"}
                                         </h2>
                           
@@ -2084,7 +2084,7 @@ export default function CheckoutClient() {
                                 return (
                                   <div
                                     key={gateway.id}
-                                    className={`rounded-lg border p-4 transition-colors cursor-pointer ${
+                                    className={`cursor-pointer rounded-lg border p-3 transition-colors md:p-4 ${
                                       formData.paymentMethod === gateway.id
                                         ? "border-brand-primary bg-brand-beige"
                                         : "border-brand-border/70 hover:border-brand-primary/45 hover:bg-brand-beige/55"
@@ -2114,8 +2114,8 @@ export default function CheckoutClient() {
             <GiftWrapOption locale={locale as Locale} onChange={setGiftWrap} />
 
             {/* Order Notes */}
-            <div className="luxury-panel p-5 md:p-6">
-                            <h2 className="mb-5 font-title text-2xl text-brand-primary">
+            <div className="luxury-panel p-4 md:p-6">
+                            <h2 className="mb-3 font-title text-xl text-brand-primary md:mb-5 md:text-2xl">
                               {isRTL ? "ملاحظات الطلب" : "Order Notes"}
                             </h2>
               <textarea
@@ -2134,17 +2134,17 @@ export default function CheckoutClient() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1 lg:sticky lg:top-24 lg:self-start">
-            <div className="luxury-panel p-5 md:p-6">
-                            <h2 className="mb-5 font-title text-2xl text-brand-primary">
+            <div className="luxury-panel p-4 md:p-6">
+                            <h2 className="mb-3 font-title text-xl text-brand-primary md:mb-5 md:text-2xl">
                               {isRTL ? "ملخص الطلب" : "Order Summary"}
                             </h2>
 
                             {/* Cart Items with Thumbnails */}
-                            <div className="space-y-4 border-b border-brand-border/70 pb-4 md:max-h-80 md:overflow-y-auto">
+                            <div className="space-y-3 border-b border-brand-border/70 pb-3 md:max-h-80 md:space-y-4 md:overflow-y-auto md:pb-4">
                                 {cartItems.map((item) => (
-                                  <div key={item.item_key} className="flex items-center gap-3">
+                                  <div key={item.item_key} className="flex items-center gap-2.5 md:gap-3">
                                     {/* Product Thumbnail */}
-                                    <div className="relative h-16 w-16 flex-shrink-0">
+                                    <div className="relative h-14 w-14 flex-shrink-0 md:h-16 md:w-16">
                                       <div className="h-full w-full overflow-hidden rounded-md border border-brand-border/70 bg-brand-beige">
                                       {item.featured_image ? (
                                         <Image
@@ -2152,7 +2152,7 @@ export default function CheckoutClient() {
                                           alt={item.name}
                                           fill
                                           className="object-cover"
-                                          sizes="64px"
+                                          sizes="(max-width: 767px) 56px, 64px"
                                         />
                                       ) : (
                                         <div className="flex h-full w-full items-center justify-center text-brand-muted">
@@ -2165,7 +2165,7 @@ export default function CheckoutClient() {
                                     </div>
                                   {/* Product Info */}
                                   <div className="flex-1 min-w-0">
-                                    <p className="truncate text-sm font-semibold text-brand-primary">{decodeHtmlEntities(item.name)}</p>
+                                    <p className="truncate text-xs font-semibold text-brand-primary md:text-sm">{decodeHtmlEntities(item.name)}</p>
                                     {(productBrands[getItemLookupId(item)] || productCategories[getItemLookupId(item)]) && (
                                       <p className="font-medium uppercase tracking-wider text-brand-gold mt-0.5" style={{ fontSize: '9px' }}>
                                         {productBrands[getItemLookupId(item)] && <span>{decodeHtmlEntities(productBrands[getItemLookupId(item)])}</span>}
@@ -2179,14 +2179,14 @@ export default function CheckoutClient() {
                                       </p>
                                     )}
                                     {item.meta?.variation && Object.keys(item.meta.variation).length > 0 && (
-                                      <p className="mt-0.5 text-xs text-brand-muted">
+                                      <p className="mt-0.5 text-[11px] leading-snug text-brand-muted md:text-xs">
                                         {Object.entries(item.meta.variation)
                                           .filter(([key]) => key.toLowerCase() !== "parent_id")
                                           .map(([key, value]) => `${key.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}: ${value}`)
                                           .join(", ")}
                                       </p>
                                     )}
-                                    <p className="text-xs text-brand-muted">
+                                    <p className="text-[11px] text-brand-muted md:text-xs">
                                       {isRTL ? "الكمية:" : "Qty:"} {item.quantity.value}
                                     </p>
                                     <BundleItemsList item={item} locale={locale} compact />
@@ -2196,19 +2196,19 @@ export default function CheckoutClient() {
                                     <div className="flex flex-col items-end gap-0.5">
                                       <FormattedPrice
                                         price={parseFloat(item.regular_price) * item.quantity.value / divisor}
-                                        className="text-xs text-gray-400 line-through"
+                                    className="text-xs text-brand-muted line-through"
                                         iconSize="xs"
                                       />
                                       <FormattedPrice
                                         price={parseFloat(item.sale_price) * item.quantity.value / divisor}
-                                        className="text-sm font-medium text-red-600"
+                                        className="text-xs font-medium text-red-600 md:text-sm"
                                         iconSize="xs"
                                       />
                                     </div>
                                   ) : (
                                     <FormattedPrice
                                       price={parseFloat(item.price) * item.quantity.value / divisor}
-                                      className="text-sm font-medium"
+                                      className="text-xs font-medium md:text-sm"
                                       iconSize="xs"
                                     />
                                   )}
@@ -2355,19 +2355,19 @@ export default function CheckoutClient() {
                 {isRTL ? "تأكيد الطلب" : "Place Order"}
               </Button>
 
-              <p className="mt-2 hidden text-center text-xs text-gray-500 lg:block">
+              <p className="mt-2 hidden text-center text-xs text-brand-muted lg:block">
                 {isRTL ? "جميع الأسعار شاملة ضريبة القيمة المضافة" : "All prices are inclusive of VAT"}
               </p>
 
-              <p className="mt-4 hidden text-center text-xs text-gray-500 lg:block">
+              <p className="mt-4 hidden text-center text-xs text-brand-muted lg:block">
                 {isRTL
                   ? "بالنقر على تأكيد الطلب، فإنك توافق على شروط الخدمة وسياسة الخصوصية."
                   : "By clicking Place Order, you agree to our Terms of Service and Privacy Policy."}
               </p>
 
               {/* WhatsApp Help */}
-              <div className="mt-6 rounded-xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-green-50 p-4 text-center">
-                <p className="text-sm text-gray-700">
+              <div className="mt-6 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-center">
+                <p className="text-sm text-brand-primary">
                   {isRTL ? "هل تحتاج مساعدة في طلبك؟" : "Need help with your order?"}
                 </p>
                 <a
@@ -2391,21 +2391,24 @@ export default function CheckoutClient() {
 
       {/* Mobile Sticky Order Summary */}
       {!isEmptyCart && !isKeyboardVisible && (
-      <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-gray-100 bg-white px-4 py-3 shadow-[0_-4px_20px_rgba(0,0,0,0.1)] lg:hidden" style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}>
-        <div className="flex items-center justify-between gap-4">
+      <div
+        className="fixed left-3 right-3 z-40 rounded-full border border-brand-border/70 bg-brand-ivory/96 px-3 py-2 shadow-[0_16px_40px_rgba(20,15,10,0.16)] backdrop-blur-xl lg:hidden"
+        style={{ bottom: "calc(max(0.75rem, env(safe-area-inset-bottom)) + 4.75rem)" }}
+      >
+        <div className="flex items-center justify-between gap-3">
           <div className="flex flex-col">
-            <span className="text-xs text-gray-500">{isRTL ? "الإجمالي" : "Total"}</span>
+            <span className="text-xs text-brand-muted">{isRTL ? "الإجمالي" : "Total"}</span>
             <FormattedPrice
               price={checkoutTotal / divisor}
-              className="text-lg font-bold text-gray-900"
-              iconSize="sm"
+              className="text-base font-bold text-brand-primary"
+              iconSize="xs"
             />
           </div>
           <Button 
             type="submit"
             form="checkout-form"
             size="lg" 
-            className="flex-1 max-w-[200px]"
+            className="h-10 max-w-[180px] flex-1 px-4 text-xs"
             isLoading={isSubmitting || isAuthLoading}
             disabled={isAuthLoading}
           >

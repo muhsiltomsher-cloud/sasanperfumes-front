@@ -97,12 +97,12 @@ export default function ForgotPasswordPage({ params }: ForgotPasswordPageProps) 
   };
 
     return (
-      <AuthBackground showImage={false} className="flex min-h-[calc(100vh-200px)] items-center justify-center px-4 py-12">
+      <AuthBackground showImage={false} className="flex min-h-[calc(100vh-200px)] items-center justify-center px-4 py-8 md:py-12">
       <div className="w-full max-w-md">
-        <div className="rounded-lg border border-brand-primary/15 bg-white p-8 shadow-sm">
+        <div className="luxury-panel p-5 md:p-7">
           <div className={`mb-8 text-center ${isRTL ? "rtl" : ""}`}>
-            <h1 className="text-2xl font-bold text-brand-brown">{texts.title}</h1>
-            <p className="mt-2 text-brand-primary">{texts.subtitle}</p>
+            <h1 className="font-title text-2xl text-brand-primary md:text-3xl">{texts.title}</h1>
+            <p className="mt-2 text-sm text-brand-muted md:text-base">{texts.subtitle}</p>
           </div>
 
           {error && (

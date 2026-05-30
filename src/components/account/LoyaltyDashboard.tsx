@@ -65,14 +65,14 @@ export function LoyaltyDashboard({ locale = "en", customerId }: LoyaltyDashboard
   const programName = isAr ? settings.label_ar : settings.label_en;
 
   return (
-    <div className="rounded-2xl border border-brand-primary/10 bg-gradient-to-br from-brand-primary/5 to-white p-6" dir={isAr ? "rtl" : "ltr"}>
+    <div className="luxury-panel p-5 md:p-6" dir={isAr ? "rtl" : "ltr"}>
       <div className="mb-4 flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-primary">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-primary">
           <Star className="h-5 w-5 text-white" />
         </div>
         <div>
-          <h3 className="font-bold text-gray-900">{programName}</h3>
-          <p className="text-xs text-gray-500">
+          <h3 className="font-bold text-brand-primary">{programName}</h3>
+          <p className="text-xs text-brand-muted">
             {isAr
               ? `اكسب ${settings.points_per_aed} نقطة لكل درهم`
               : `Earn ${settings.points_per_aed} point per AED spent`}
@@ -82,17 +82,17 @@ export function LoyaltyDashboard({ locale = "en", customerId }: LoyaltyDashboard
 
       {!balance ? (
         <div className="flex justify-center py-4">
-          <Loader2 className="h-5 w-5 animate-spin text-gray-400" />
+          <Loader2 className="h-5 w-5 animate-spin text-brand-muted" />
         </div>
       ) : (
         <>
           {/* Points display */}
           <div className="mb-4 grid grid-cols-2 gap-3">
-            <div className="rounded-xl bg-white p-4 text-center shadow-sm">
+            <div className="rounded-lg border border-brand-border/70 bg-brand-ivory p-3 text-center md:p-4">
               <p className="text-2xl font-bold text-brand-primary">{balance.points.toLocaleString()}</p>
               <p className="text-xs text-gray-500">{isAr ? "نقاطك" : "Your Points"}</p>
             </div>
-            <div className="rounded-xl bg-white p-4 text-center shadow-sm">
+            <div className="rounded-lg border border-brand-border/70 bg-brand-ivory p-3 text-center md:p-4">
               <p className="text-2xl font-bold text-green-600">AED {balance.value_aed.toFixed(2)}</p>
               <p className="text-xs text-gray-500">{isAr ? "القيمة" : "Value"}</p>
             </div>
@@ -101,11 +101,11 @@ export function LoyaltyDashboard({ locale = "en", customerId }: LoyaltyDashboard
           {/* Progress to min redemption */}
           {!balance.can_redeem && (
             <div className="mb-4">
-              <div className="mb-1.5 flex items-center justify-between text-xs text-gray-500">
+              <div className="mb-1.5 flex items-center justify-between text-xs text-brand-muted">
                 <span>{isAr ? "التقدم نحو الاسترداد" : "Progress to redemption"}</span>
                 <span>{balance.points}/{balance.min_to_redeem}</span>
               </div>
-              <div className="h-2 overflow-hidden rounded-full bg-gray-100">
+              <div className="h-2 overflow-hidden rounded-full bg-brand-beige">
                 <div
                   className="h-full rounded-full bg-brand-primary transition-all"
                   style={{ width: `${Math.min(100, (balance.points / balance.min_to_redeem) * 100)}%` }}
@@ -121,7 +121,7 @@ export function LoyaltyDashboard({ locale = "en", customerId }: LoyaltyDashboard
 
           {/* Coupon reveal */}
           {coupon ? (
-            <div className="rounded-xl border-2 border-dashed border-brand-primary/30 bg-brand-primary/5 p-4">
+            <div className="rounded-lg border border-dashed border-brand-primary/35 bg-brand-beige/45 p-4">
               <p className="mb-2 text-sm font-medium text-gray-700">
                 {isAr ? "كود الخصم الخاص بك:" : "Your discount coupon:"}
               </p>
@@ -137,7 +137,7 @@ export function LoyaltyDashboard({ locale = "en", customerId }: LoyaltyDashboard
           ) : balance.can_redeem ? (
             <button
               onClick={redeem} disabled={redeeming}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-primary py-3 text-sm font-semibold text-white hover:bg-brand-primary-dark disabled:opacity-60 transition-colors"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-primary py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-primary-dark disabled:opacity-60"
             >
               {redeeming ? <Loader2 className="h-4 w-4 animate-spin" /> : <Gift className="h-4 w-4" />}
               {isAr ? `استرد ${balance.points} نقطة (AED ${balance.value_aed.toFixed(2)})` : `Redeem ${balance.points} points (AED ${balance.value_aed.toFixed(2)})`}

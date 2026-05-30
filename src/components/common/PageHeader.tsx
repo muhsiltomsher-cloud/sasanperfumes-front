@@ -24,7 +24,7 @@ export function PageHeader({
   return (
     <section
       className={cn(
-        "section-band px-5 pb-8 pt-10 text-brand-primary md:px-7 md:pb-10 md:pt-12 lg:px-12",
+        "section-band px-4 pb-6 pt-7 text-brand-primary md:px-7 md:pb-10 md:pt-12 lg:px-12",
         className,
       )}
     >
@@ -41,7 +41,7 @@ export function PageHeader({
         </div>
       )}
       <div className={cn("max-w-[820px]", isRTL && "ms-auto text-right")}>
-        <h1 className="font-title text-[38px] leading-none text-brand-primary md:text-[54px]">
+        <h1 className="font-title text-[30px] leading-none text-brand-primary md:text-[54px]">
           {decodeHtmlEntities(title)}
         </h1>
         {subtitle && (

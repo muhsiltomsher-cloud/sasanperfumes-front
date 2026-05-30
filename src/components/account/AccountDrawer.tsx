@@ -325,12 +325,13 @@ export function AccountDrawer({
         onClose={onClose}
       PaperProps={{
         sx: {
-          width: { xs: "100%", sm: 320 },
+          width: { xs: "100%", sm: 340 },
           maxWidth: "100%",
-          backgroundColor: "var(--color-ivory)",
+          backgroundColor: "color-mix(in srgb, var(--color-ivory) 96%, white 4%)",
           color: "var(--color-primary)",
           borderLeft: isRTL ? "none" : "1px solid var(--color-border)",
           borderRight: isRTL ? "1px solid var(--color-border)" : "none",
+          boxShadow: "0 24px 70px rgba(20,15,10,0.18)",
         },
       }}
     >
@@ -349,9 +350,9 @@ export function AccountDrawer({
             justifyContent: "space-between",
             borderBottom: "1px solid",
             borderColor: "var(--color-border)",
-            backgroundColor: "color-mix(in srgb, var(--color-beige) 55%, white 45%)",
+            backgroundColor: "color-mix(in srgb, var(--color-beige) 45%, white 55%)",
             px: 2,
-            py: 2,
+            py: 1.5,
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>

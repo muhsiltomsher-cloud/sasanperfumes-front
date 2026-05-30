@@ -119,7 +119,7 @@ export function CurrencySwitcher({ className, locale = "en" }: CurrencySwitcherP
         type="button"
         onClick={handleButtonClick}
         className={cn(
-          "flex items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-medium transition-all hover:bg-gray-100",
+          "flex items-center gap-1.5 rounded-full border border-brand-border/70 bg-brand-ivory/95 px-2.5 py-1 text-sm font-semibold text-brand-primary shadow-[0_8px_18px_rgba(20,15,10,0.08)] transition-all hover:border-brand-primary/35 hover:bg-white",
           className
         )}
         aria-label={t.selectCurrency}
@@ -129,8 +129,8 @@ export function CurrencySwitcher({ className, locale = "en" }: CurrencySwitcherP
         {currentCurrency?.symbol && currentCurrency.symbol !== currentCurrency.code && (
           <span className="font-semibold text-brand-primary">{currentCurrency.symbol}</span>
         )}
-        <span className="text-gray-600">{currentCurrency?.code}</span>
-        <ChevronDown className="h-3 w-3 text-gray-400" />
+        <span>{currentCurrency?.code}</span>
+        <ChevronDown className="h-3 w-3 text-brand-muted" />
       </button>
 
       {/* Premium Currency Modal */}
@@ -145,28 +145,26 @@ export function CurrencySwitcher({ className, locale = "en" }: CurrencySwitcherP
 
           {/* Modal - Premium centered design */}
           <div
-            className="fixed left-1/2 top-1/2 z-[100] w-[420px] max-w-[calc(100vw-32px)] -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-gradient-to-br from-white to-gray-50 shadow-2xl transition-all"
+            className="fixed left-1/2 top-1/2 z-[100] w-[420px] max-w-[calc(100vw-24px)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg border border-brand-border/70 bg-brand-ivory/98 shadow-[0_28px_80px_rgba(20,15,10,0.2)] transition-all"
             dir={isRTL ? "rtl" : "ltr"}
             role="dialog"
             aria-modal="true"
             aria-labelledby="currency-modal-title"
           >
-            {/* Header with gradient background */}
-            <div className="relative overflow-hidden border-b border-gray-100 px-6 py-6">
-              <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-brand-gold/10 blur-3xl" />
-              <div className="relative flex items-center justify-between">
+            <div className="border-b border-brand-border/70 bg-brand-beige/45 px-4 py-4 md:px-5">
+              <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="rounded-full bg-brand-gold/10 p-2">
-                    <Globe className="h-5 w-5 text-brand-gold" />
+                  <div className="rounded-full border border-brand-border/70 bg-brand-ivory p-2 text-brand-primary shadow-[0_8px_18px_rgba(20,15,10,0.08)]">
+                    <Globe className="h-5 w-5" />
                   </div>
-                  <h2 id="currency-modal-title" className="text-lg font-bold text-brand-primary">
+                  <h2 id="currency-modal-title" className="text-base font-bold text-brand-primary md:text-lg">
                     {t.selectCurrency}
                   </h2>
                 </div>
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="rounded-full p-2 text-gray-400 transition-all hover:bg-gray-200 hover:text-gray-600"
+                  className="rounded-full border border-transparent p-2 text-brand-muted transition-all hover:border-brand-border/70 hover:bg-brand-ivory hover:text-brand-primary"
                   aria-label="Close"
                 >
                   <X className="h-5 w-5" />
@@ -175,44 +173,44 @@ export function CurrencySwitcher({ className, locale = "en" }: CurrencySwitcherP
             </div>
 
             {/* Currency Options */}
-            <div className="p-6">
+            <div className="p-4 md:p-5">
               {/* Main - AED & USD Featured */}
               <div className="mb-6">
-                <p className="mb-3 text-xs font-bold uppercase tracking-widest text-brand-gold/70">
+                <p className="mb-3 text-xs font-bold uppercase text-brand-muted">
                   {t.popular}
                 </p>
-                <div className="grid grid-cols-2 gap-3 mb-6">
+                <div className="mb-5 grid grid-cols-2 gap-2.5 md:gap-3">
                   {/* AED */}
                   {currencies.find(c => c.code === "AED") && (
                     <button
                       type="button"
                       onClick={() => handleSelect("AED" as Currency)}
                       className={cn(
-                        "flex flex-col items-center gap-3 rounded-2xl border-2 p-4 transition-all",
+                        "flex flex-col items-center gap-2 rounded-lg border p-3 transition-all",
                         currency === "AED"
-                          ? "border-brand-gold bg-gradient-to-r from-brand-gold/10 to-brand-beige/20 shadow-lg"
-                          : "border-gray-200 bg-white hover:border-brand-gold/50 hover:bg-gray-50"
+                          ? "border-brand-primary bg-brand-beige shadow-[0_10px_22px_rgba(20,15,10,0.08)]"
+                          : "border-brand-border/70 bg-white/75 hover:border-brand-primary/45 hover:bg-white"
                       )}
                     >
                       <span className={cn(
-                        "flex h-12 w-12 items-center justify-center rounded-xl text-2xl shadow-sm transition-all",
+                        "flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border text-2xl shadow-sm transition-all",
                         currency === "AED"
-                          ? "bg-brand-gold/20 ring-2 ring-brand-gold"
-                          : "bg-gray-100"
+                          ? "border-brand-primary bg-brand-ivory ring-2 ring-brand-primary/15"
+                          : "border-brand-border/70 bg-brand-beige"
                       )}>
                         <CountryFlag currencyCode="AED" size={28} />
                       </span>
                       <div className="text-center">
                         <p className={cn(
-                          "text-base font-bold",
-                          currency === "AED" ? "text-brand-gold" : "text-gray-900"
+                          "text-sm font-bold",
+                          currency === "AED" ? "text-brand-primary" : "text-brand-primary"
                         )}>
                           AED
                         </p>
-                        <p className="text-xs text-gray-500">UAE</p>
+                        <p className="text-xs text-brand-muted">UAE</p>
                       </div>
                       {currency === "AED" && (
-                        <Check className="h-4 w-4 text-brand-gold" />
+                        <Check className="h-4 w-4 text-brand-primary" />
                       )}
                     </button>
                   )}
@@ -223,31 +221,31 @@ export function CurrencySwitcher({ className, locale = "en" }: CurrencySwitcherP
                       type="button"
                       onClick={() => handleSelect(usdCurrency.code as Currency)}
                       className={cn(
-                        "flex flex-col items-center gap-3 rounded-2xl border-2 p-4 transition-all",
+                        "flex flex-col items-center gap-2 rounded-lg border p-3 transition-all",
                         currency === usdCurrency.code
-                          ? "border-brand-gold bg-gradient-to-r from-brand-gold/10 to-brand-beige/20 shadow-lg"
-                          : "border-gray-200 bg-white hover:border-brand-gold/50 hover:bg-gray-50"
+                          ? "border-brand-primary bg-brand-beige shadow-[0_10px_22px_rgba(20,15,10,0.08)]"
+                          : "border-brand-border/70 bg-white/75 hover:border-brand-primary/45 hover:bg-white"
                       )}
                     >
                       <span className={cn(
-                        "flex h-12 w-12 items-center justify-center rounded-xl text-2xl shadow-sm transition-all",
+                        "flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border text-2xl shadow-sm transition-all",
                         currency === usdCurrency.code
-                          ? "bg-brand-gold/20 ring-2 ring-brand-gold"
-                          : "bg-gray-100"
+                          ? "border-brand-primary bg-brand-ivory ring-2 ring-brand-primary/15"
+                          : "border-brand-border/70 bg-brand-beige"
                       )}>
                         <CountryFlag currencyCode={usdCurrency.code} size={28} />
                       </span>
                       <div className="text-center">
                         <p className={cn(
-                          "text-base font-bold",
-                          currency === usdCurrency.code ? "text-brand-gold" : "text-gray-900"
+                          "text-sm font-bold",
+                          currency === usdCurrency.code ? "text-brand-primary" : "text-brand-primary"
                         )}>
                           USD
                         </p>
-                        <p className="text-xs text-gray-500">USA</p>
+                        <p className="text-xs text-brand-muted">USA</p>
                       </div>
                       {currency === usdCurrency.code && (
-                        <Check className="h-4 w-4 text-brand-gold" />
+                        <Check className="h-4 w-4 text-brand-primary" />
                       )}
                     </button>
                   )}
@@ -256,33 +254,33 @@ export function CurrencySwitcher({ className, locale = "en" }: CurrencySwitcherP
 
               {/* Other Currencies */}
               <div>
-                <p className="mb-3 text-xs font-bold uppercase tracking-widest text-gray-500">
+                <p className="mb-3 text-xs font-bold uppercase text-brand-muted">
                   {locale === "ar" ? "جميع العملات" : "All Currencies"}
                 </p>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-3 gap-2">
                   {otherCurrencies.filter(c => c.code !== "AED").map((curr) => (
                     <button
                       key={curr.code}
                       type="button"
                       onClick={() => handleSelect(curr.code as Currency)}
                       className={cn(
-                        "flex flex-col items-center gap-2 rounded-xl border-2 p-3 transition-all",
+                        "flex flex-col items-center gap-2 rounded-lg border p-2.5 transition-all",
                         currency === curr.code
-                          ? "border-brand-primary bg-gradient-to-br from-brand-primary/10 to-brand-primary/5 shadow-md"
-                          : "border-gray-100 bg-white hover:border-gray-300 hover:bg-gray-50"
+                          ? "border-brand-primary bg-brand-beige shadow-[0_8px_18px_rgba(20,15,10,0.08)]"
+                          : "border-brand-border/70 bg-white/75 hover:border-brand-primary/45 hover:bg-white"
                       )}
                     >
                       <span className={cn(
-                        "flex h-10 w-10 items-center justify-center rounded-full text-lg transition-all",
+                        "flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border text-lg transition-all",
                         currency === curr.code
-                          ? "bg-brand-primary/20 ring-2 ring-brand-primary"
-                          : "bg-gray-100"
+                          ? "border-brand-primary bg-brand-ivory ring-2 ring-brand-primary/15"
+                          : "border-brand-border/70 bg-brand-beige"
                       )}>
                         <CountryFlag currencyCode={curr.code} size={24} />
                       </span>
                       <p className={cn(
-                        "text-sm font-semibold",
-                        currency === curr.code ? "text-brand-primary" : "text-gray-900"
+                        "text-xs font-semibold",
+                        currency === curr.code ? "text-brand-primary" : "text-brand-primary"
                       )}>
                         {curr.code}
                       </p>

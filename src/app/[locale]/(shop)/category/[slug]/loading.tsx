@@ -11,7 +11,7 @@ export default function CategoryLoading() {
           <PillRowSkeleton count={5} />
         </div>
       </section>
-      <ProductGridSkeleton count={15} columns={5} />
+      <ProductGridSkeleton count={12} columns={4} />
     </div>
   );
 }

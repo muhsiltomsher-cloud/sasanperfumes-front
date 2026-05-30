@@ -102,9 +102,9 @@ export default function AccountPage({ params }: AccountPageProps) {
   if (isLoading) {
     return (
       <div className="flex min-h-[calc(100vh-200px)] items-center justify-center">
-        <div className="text-center">
-          <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-gray-200 border-t-black"></div>
-          <p className="text-gray-600">{texts.loading}</p>
+          <div className="text-center">
+          <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-brand-border border-t-brand-primary"></div>
+          <p className="text-brand-muted">{texts.loading}</p>
         </div>
       </div>
     );
@@ -115,24 +115,24 @@ export default function AccountPage({ params }: AccountPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8" dir={isRTL ? "rtl" : "ltr"}>
+    <div className="account-shell min-h-screen bg-transparent py-5 md:py-8" dir={isRTL ? "rtl" : "ltr"}>
       <div className="container mx-auto px-5 md:px-7 lg:px-12">
-        <h1 className="mb-8 text-2xl font-bold text-gray-900 md:text-3xl">
+        <h1 className="mb-5 font-title text-[30px] leading-none text-brand-primary md:mb-8 md:text-4xl">
           {texts.myAccount}
         </h1>
 
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="lg:col-span-1">
-            <div className="rounded-lg bg-white p-6 shadow-sm">
+            <div className="luxury-panel p-5 md:p-6">
               <div className="flex flex-col items-center text-center">
-                <div className="mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gray-100">
-                  <User className="h-12 w-12 text-gray-600" />
+                <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory shadow-[0_12px_28px_rgba(20,15,10,0.08)] md:h-24 md:w-24">
+                  <User className="h-10 w-10 text-brand-primary md:h-12 md:w-12" />
                 </div>
-                <h2 className="text-xl font-semibold text-gray-900">
+                <h2 className="text-xl font-semibold text-brand-primary">
                   {user.user_display_name}
                 </h2>
-                <p className="mt-1 text-gray-500">{user.user_email}</p>
-                <p className="mt-2 text-sm text-gray-400">
+                <p className="mt-1 text-brand-muted">{user.user_email}</p>
+                <p className="mt-2 text-sm text-brand-muted">
                   {texts.welcome}
                 </p>
               </div>
@@ -146,30 +146,30 @@ export default function AccountPage({ params }: AccountPageProps) {
             {/* Referral Program */}
             <ReferralProgram locale={locale as "en" | "ar"} customerId={user?.user_id ? parseInt(String(user.user_id)) : undefined} />
 
-            <div className="rounded-lg bg-white shadow-sm">
+            <div className="luxury-panel overflow-hidden">
               <nav>
-                <ul className="divide-y">
+                <ul className="divide-y divide-brand-border/70">
                   {menuItems.map((item) => (
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="flex items-center justify-between p-4 transition-colors hover:bg-gray-50"
+                          className="flex items-center justify-between p-4 transition-colors hover:bg-brand-beige/55"
                       >
                         <div className="flex items-center gap-4">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
-                            <item.icon className="h-6 w-6 text-gray-600" />
+                            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory text-brand-primary md:h-12 md:w-12">
+                              <item.icon className="h-5 w-5 md:h-6 md:w-6" />
                           </div>
                           <div>
-                            <h3 className="font-medium text-gray-900">
+                              <h3 className="font-medium text-brand-primary">
                               {item.label}
                             </h3>
-                            <p className="text-sm text-gray-500">
+                              <p className="text-sm text-brand-muted">
                               {item.description}
                             </p>
                           </div>
                         </div>
                         <ChevronRight
-                          className={`h-5 w-5 text-gray-400 ${
+                          className={`h-5 w-5 text-brand-muted ${
                             isRTL ? "rotate-180" : ""
                           }`}
                         />
@@ -179,7 +179,7 @@ export default function AccountPage({ params }: AccountPageProps) {
                 </ul>
               </nav>
 
-              <div className="border-t p-4">
+              <div className="border-t border-brand-border/70 p-4">
                 <Button
                   onClick={handleLogout}
                   variant="outline"

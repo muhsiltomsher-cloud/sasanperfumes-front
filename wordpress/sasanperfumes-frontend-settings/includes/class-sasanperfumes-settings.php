@@ -481,6 +481,7 @@ function sasanperfumes_render_header_page() {
                     <tr><th>BG Color</th><td><input type="text" name="sasanperfumes_topbar_bg_color" value="<?php echo esc_attr(get_theme_mod('sasanperfumes_topbar_bg_color','#f3f4f6')); ?>" class="regular-text"></td></tr>
                     <tr><th>Text Color</th><td><input type="text" name="sasanperfumes_topbar_text_color" value="<?php echo esc_attr(get_theme_mod('sasanperfumes_topbar_text_color','#4b5563')); ?>" class="regular-text"></td></tr>
                     <tr><th>Dismissible</th><td><label><input type="checkbox" name="sasanperfumes_topbar_dismissible" value="1" <?php checked(get_theme_mod('sasanperfumes_topbar_dismissible',false)); ?>> Allow dismiss</label></td></tr>
+                    <tr><th>Mobile Visibility</th><td><label><input type="checkbox" name="sasanperfumes_topbar_hide_mobile" value="1" <?php checked(get_theme_mod('sasanperfumes_topbar_hide_mobile',true)); ?>> Hide on mobile</label></td></tr>
                     <tr><th>Free Shipping Threshold (AED)</th><td><input type="number" name="sasanperfumes_free_shipping_threshold" value="<?php echo esc_attr(get_theme_mod('sasanperfumes_free_shipping_threshold', 500)); ?>" min="0" step="1" class="small-text"><p class="description">Minimum order value for free shipping. Used by the frontend cart and topbar. Default: 500.</p></td></tr>
                 </table>
                 <h2>Mega Menu (Shop All)</h2>
@@ -798,6 +799,7 @@ function sasanperfumes_save_header_settings() {
     set_theme_mod('sasanperfumes_topbar_bg_color', sanitize_hex_color($_POST['sasanperfumes_topbar_bg_color']??'#f3f4f6'));
     set_theme_mod('sasanperfumes_topbar_text_color', sanitize_hex_color($_POST['sasanperfumes_topbar_text_color']??'#4b5563'));
     set_theme_mod('sasanperfumes_topbar_dismissible', isset($_POST['sasanperfumes_topbar_dismissible']));
+    set_theme_mod('sasanperfumes_topbar_hide_mobile', isset($_POST['sasanperfumes_topbar_hide_mobile']));
     set_theme_mod('sasanperfumes_free_shipping_threshold', absint($_POST['sasanperfumes_free_shipping_threshold'] ?? 500));
     // Mega menu settings
     set_theme_mod('sasanperfumes_megamenu_display_mode', sanitize_text_field($_POST['sasanperfumes_megamenu_display_mode'] ?? 'child-based'));
@@ -980,7 +982,7 @@ function sasanperfumes_get_currencies() {
  * Get topbar settings
  */
 function sasanperfumes_get_topbar_settings() {
-    return array('enabled'=>get_theme_mod('sasanperfumes_topbar_enabled',true),'text'=>get_theme_mod('sasanperfumes_topbar_text','Free shipping on orders over 200 SAR'),'textAr'=>get_theme_mod('sasanperfumes_topbar_text_ar',''),'link'=>get_theme_mod('sasanperfumes_topbar_link',''),'bgColor'=>get_theme_mod('sasanperfumes_topbar_bg_color','#f3f4f6'),'textColor'=>get_theme_mod('sasanperfumes_topbar_text_color','#4b5563'),'dismissible'=>get_theme_mod('sasanperfumes_topbar_dismissible',false),'freeShippingThreshold'=>(int)get_theme_mod('sasanperfumes_free_shipping_threshold',500),'freeShippingThresholds'=>null);
+    return array('enabled'=>get_theme_mod('sasanperfumes_topbar_enabled',true),'text'=>get_theme_mod('sasanperfumes_topbar_text','Free shipping on orders over 200 SAR'),'textAr'=>get_theme_mod('sasanperfumes_topbar_text_ar',''),'link'=>get_theme_mod('sasanperfumes_topbar_link',''),'bgColor'=>get_theme_mod('sasanperfumes_topbar_bg_color','#f3f4f6'),'textColor'=>get_theme_mod('sasanperfumes_topbar_text_color','#4b5563'),'dismissible'=>get_theme_mod('sasanperfumes_topbar_dismissible',false),'hideOnMobile'=>get_theme_mod('sasanperfumes_topbar_hide_mobile',true),'freeShippingThreshold'=>(int)get_theme_mod('sasanperfumes_free_shipping_threshold',500),'freeShippingThresholds'=>null);
 }
 
 /**

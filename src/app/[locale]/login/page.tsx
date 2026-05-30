@@ -172,14 +172,14 @@ export default function LoginPage({ params }: LoginPageProps) {
   return (
     <AuthBackground showImage={false} className="flex min-h-[calc(100vh-200px)] items-center justify-center px-4 py-8 md:py-12">
       <div className="w-full max-w-md">
-        <div className="rounded-2xl shadow-2xl">
+        <div className="contents">
           {/* Login Form */}
-          <div className="bg-white rounded-2xl p-6 md:p-8 lg:p-12">
+          <div className="luxury-panel p-5 md:p-7 lg:p-8">
             {/* Home Icon */}
             <div className="mb-4">
               <Link
                 href={`/${locale}`}
-                className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-beige text-brand-primary hover:bg-brand-primary hover:text-white transition-all duration-300"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory text-brand-primary shadow-[0_8px_18px_rgba(20,15,10,0.08)] transition-all duration-300 hover:bg-brand-primary hover:text-white"
                 aria-label="Home"
               >
                 <Home className="h-5 w-5" />
@@ -187,12 +187,12 @@ export default function LoginPage({ params }: LoginPageProps) {
             </div>
             <div className={`mb-6 ${isRTL ? "text-right" : "text-left"}`}>
               <div className="inline-block">
-                <h1 className="text-sm font-bold tracking-widest text-brand-primary uppercase">{texts.login}</h1>
-                <div className="mt-2 h-0.5 bg-gradient-to-r from-brand-primary to-brand-primary"></div>
+                <h1 className="text-xs font-bold uppercase text-brand-primary">{texts.login}</h1>
+                <div className="mt-2 h-px bg-brand-primary"></div>
               </div>
             </div>
 
-            <h2 className={`text-xl md:text-2xl font-semibold text-gray-800 mb-6 md:mb-8 ${isRTL ? "text-right" : "text-left"}`}>
+            <h2 className={`mb-5 text-lg font-semibold text-brand-primary md:mb-7 md:text-2xl ${isRTL ? "text-right" : "text-left"}`}>
               {texts.loginTitle}
             </h2>
 
@@ -225,7 +225,7 @@ export default function LoginPage({ params }: LoginPageProps) {
             </div>
 
             {isGoogleLoading && (
-              <div className="mb-6 rounded-md bg-blue-50 p-4 text-sm text-blue-600 text-center">
+              <div className="mb-6 rounded-lg border border-brand-border/70 bg-brand-beige/55 p-3 text-center text-sm text-brand-primary">
                 {texts.loggingIn}
               </div>
             )}
@@ -275,7 +275,7 @@ export default function LoginPage({ params }: LoginPageProps) {
                 error={errors.username}
                 autoComplete="username"
                 dir={isRTL ? "rtl" : "ltr"}
-                className="border-gray-300 rounded-none"
+                className=""
               />
 
               <Input
@@ -287,7 +287,7 @@ export default function LoginPage({ params }: LoginPageProps) {
                 error={errors.password}
                 autoComplete="current-password"
                 dir={isRTL ? "rtl" : "ltr"}
-                className="border-gray-300 rounded-none"
+                className=""
               />
 
               <div className={`text-sm ${isRTL ? "text-right" : "text-left"}`}>
@@ -301,7 +301,7 @@ export default function LoginPage({ params }: LoginPageProps) {
 
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-brand-primary to-brand-primary text-white border-0 rounded-full hover:from-brand-primary-dark hover:to-brand-primary focus-visible:ring-brand-primary mt-6 py-3 font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                className="mt-5 w-full"
                 isLoading={isLoading}
                 disabled={isLoading || rateLimitSeconds > 0}
               >

@@ -15,12 +15,12 @@ interface AccountAuthGuardProps {
 
 function AuthLoadingSkeleton() {
   return (
-    <div className="container mx-auto px-5 md:px-7 lg:px-12 py-8">
+    <div className="container mx-auto px-5 py-8 md:px-7 lg:px-12">
       <div className="animate-pulse">
-        <div className="h-8 w-48 bg-gray-200 rounded mb-8" />
+        <div className="mb-8 h-8 w-48 rounded bg-brand-beige" />
         <div className="space-y-4">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-24 bg-gray-200 rounded-lg" />
+            <div key={i} className="h-24 rounded-lg border border-brand-border/70 bg-brand-ivory" />
           ))}
         </div>
       </div>
@@ -40,14 +40,14 @@ function NotAuthenticatedState({
   loginText: string;
 }) {
   return (
-    <div className="container mx-auto px-5 md:px-7 lg:px-12 py-16">
+    <div className="container mx-auto px-5 py-12 md:px-7 md:py-16 lg:px-12">
       <div className="mx-auto max-w-md text-center">
         <div className="mb-6 flex justify-center">
-          <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-gray-100 to-gray-200">
-            <Icon className="h-12 w-12 text-gray-400" />
+          <div className="flex h-20 w-20 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory shadow-[0_12px_28px_rgba(20,15,10,0.08)] md:h-24 md:w-24">
+            <Icon className="h-10 w-10 text-brand-muted md:h-12 md:w-12" />
           </div>
         </div>
-        <p className="mb-8 text-gray-500">{notLoggedInText}</p>
+        <p className="mb-8 text-brand-muted">{notLoggedInText}</p>
         <Button asChild variant="primary" size="lg">
           <Link href={`/${locale}/login`}>{loginText}</Link>
         </Button>
@@ -80,5 +80,5 @@ export function AccountAuthGuard({
     );
   }
 
-  return <>{children}</>;
+  return <div className="account-shell">{children}</div>;
 }

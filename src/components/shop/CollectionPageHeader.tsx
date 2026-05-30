@@ -39,7 +39,7 @@ export function CollectionPageHeader({
       dir={isRTL ? "rtl" : "ltr"}
     >
       {visibleCategories.length > 0 && (
-        <div className="mb-0 border-b border-brand-border/70 bg-brand-beige/45 px-5 py-6 md:px-7 lg:px-12">
+        <div className="mb-0 border-b border-brand-border/70 bg-brand-beige/45 px-3 py-4 md:px-7 md:py-6 lg:px-12">
           <div className="md:hidden">
             <CategoriesCarousel categories={visibleCategories} locale={locale as Locale} />
           </div>
@@ -75,7 +75,7 @@ export function CollectionPageHeader({
         </div>
       )}
 
-      <div className="flex flex-col gap-6 px-5 py-8 md:flex-row md:items-center md:gap-8 md:px-7 md:pb-8 lg:gap-12 lg:px-12">
+      <div className="flex flex-col gap-4 px-4 py-6 md:flex-row md:items-center md:gap-8 md:px-7 md:py-8 lg:gap-12 lg:px-12">
         {image && (
           <div className="shrink-0">
             <Image
@@ -88,7 +88,7 @@ export function CollectionPageHeader({
           </div>
         )}
         <div className="flex-1">
-          <h1 className="font-title text-[38px] leading-none text-brand-primary md:text-[54px]">
+          <h1 className="font-title text-[30px] leading-none text-brand-primary md:text-[54px]">
             {decodeHtmlEntities(title)}
           </h1>
           {subtitle && (
@@ -97,7 +97,7 @@ export function CollectionPageHeader({
             </p>
           )}
           {cleanDescription && (
-            <p className="mt-5 max-w-[660px] text-[15px] leading-7 text-brand-muted md:text-base">
+            <p className="mt-3 max-w-[660px] text-sm leading-6 text-brand-muted md:mt-5 md:text-base md:leading-7">
               {cleanDescription}
             </p>
           )}

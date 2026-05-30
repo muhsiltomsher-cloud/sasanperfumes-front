@@ -6,10 +6,10 @@ interface AccountLoadingSpinnerProps {
 
 export function AccountLoadingSpinner({ message }: AccountLoadingSpinnerProps) {
   return (
-    <div className="container mx-auto px-5 md:px-7 lg:px-12 py-8">
-      <div className="text-center py-12">
-        <div className="animate-spin h-8 w-8 border-4 border-gray-300 border-t-black rounded-full mx-auto mb-4" />
-        <p className="text-gray-500">{message}</p>
+    <div className="container mx-auto px-5 py-8 md:px-7 lg:px-12">
+      <div className="py-12 text-center">
+        <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-brand-border border-t-brand-primary" />
+        <p className="text-brand-muted">{message}</p>
       </div>
     </div>
   );

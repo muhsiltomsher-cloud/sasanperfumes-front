@@ -39,7 +39,7 @@ export default function ShopLoading() {
     <div className="bg-transparent text-brand-primary">
       <CollectionHeaderLoading />
       <ProductToolbarLoading />
-      <ProductGridSkeleton count={15} columns={5} />
+      <ProductGridSkeleton count={12} columns={4} />
     </div>
   );
 }

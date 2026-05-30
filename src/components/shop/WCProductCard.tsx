@@ -184,7 +184,7 @@ export function WCProductCard({
   };
   void renderActionControl;
   const quickActionClassName =
-    "absolute inset-x-2 bottom-2 z-10 flex h-9 items-center justify-center gap-1.5 rounded-md bg-brand-primary px-2 text-center text-[10px] font-bold uppercase text-white shadow-[0_12px_24px_rgba(20,15,10,0.22)] transition-all duration-300 hover:bg-brand-primary-dark disabled:cursor-not-allowed disabled:bg-brand-primary/70 sm:inset-x-3 sm:bottom-3 sm:translate-y-2 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100";
+    "absolute inset-x-2 bottom-2 z-10 hidden h-9 items-center justify-center gap-1.5 rounded-md bg-brand-primary px-2 text-center text-[10px] font-bold uppercase text-white shadow-[0_12px_24px_rgba(20,15,10,0.22)] transition-all duration-300 hover:bg-brand-primary-dark disabled:cursor-not-allowed disabled:bg-brand-primary/70 sm:inset-x-3 sm:bottom-3 sm:flex sm:translate-y-2 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100";
 
   return (
     <>
@@ -306,7 +306,7 @@ export function WCProductCard({
           </div>
 
           {/* Info */}
-          <div className="relative flex min-h-[76px] flex-1 items-center justify-center overflow-hidden px-2.5 py-2 text-center sm:min-h-[82px] sm:px-3">
+          <div className="relative flex min-h-[68px] flex-1 items-center justify-center overflow-hidden px-2 py-1.5 text-center sm:min-h-[82px] sm:px-3 sm:py-2">
             <div className="flex w-full flex-col items-center gap-0">
             {/* Variation terms */}
             {hasVariations && visibleVariationTerms.length > 0 && (
@@ -332,7 +332,7 @@ export function WCProductCard({
               onTouchStart={prefetchProduct}
             >
               <h3 className={cn(
-                "text-[13px] font-semibold leading-tight text-brand-primary-dark sm:text-sm",
+                "text-[12px] font-semibold leading-tight text-brand-primary-dark sm:text-sm",
                 productNameLines === 1 ? "line-clamp-1" : "line-clamp-2"
               )}>
                 {productName}
@@ -353,20 +353,20 @@ export function WCProductCard({
             {/* Price */}
             <div className={cn(reviewCount > 0 ? "mt-0.5" : "mt-0")}>
               {!hasPrice && !hasPriceRange ? (
-                <span className="text-xs font-bold text-brand-primary/45">{isRTL ? "غير متاح" : "Unavailable"}</span>
+                <span className="text-[11px] font-bold text-brand-primary/45 sm:text-xs">{isRTL ? "غير متاح" : "Unavailable"}</span>
               ) : showAsVariable && hasPriceRange && minPrice !== maxPrice ? (
                 <div className="flex items-center justify-center gap-1">
-                  <FormattedPrice price={minPrice} className="text-xs font-bold text-brand-primary" iconSize="xs" />
+                  <FormattedPrice price={minPrice} className="text-[11px] font-bold text-brand-primary sm:text-xs" iconSize="xs" />
                   <span className="text-xs text-brand-primary/40">–</span>
-                  <FormattedPrice price={maxPrice} className="text-xs font-bold text-brand-primary" iconSize="xs" />
+                  <FormattedPrice price={maxPrice} className="text-[11px] font-bold text-brand-primary sm:text-xs" iconSize="xs" />
                 </div>
               ) : product.on_sale ? (
                 <div className="flex items-center justify-center gap-1">
-                  <FormattedPrice price={price} className="text-xs font-bold text-brand-primary" iconSize="xs" />
+                  <FormattedPrice price={price} className="text-[11px] font-bold text-brand-primary sm:text-xs" iconSize="xs" />
                   <FormattedPrice price={regularPrice} className="text-[11px] font-medium text-brand-primary/35" iconSize="xs" strikethrough />
                 </div>
               ) : (
-                <FormattedPrice price={price} className="text-xs font-bold text-brand-primary" iconSize="xs" />
+                <FormattedPrice price={price} className="text-[11px] font-bold text-brand-primary sm:text-xs" iconSize="xs" />
               )}
               </div>
             </div>

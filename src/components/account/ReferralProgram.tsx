@@ -51,24 +51,24 @@ export function ReferralProgram({ locale = "en", customerId }: ReferralProgramPr
   const desc  = isAr ? settings.desc_ar  : settings.desc_en;
 
   return (
-    <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm" dir={isAr ? "rtl" : "ltr"}>
+    <div className="luxury-panel p-5 md:p-6" dir={isAr ? "rtl" : "ltr"}>
       <div className="mb-4 flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-primary/10">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory">
           <Users className="h-5 w-5 text-brand-primary" />
         </div>
         <div>
-          <h3 className="font-bold text-gray-900">{title}</h3>
-          <p className="text-xs text-gray-500">{desc}</p>
+          <h3 className="font-bold text-brand-primary">{title}</h3>
+          <p className="text-xs text-brand-muted">{desc}</p>
         </div>
       </div>
 
       {/* Rewards info */}
       <div className="mb-4 grid grid-cols-2 gap-3">
-        <div className="rounded-xl bg-brand-primary/5 p-3 text-center">
+        <div className="rounded-lg border border-brand-border/70 bg-brand-ivory p-3 text-center">
           <p className="text-lg font-bold text-brand-primary">AED {settings.referrer_discount}</p>
           <p className="text-xs text-gray-500">{isAr ? "مكافأتك" : "Your reward"}</p>
         </div>
-        <div className="rounded-xl bg-green-50 p-3 text-center">
+        <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-center">
           <p className="text-lg font-bold text-green-600">AED {settings.referee_discount}</p>
           <p className="text-xs text-gray-500">{isAr ? "مكافأة صديقك" : "Friend's discount"}</p>
         </div>
@@ -76,25 +76,25 @@ export function ReferralProgram({ locale = "en", customerId }: ReferralProgramPr
 
       {!info ? (
         <div className="flex justify-center py-4">
-          <Loader2 className="h-5 w-5 animate-spin text-gray-400" />
+          <Loader2 className="h-5 w-5 animate-spin text-brand-muted" />
         </div>
       ) : (
         <>
           {/* Referral count */}
-          <p className="mb-3 text-sm text-gray-600">
+          <p className="mb-3 text-sm text-brand-muted">
             {isAr
               ? `لقد أحلت ${info.referral_count} شخصاً حتى الآن`
               : `You've referred ${info.referral_count} ${info.referral_count === 1 ? "person" : "people"} so far`}
           </p>
 
           {/* Referral URL */}
-          <div className="mb-3 rounded-xl bg-gray-50 px-3 py-2">
+          <div className="mb-3 rounded-lg border border-brand-border/70 bg-brand-ivory px-3 py-2">
             <p className="mb-1 text-[10px] uppercase tracking-wide text-gray-400">{isAr ? "رابطك" : "Your Link"}</p>
             <p className="truncate text-xs font-medium text-gray-700">{info.referral_url}</p>
           </div>
 
           {/* Code */}
-          <div className="mb-4 flex items-center gap-2 rounded-xl border-2 border-dashed border-brand-primary/30 bg-brand-primary/5 px-4 py-3">
+          <div className="mb-4 flex items-center gap-2 rounded-lg border border-dashed border-brand-primary/35 bg-brand-beige/45 px-4 py-3">
             <div className="flex-1">
               <p className="text-[10px] uppercase tracking-wide text-gray-400">{isAr ? "كودك" : "Your Code"}</p>
               <p className="font-mono text-xl font-bold tracking-widest text-brand-primary">{info.referral_code}</p>
@@ -108,7 +108,7 @@ export function ReferralProgram({ locale = "en", customerId }: ReferralProgramPr
           {/* Share button */}
           <button
             onClick={share}
-            className="flex w-full items-center justify-center gap-2 rounded-xl border border-brand-primary py-2.5 text-sm font-medium text-brand-primary hover:bg-brand-primary/5 transition-colors"
+            className="flex w-full items-center justify-center gap-2 rounded-full border border-brand-primary/45 py-2.5 text-sm font-medium text-brand-primary transition-colors hover:bg-brand-beige"
           >
             <Share2 className="h-4 w-4" />
             {isAr ? "مشاركة الكود" : "Share Your Code"}

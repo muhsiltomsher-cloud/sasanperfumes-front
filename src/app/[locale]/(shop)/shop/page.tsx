@@ -100,7 +100,7 @@ export default async function ShopPage({ params }: ShopPageProps) {
         locale={locale as Locale}
       />
 
-      <Suspense fallback={<ProductGridSkeleton count={15} columns={5} />}>
+      <Suspense fallback={<ProductGridSkeleton count={12} columns={4} />}>
         <ShopClient
           products={filteredProducts}
           locale={locale as Locale}

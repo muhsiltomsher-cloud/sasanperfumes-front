@@ -383,6 +383,7 @@ interface WPPluginTopbarSettings {
   bgColor: string;
   textColor: string;
   dismissible: boolean;
+  hideOnMobile?: boolean;
   freeShippingThreshold?: number;
   freeShippingThresholds?: Record<string, number>;
 }
@@ -396,6 +397,7 @@ export interface TopbarSettings {
   bgColor: string;
   textColor: string;
   dismissible: boolean;
+  hideOnMobile: boolean;
   freeShippingThreshold: number | null;
   freeShippingThresholds: Record<string, number> | null;
 }
@@ -1294,6 +1296,7 @@ const defaultTopbarSettings: TopbarSettings = {
   bgColor: "#f3f4f6",
   textColor: "#4b5563",
   dismissible: false,
+  hideOnMobile: true,
   freeShippingThreshold: 500,
   freeShippingThresholds: null,
 };
@@ -1321,6 +1324,7 @@ export async function getTopbarSettings(locale?: Locale): Promise<TopbarSettings
     bgColor: data.bgColor || defaultTopbarSettings.bgColor,
     textColor: data.textColor || defaultTopbarSettings.textColor,
     dismissible: data.dismissible,
+    hideOnMobile: data.hideOnMobile ?? defaultTopbarSettings.hideOnMobile,
     freeShippingThreshold: data.freeShippingThreshold ?? defaultTopbarSettings.freeShippingThreshold,
     freeShippingThresholds: data.freeShippingThresholds ?? null,
   };

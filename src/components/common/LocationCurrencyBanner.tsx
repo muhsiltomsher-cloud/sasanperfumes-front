@@ -196,13 +196,12 @@ export function LocationCurrencyBanner({ locale = "en" }: LocationCurrencyBanner
   return (
     <div
       className={cn(
-        "fixed transform transition-transform duration-300 ease-out",
-        "bg-gradient-to-r from-brand-beige to-brand-beige border-brand-primary shadow-lg",
+        "fixed transform border border-brand-border/70 bg-brand-ivory/96 shadow-[0_18px_48px_rgba(20,15,10,0.16)] backdrop-blur-xl transition-transform duration-300 ease-out",
         // On mobile: position well above bottom area to avoid overlapping cookie consent banner
         // Cookie banner sits at bottom 4rem and is ~130px tall, so we need bottom ~216px+ to clear it
         isGulfBanner
-          ? "bottom-20 left-4 right-4 rounded-xl border md:bottom-4 md:left-1/2 md:right-auto md:-translate-x-1/2 md:max-w-sm"
-          : "bottom-20 left-4 right-4 rounded-xl border md:bottom-4 md:left-4 md:right-auto md:max-w-sm"
+          ? "bottom-20 left-3 right-3 rounded-lg md:bottom-4 md:left-1/2 md:right-auto md:-translate-x-1/2 md:max-w-sm"
+          : "bottom-20 left-3 right-3 rounded-lg md:bottom-4 md:left-4 md:right-auto md:max-w-sm"
       )}
       style={isMobile ? { bottom: "13.5rem", zIndex: 65 } : { zIndex: 65 }}
       dir={isRTL ? "rtl" : "ltr"}
@@ -212,7 +211,7 @@ export function LocationCurrencyBanner({ locale = "en" }: LocationCurrencyBanner
         <button
           onClick={handleDismiss}
           className={cn(
-            "absolute top-2 p-1 rounded-full text-brand-gold hover:bg-brand-primary transition-colors",
+            "absolute top-2 rounded-full border border-transparent p-1 text-brand-muted transition-colors hover:border-brand-border/70 hover:bg-brand-beige hover:text-brand-primary",
             isRTL ? "left-2" : "right-2"
           )}
           aria-label="Close"
@@ -221,24 +220,24 @@ export function LocationCurrencyBanner({ locale = "en" }: LocationCurrencyBanner
         </button>
 
         <div className="flex items-start gap-3 pr-6">
-          <div className="flex-shrink-0 rounded-full bg-brand-primary p-2">
-            <MapPin className="h-5 w-5 text-brand-primary" />
+          <div className="flex-shrink-0 rounded-full border border-brand-border/70 bg-brand-ivory p-2 text-brand-primary shadow-[0_8px_18px_rgba(20,15,10,0.08)]">
+            <MapPin className="h-5 w-5" />
           </div>
 
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium text-brand-primary">{t.detected}</p>
-            <p className="text-xs text-brand-primary mt-0.5">{t.suggestion}</p>
+            <p className="mt-0.5 text-xs text-brand-muted">{t.suggestion}</p>
 
             <div className="flex items-center gap-2 mt-2">
               <button
                 onClick={handleAccept}
-                className="px-3 py-1.5 text-xs font-medium text-white bg-brand-primary rounded-full hover:bg-brand-primary transition-colors"
+                className="rounded-full bg-brand-primary px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-brand-primary-dark"
               >
                 {t.accept}
               </button>
               <button
                 onClick={handleDismiss}
-                className="px-3 py-1.5 text-xs font-medium text-brand-primary hover:text-brand-primary transition-colors"
+                className="rounded-full px-3 py-1.5 text-xs font-medium text-brand-muted transition-colors hover:bg-brand-beige hover:text-brand-primary"
               >
                 {t.dismiss}
               </button>

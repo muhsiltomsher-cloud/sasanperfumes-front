@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import type { Locale } from "@/config/site";
 import type { WCProduct } from "@/types/woocommerce";
 
-const STORAGE_KEY = "sasanperfumes_product_view_preference_v2";
+const STORAGE_KEY = "sasanperfumes_product_view_preference_v3";
 const PREFERENCE_CHANGE_EVENT = "sasanperfumes_preference_change";
 
 let cachedPreference: ViewPreference | null = null;
@@ -31,7 +31,7 @@ interface ProductListingProps {
 
 const DEFAULT_PREFERENCE: ViewPreference = {
   viewMode: "grid",
-  gridColumns: 5,
+  gridColumns: 4,
 };
 
 function getProductPrice(product: WCProduct): number {
@@ -77,8 +77,8 @@ function getPreferenceSnapshot(): ViewPreference {
     cachedStorageValue = stored;
     if (stored) {
       const parsed = JSON.parse(stored) as ViewPreference;
-      if (parsed.gridColumns === 5) {
-        cachedPreference = { viewMode: "grid", gridColumns: 5 };
+      if (parsed.gridColumns === 4) {
+        cachedPreference = { viewMode: "grid", gridColumns: 4 };
         return cachedPreference;
       }
     }
@@ -165,9 +165,9 @@ export function ProductListing({
   }
 
   return (
-    <div className={cn("bg-transparent pb-4 pt-5 md:pt-6", className)}>
+    <div className={cn("bg-transparent pb-4 pt-3 md:pt-6", className)}>
       {showToolbar && (
-        <div className={cn("mb-5 md:mb-6", toolbarClassName)}>
+        <div className={cn("mb-3 md:mb-6", toolbarClassName)}>
           <ProductViewToggle
             viewMode={viewMode}
             gridColumns={gridColumns}
