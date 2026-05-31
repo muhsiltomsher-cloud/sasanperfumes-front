@@ -487,7 +487,7 @@ function FullscreenGallery({ images, selectedIndex, onClose, onSelectImage, prod
         <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2 rounded-xl bg-black/50 p-2 backdrop-blur-sm">
           {images.map((image, index) => (
             <button
-              key={image.id}
+              key={`${image.id}-fullscreen-thumb-${index}`}
               type="button"
               onClick={() => {
                 onSelectImage(index);
@@ -540,6 +540,7 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
   useSwipeBack();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const mobileGalleryScrollerRef = useRef<HTMLDivElement | null>(null);
+  const galleryThumbsRef = useRef<HTMLDivElement | null>(null);
   const prevVariationRef = useRef<number | null>(null);
   const [addonValues, setAddonValues] = useState<WCPAFormValues>({});
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -885,6 +886,21 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
     setSelectedImage(0);
   }, [imageCount, selectedImage]);
 
+  const selectGalleryImage = useCallback((index: number, options?: { openFullscreen?: boolean }) => {
+    const maxIndex = Math.max(imageCount - 1, 0);
+    const nextIndex = Math.min(maxIndex, Math.max(0, index));
+
+    setSelectedImage(nextIndex);
+    if (options?.openFullscreen) {
+      setIsFullscreen(true);
+    }
+
+    const scroller = mobileGalleryScrollerRef.current;
+    if (scroller?.clientWidth) {
+      scroller.scrollTo({ left: nextIndex * scroller.clientWidth, behavior: "smooth" });
+    }
+  }, [imageCount]);
+
   useEffect(() => {
     if (!isMobileViewport) return;
 
@@ -907,6 +923,27 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
     }
   }, [imageCount, selectedImage]);
 
+  useEffect(() => {
+    const rail = galleryThumbsRef.current;
+    if (!rail || imageCount <= 1) return;
+
+    const activeThumb = rail.querySelector<HTMLElement>(`[data-gallery-thumb="${selectedImage}"]`);
+    if (!activeThumb) return;
+
+    const nextLeft =
+      rail.scrollWidth > rail.clientWidth
+        ? activeThumb.offsetLeft - rail.clientWidth / 2 + activeThumb.clientWidth / 2
+        : rail.scrollLeft;
+    const nextTop =
+      rail.scrollHeight > rail.clientHeight
+        ? activeThumb.offsetTop - rail.clientHeight / 2 + activeThumb.clientHeight / 2
+        : rail.scrollTop;
+
+    if (nextLeft !== rail.scrollLeft || nextTop !== rail.scrollTop) {
+      rail.scrollTo({ left: nextLeft, top: nextTop, behavior: "smooth" });
+    }
+  }, [imageCount, selectedImage]);
+
   const renderImageGallery = () => {
     if (imageCount === 0) {
       return (
@@ -923,29 +960,27 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
 
     const activeImage = images[selectedImage] ?? images[0];
     const goToPreviousImage = () => {
-      setSelectedImage((prev) => (prev <= 0 ? imageCount - 1 : prev - 1));
+      selectGalleryImage(selectedImage <= 0 ? imageCount - 1 : selectedImage - 1);
     };
     const goToNextImage = () => {
-      setSelectedImage((prev) => (prev >= imageCount - 1 ? 0 : prev + 1));
+      selectGalleryImage(selectedImage >= imageCount - 1 ? 0 : selectedImage + 1);
     };
 
     if (isMobileViewport) {
       return (
-        <div className="space-y-3">
+        <div className="space-y-3" data-product-gallery="mobile">
           <div className="relative">
             <div
               ref={mobileGalleryScrollerRef}
               onScroll={handleMobileGalleryScroll}
+              data-product-gallery-scroller
               className="flex snap-x snap-mandatory overflow-x-auto overflow-y-hidden scroll-smooth bg-white [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               {images.map((image, index) => (
                 <button
                   key={`${image.id}-${index}`}
                   type="button"
-                  onClick={() => {
-                    setSelectedImage(index);
-                    setIsFullscreen(true);
-                  }}
+                  onClick={() => selectGalleryImage(index, { openFullscreen: true })}
                   className="group relative block min-w-full snap-center overflow-hidden bg-white"
                   aria-label={`View image ${index + 1}`}
                 >
@@ -954,6 +989,7 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
                       src={image.src}
                       alt={image.alt || `${productDisplayName} image ${index + 1}`}
                       fill
+                      data-product-gallery-image={index}
                       sizes="100vw"
                       className="object-contain px-4 py-5"
                       priority={index === 0}
@@ -985,12 +1021,16 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
-              <div className="mx-9 flex snap-x gap-2 overflow-x-auto rounded-full border border-brand-border/70 bg-brand-ivory/95 p-1.5 shadow-[0_12px_28px_rgba(20,15,10,0.1)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div
+                ref={galleryThumbsRef}
+                className="mx-9 flex snap-x gap-2 overflow-x-auto rounded-full border border-brand-border/70 bg-brand-ivory/95 p-1.5 shadow-[0_12px_28px_rgba(20,15,10,0.1)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              >
                 {images.map((image, index) => (
                   <button
                     key={`${image.id}-mobile-thumb-${index}`}
                     type="button"
-                    onClick={() => setSelectedImage(index)}
+                    onClick={() => selectGalleryImage(index)}
+                    data-gallery-thumb={index}
                     className={cn(
                       "relative h-14 w-14 shrink-0 snap-center overflow-hidden rounded-md border bg-white transition-all",
                       selectedImage === index
@@ -1030,7 +1070,13 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
     const activeImageSrc = activeImage.src;
 
     return (
-      <div className="space-y-3">
+      <div
+        className={cn(
+          "grid gap-3",
+          showThumbnails ? "md:grid-cols-[82px_minmax(0,1fr)] lg:grid-cols-[92px_minmax(0,1fr)]" : "grid-cols-1"
+        )}
+        data-product-gallery="desktop"
+      >
         {false && showThumbnails && (
           <div className="hidden">
             {images.map((image, index) => (
@@ -1062,17 +1108,72 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
           </div>
         )}
 
-        <div className="relative">
+        {showThumbnails && (
+          <div className="relative min-w-0 md:col-start-1 md:row-start-1">
+            <button
+              type="button"
+              onClick={goToPreviousImage}
+              className="absolute left-1/2 top-1.5 z-10 hidden h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory/95 text-brand-primary shadow-[0_12px_28px_rgba(20,15,10,0.12)] transition hover:border-brand-primary/45 hover:bg-white md:flex"
+              aria-label="Previous image"
+            >
+              <ChevronLeft className="h-4 w-4 rotate-90" />
+            </button>
+            <div
+              ref={galleryThumbsRef}
+              className="flex max-h-[calc(100vh-180px)] snap-y flex-col gap-2 overflow-y-auto rounded-lg border border-brand-border/70 bg-brand-ivory/95 px-1.5 py-11 shadow-[0_14px_34px_rgba(20,15,10,0.1)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+              {images.map((image, index) => (
+                <button
+                  key={`${image.id}-desktop-thumb-${index}`}
+                  type="button"
+                  onClick={() => selectGalleryImage(index)}
+                  data-gallery-thumb={index}
+                  className={cn(
+                    "relative h-[76px] w-full shrink-0 snap-center overflow-hidden rounded-md border bg-white transition-all lg:h-[86px]",
+                    selectedImage === index
+                      ? "border-brand-primary ring-2 ring-brand-primary/15"
+                      : "border-brand-border/70 opacity-70 hover:border-brand-primary/45 hover:opacity-100"
+                  )}
+                  aria-label={`View image ${index + 1}`}
+                  aria-current={selectedImage === index ? "true" : "false"}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt || `${productDisplayName} thumbnail ${index + 1}`}
+                    fill
+                    sizes="86px"
+                    className="object-contain p-1.5"
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
+                    unoptimized={shouldUseUnoptimizedImage(image.src)}
+                  />
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={goToNextImage}
+              className="absolute bottom-1.5 left-1/2 z-10 hidden h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border border-brand-border/70 bg-brand-ivory/95 text-brand-primary shadow-[0_12px_28px_rgba(20,15,10,0.12)] transition hover:border-brand-primary/45 hover:bg-white md:flex"
+              aria-label="Next image"
+            >
+              <ChevronRight className="h-4 w-4 rotate-90" />
+            </button>
+          </div>
+        )}
+
+        <div className={cn("relative min-w-0", showThumbnails ? "md:col-start-2 md:row-start-1" : "")}>
           <button
             type="button"
             onClick={() => setIsFullscreen(true)}
+            data-product-gallery-main
             className="group relative aspect-[4/5] w-full cursor-zoom-in overflow-hidden rounded-lg border border-brand-border/70 bg-white shadow-[0_18px_42px_rgba(20,15,10,0.08)]"
           >
             <Image
-              key={activeImage.id}
+              key={`${activeImage.id}-${activeImageSrc}`}
               src={activeImageSrc}
               alt={activeImage.alt || productDisplayName}
               fill
+              data-product-gallery-image={selectedImage}
               sizes="(max-width: 1023px) 100vw, 54vw"
               className="object-contain p-4 transition-transform duration-500 group-hover:scale-[1.025] sm:p-6 lg:p-8"
               priority={selectedImage === 0}
@@ -1121,8 +1222,8 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
           </button>
         </div>
 
-        {showThumbnails && (
-          <div className="relative">
+        {false && showThumbnails && (
+          <div className="hidden">
             <button
               type="button"
               onClick={goToPreviousImage}
@@ -1638,7 +1739,7 @@ export function ProductDetail({ product, locale, relatedProducts = [], upsellPro
           images={images}
           selectedIndex={selectedImage}
           onClose={() => setIsFullscreen(false)}
-          onSelectImage={setSelectedImage}
+          onSelectImage={selectGalleryImage}
           productName={productDisplayName}
           isRTL={isRTL}
           isMobile={isMobileViewport}
